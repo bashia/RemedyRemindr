@@ -7,53 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		264761F71A82A6E00014625A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 264761F61A82A6E00014625A /* main.m */; };
-		264761FA1A82A6E00014625A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 264761F91A82A6E00014625A /* AppDelegate.m */; };
-		264761FD1A82A6E00014625A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 264761FC1A82A6E00014625A /* FirstViewController.m */; };
-		264762001A82A6E00014625A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 264761FF1A82A6E00014625A /* SecondViewController.m */; };
-		264762031A82A6E00014625A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264762011A82A6E00014625A /* Main.storyboard */; };
-		264762051A82A6E00014625A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264762041A82A6E00014625A /* Images.xcassets */; };
-		264762081A82A6E00014625A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 264762061A82A6E00014625A /* LaunchScreen.xib */; };
-		264762141A82A6E00014625A /* RemedyRemindrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 264762131A82A6E00014625A /* RemedyRemindrTests.m */; };
+		EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969231A88276D00CAC52A /* AppDelegate.swift */; };
+		EA4969261A88276D00CAC52A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969251A88276D00CAC52A /* ViewController.swift */; };
+		EA4969291A88276D00CAC52A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA4969271A88276D00CAC52A /* Main.storyboard */; };
+		EA49692B1A88276D00CAC52A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA49692A1A88276D00CAC52A /* Images.xcassets */; };
+		EA49692E1A88276D00CAC52A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49692C1A88276D00CAC52A /* LaunchScreen.xib */; };
+		EA49693A1A88276D00CAC52A /* RemedyRemindrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2647620E1A82A6E00014625A /* PBXContainerItemProxy */ = {
+		EA4969341A88276D00CAC52A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 264761E91A82A6DF0014625A /* Project object */;
+			containerPortal = EA4969161A88276D00CAC52A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 264761F01A82A6E00014625A;
+			remoteGlobalIDString = EA49691D1A88276D00CAC52A;
 			remoteInfo = RemedyRemindr;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		264761F11A82A6E00014625A /* RemedyRemindr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemedyRemindr.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		264761F51A82A6E00014625A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		264761F61A82A6E00014625A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		264761F81A82A6E00014625A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		264761F91A82A6E00014625A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		264761FB1A82A6E00014625A /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		264761FC1A82A6E00014625A /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		264761FE1A82A6E00014625A /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		264761FF1A82A6E00014625A /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		264762021A82A6E00014625A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		264762041A82A6E00014625A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		264762071A82A6E00014625A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		2647620D1A82A6E00014625A /* RemedyRemindrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemedyRemindrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		264762121A82A6E00014625A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		264762131A82A6E00014625A /* RemedyRemindrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemedyRemindrTests.m; sourceTree = "<group>"; };
+		EA49691E1A88276D00CAC52A /* RemedyRemindr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemedyRemindr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA4969221A88276D00CAC52A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA4969231A88276D00CAC52A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EA4969251A88276D00CAC52A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EA4969281A88276D00CAC52A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA49692A1A88276D00CAC52A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EA49692D1A88276D00CAC52A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		EA4969331A88276D00CAC52A /* RemedyRemindrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemedyRemindrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA4969381A88276D00CAC52A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyRemindrTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		264761EE1A82A6E00014625A /* Frameworks */ = {
+		EA49691B1A88276D00CAC52A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2647620A1A82A6E00014625A /* Frameworks */ = {
+		EA4969301A88276D00CAC52A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,63 +56,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		264761E81A82A6DF0014625A = {
+		EA4969151A88276D00CAC52A = {
 			isa = PBXGroup;
 			children = (
-				264761F31A82A6E00014625A /* RemedyRemindr */,
-				264762101A82A6E00014625A /* RemedyRemindrTests */,
-				264761F21A82A6E00014625A /* Products */,
+				EA4969201A88276D00CAC52A /* RemedyRemindr */,
+				EA4969361A88276D00CAC52A /* RemedyRemindrTests */,
+				EA49691F1A88276D00CAC52A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		264761F21A82A6E00014625A /* Products */ = {
+		EA49691F1A88276D00CAC52A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				264761F11A82A6E00014625A /* RemedyRemindr.app */,
-				2647620D1A82A6E00014625A /* RemedyRemindrTests.xctest */,
+				EA49691E1A88276D00CAC52A /* RemedyRemindr.app */,
+				EA4969331A88276D00CAC52A /* RemedyRemindrTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		264761F31A82A6E00014625A /* RemedyRemindr */ = {
+		EA4969201A88276D00CAC52A /* RemedyRemindr */ = {
 			isa = PBXGroup;
 			children = (
-				264761F81A82A6E00014625A /* AppDelegate.h */,
-				264761F91A82A6E00014625A /* AppDelegate.m */,
-				264761FB1A82A6E00014625A /* FirstViewController.h */,
-				264761FC1A82A6E00014625A /* FirstViewController.m */,
-				264761FE1A82A6E00014625A /* SecondViewController.h */,
-				264761FF1A82A6E00014625A /* SecondViewController.m */,
-				264762011A82A6E00014625A /* Main.storyboard */,
-				264762041A82A6E00014625A /* Images.xcassets */,
-				264762061A82A6E00014625A /* LaunchScreen.xib */,
-				264761F41A82A6E00014625A /* Supporting Files */,
+				EA4969231A88276D00CAC52A /* AppDelegate.swift */,
+				EA4969251A88276D00CAC52A /* ViewController.swift */,
+				EA4969271A88276D00CAC52A /* Main.storyboard */,
+				EA49692A1A88276D00CAC52A /* Images.xcassets */,
+				EA49692C1A88276D00CAC52A /* LaunchScreen.xib */,
+				EA4969211A88276D00CAC52A /* Supporting Files */,
 			);
 			path = RemedyRemindr;
 			sourceTree = "<group>";
 		};
-		264761F41A82A6E00014625A /* Supporting Files */ = {
+		EA4969211A88276D00CAC52A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				264761F51A82A6E00014625A /* Info.plist */,
-				264761F61A82A6E00014625A /* main.m */,
+				EA4969221A88276D00CAC52A /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		264762101A82A6E00014625A /* RemedyRemindrTests */ = {
+		EA4969361A88276D00CAC52A /* RemedyRemindrTests */ = {
 			isa = PBXGroup;
 			children = (
-				264762131A82A6E00014625A /* RemedyRemindrTests.m */,
-				264762111A82A6E00014625A /* Supporting Files */,
+				EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */,
+				EA4969371A88276D00CAC52A /* Supporting Files */,
 			);
 			path = RemedyRemindrTests;
 			sourceTree = "<group>";
 		};
-		264762111A82A6E00014625A /* Supporting Files */ = {
+		EA4969371A88276D00CAC52A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				264762121A82A6E00014625A /* Info.plist */,
+				EA4969381A88276D00CAC52A /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -127,13 +115,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		264761F01A82A6E00014625A /* RemedyRemindr */ = {
+		EA49691D1A88276D00CAC52A /* RemedyRemindr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 264762171A82A6E00014625A /* Build configuration list for PBXNativeTarget "RemedyRemindr" */;
+			buildConfigurationList = EA49693D1A88276D00CAC52A /* Build configuration list for PBXNativeTarget "RemedyRemindr" */;
 			buildPhases = (
-				264761ED1A82A6E00014625A /* Sources */,
-				264761EE1A82A6E00014625A /* Frameworks */,
-				264761EF1A82A6E00014625A /* Resources */,
+				EA49691A1A88276D00CAC52A /* Sources */,
+				EA49691B1A88276D00CAC52A /* Frameworks */,
+				EA49691C1A88276D00CAC52A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -141,46 +129,46 @@
 			);
 			name = RemedyRemindr;
 			productName = RemedyRemindr;
-			productReference = 264761F11A82A6E00014625A /* RemedyRemindr.app */;
+			productReference = EA49691E1A88276D00CAC52A /* RemedyRemindr.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2647620C1A82A6E00014625A /* RemedyRemindrTests */ = {
+		EA4969321A88276D00CAC52A /* RemedyRemindrTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2647621A1A82A6E00014625A /* Build configuration list for PBXNativeTarget "RemedyRemindrTests" */;
+			buildConfigurationList = EA4969401A88276D00CAC52A /* Build configuration list for PBXNativeTarget "RemedyRemindrTests" */;
 			buildPhases = (
-				264762091A82A6E00014625A /* Sources */,
-				2647620A1A82A6E00014625A /* Frameworks */,
-				2647620B1A82A6E00014625A /* Resources */,
+				EA49692F1A88276D00CAC52A /* Sources */,
+				EA4969301A88276D00CAC52A /* Frameworks */,
+				EA4969311A88276D00CAC52A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2647620F1A82A6E00014625A /* PBXTargetDependency */,
+				EA4969351A88276D00CAC52A /* PBXTargetDependency */,
 			);
 			name = RemedyRemindrTests;
 			productName = RemedyRemindrTests;
-			productReference = 2647620D1A82A6E00014625A /* RemedyRemindrTests.xctest */;
+			productReference = EA4969331A88276D00CAC52A /* RemedyRemindrTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		264761E91A82A6DF0014625A /* Project object */ = {
+		EA4969161A88276D00CAC52A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Group 4";
 				TargetAttributes = {
-					264761F01A82A6E00014625A = {
+					EA49691D1A88276D00CAC52A = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					2647620C1A82A6E00014625A = {
+					EA4969321A88276D00CAC52A = {
 						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 264761F01A82A6E00014625A;
+						TestTargetID = EA49691D1A88276D00CAC52A;
 					};
 				};
 			};
-			buildConfigurationList = 264761EC1A82A6DF0014625A /* Build configuration list for PBXProject "RemedyRemindr" */;
+			buildConfigurationList = EA4969191A88276D00CAC52A /* Build configuration list for PBXProject "RemedyRemindr" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -188,29 +176,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 264761E81A82A6DF0014625A;
-			productRefGroup = 264761F21A82A6E00014625A /* Products */;
+			mainGroup = EA4969151A88276D00CAC52A;
+			productRefGroup = EA49691F1A88276D00CAC52A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				264761F01A82A6E00014625A /* RemedyRemindr */,
-				2647620C1A82A6E00014625A /* RemedyRemindrTests */,
+				EA49691D1A88276D00CAC52A /* RemedyRemindr */,
+				EA4969321A88276D00CAC52A /* RemedyRemindrTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		264761EF1A82A6E00014625A /* Resources */ = {
+		EA49691C1A88276D00CAC52A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				264762031A82A6E00014625A /* Main.storyboard in Resources */,
-				264762081A82A6E00014625A /* LaunchScreen.xib in Resources */,
-				264762051A82A6E00014625A /* Images.xcassets in Resources */,
+				EA4969291A88276D00CAC52A /* Main.storyboard in Resources */,
+				EA49692E1A88276D00CAC52A /* LaunchScreen.xib in Resources */,
+				EA49692B1A88276D00CAC52A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2647620B1A82A6E00014625A /* Resources */ = {
+		EA4969311A88276D00CAC52A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,48 +208,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		264761ED1A82A6E00014625A /* Sources */ = {
+		EA49691A1A88276D00CAC52A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				264762001A82A6E00014625A /* SecondViewController.m in Sources */,
-				264761FA1A82A6E00014625A /* AppDelegate.m in Sources */,
-				264761FD1A82A6E00014625A /* FirstViewController.m in Sources */,
-				264761F71A82A6E00014625A /* main.m in Sources */,
+				EA4969261A88276D00CAC52A /* ViewController.swift in Sources */,
+				EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		264762091A82A6E00014625A /* Sources */ = {
+		EA49692F1A88276D00CAC52A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				264762141A82A6E00014625A /* RemedyRemindrTests.m in Sources */,
+				EA49693A1A88276D00CAC52A /* RemedyRemindrTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2647620F1A82A6E00014625A /* PBXTargetDependency */ = {
+		EA4969351A88276D00CAC52A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 264761F01A82A6E00014625A /* RemedyRemindr */;
-			targetProxy = 2647620E1A82A6E00014625A /* PBXContainerItemProxy */;
+			target = EA49691D1A88276D00CAC52A /* RemedyRemindr */;
+			targetProxy = EA4969341A88276D00CAC52A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		264762011A82A6E00014625A /* Main.storyboard */ = {
+		EA4969271A88276D00CAC52A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				264762021A82A6E00014625A /* Base */,
+				EA4969281A88276D00CAC52A /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		264762061A82A6E00014625A /* LaunchScreen.xib */ = {
+		EA49692C1A88276D00CAC52A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				264762071A82A6E00014625A /* Base */,
+				EA49692D1A88276D00CAC52A /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -269,7 +255,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		264762151A82A6E00014625A /* Debug */ = {
+		EA49693B1A88276D00CAC52A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -307,10 +293,11 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		264762161A82A6E00014625A /* Release */ = {
+		EA49693C1A88276D00CAC52A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -345,27 +332,29 @@
 			};
 			name = Release;
 		};
-		264762181A82A6E00014625A /* Debug */ = {
+		EA49693E1A88276D00CAC52A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = RemedyRemindr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		264762191A82A6E00014625A /* Release */ = {
+		EA49693F1A88276D00CAC52A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = RemedyRemindr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
-		2647621B1A82A6E00014625A /* Debug */ = {
+		EA4969411A88276D00CAC52A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -384,7 +373,7 @@
 			};
 			name = Debug;
 		};
-		2647621C1A82A6E00014625A /* Release */ = {
+		EA4969421A88276D00CAC52A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -402,32 +391,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		264761EC1A82A6DF0014625A /* Build configuration list for PBXProject "RemedyRemindr" */ = {
+		EA4969191A88276D00CAC52A /* Build configuration list for PBXProject "RemedyRemindr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				264762151A82A6E00014625A /* Debug */,
-				264762161A82A6E00014625A /* Release */,
+				EA49693B1A88276D00CAC52A /* Debug */,
+				EA49693C1A88276D00CAC52A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		264762171A82A6E00014625A /* Build configuration list for PBXNativeTarget "RemedyRemindr" */ = {
+		EA49693D1A88276D00CAC52A /* Build configuration list for PBXNativeTarget "RemedyRemindr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				264762181A82A6E00014625A /* Debug */,
-				264762191A82A6E00014625A /* Release */,
+				EA49693E1A88276D00CAC52A /* Debug */,
+				EA49693F1A88276D00CAC52A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		2647621A1A82A6E00014625A /* Build configuration list for PBXNativeTarget "RemedyRemindrTests" */ = {
+		EA4969401A88276D00CAC52A /* Build configuration list for PBXNativeTarget "RemedyRemindrTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2647621B1A82A6E00014625A /* Debug */,
-				2647621C1A82A6E00014625A /* Release */,
+				EA4969411A88276D00CAC52A /* Debug */,
+				EA4969421A88276D00CAC52A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 264761E91A82A6DF0014625A /* Project object */;
+	rootObject = EA4969161A88276D00CAC52A /* Project object */;
 }

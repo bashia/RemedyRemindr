@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EAA24F1F-3437-44F2-9B62-0B43D778EFC5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RemedyRemindr</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E8C666EA501AE78C5045F26FF5BE507980165FBE</key>
+		<string>https://github.com/bashia/RemedyRemindr.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RemedyRemindr/RemedyRemindr.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E8C666EA501AE78C5045F26FF5BE507980165FBE</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/bashia/RemedyRemindr.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E8C666EA501AE78C5045F26FF5BE507980165FBE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E8C666EA501AE78C5045F26FF5BE507980165FBE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RemedyRemindr</string>
+		</dict>
+	</array>
+</dict>
+</plist>
