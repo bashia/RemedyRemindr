@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA248A191A8844CF00B15D03 /* MedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A181A8844CF00B15D03 /* MedsViewController.swift */; };
+		EA248A1B1A88453900B15D03 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1A1A88453900B15D03 /* Medication.swift */; };
+		EA248A1D1A88458800B15D03 /* SampleMeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1C1A88458800B15D03 /* SampleMeds.swift */; };
+		EA248A211A884DF100B15D03 /* AddMedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A201A884DF100B15D03 /* AddMedViewController.swift */; };
 		EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969231A88276D00CAC52A /* AppDelegate.swift */; };
 		EA4969261A88276D00CAC52A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969251A88276D00CAC52A /* ViewController.swift */; };
 		EA4969291A88276D00CAC52A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA4969271A88276D00CAC52A /* Main.storyboard */; };
@@ -26,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA248A181A8844CF00B15D03 /* MedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedsViewController.swift; sourceTree = "<group>"; };
+		EA248A1A1A88453900B15D03 /* Medication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
+		EA248A1C1A88458800B15D03 /* SampleMeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMeds.swift; sourceTree = "<group>"; };
+		EA248A201A884DF100B15D03 /* AddMedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddMedViewController.swift; path = ../AddMedViewController.swift; sourceTree = "<group>"; };
 		EA49691E1A88276D00CAC52A /* RemedyRemindr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemedyRemindr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4969221A88276D00CAC52A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA4969231A88276D00CAC52A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,12 +85,16 @@
 		EA4969201A88276D00CAC52A /* RemedyRemindr */ = {
 			isa = PBXGroup;
 			children = (
+				EA248A201A884DF100B15D03 /* AddMedViewController.swift */,
 				EA4969231A88276D00CAC52A /* AppDelegate.swift */,
 				EA4969251A88276D00CAC52A /* ViewController.swift */,
 				EA4969271A88276D00CAC52A /* Main.storyboard */,
 				EA49692A1A88276D00CAC52A /* Images.xcassets */,
 				EA49692C1A88276D00CAC52A /* LaunchScreen.xib */,
 				EA4969211A88276D00CAC52A /* Supporting Files */,
+				EA248A181A8844CF00B15D03 /* MedsViewController.swift */,
+				EA248A1A1A88453900B15D03 /* Medication.swift */,
+				EA248A1C1A88458800B15D03 /* SampleMeds.swift */,
 			);
 			path = RemedyRemindr;
 			sourceTree = "<group>";
@@ -212,8 +224,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA248A1B1A88453900B15D03 /* Medication.swift in Sources */,
 				EA4969261A88276D00CAC52A /* ViewController.swift in Sources */,
+				EA248A191A8844CF00B15D03 /* MedsViewController.swift in Sources */,
+				EA248A211A884DF100B15D03 /* AddMedViewController.swift in Sources */,
 				EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */,
+				EA248A1D1A88458800B15D03 /* SampleMeds.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +423,7 @@
 				EA49693F1A88276D00CAC52A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA4969401A88276D00CAC52A /* Build configuration list for PBXNativeTarget "RemedyRemindrTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +432,7 @@
 				EA4969421A88276D00CAC52A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
