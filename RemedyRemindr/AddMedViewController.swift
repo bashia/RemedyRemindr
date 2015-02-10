@@ -36,28 +36,8 @@ class AddMedViewController: UIViewController {
         //medNameTextField.enabled = false
         //doneButton.enabled = false
         
-        // Get managed object context
-       /* let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        // Create new object
-        let entity = NSEntityDescription.entityForName("Medication", inManagedObjectContext:managedContext)
-        let med = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
-        med.setValue(medNameTextField.text, forKey: "name")
-        
-        var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        }
-        
-        names.append(med)
-        print(medNameTextField.text)*/
-        
         let newMed = Medication(name: medNameTextField.text)
         names.append(MedicationList.insertData(newMed))
-        
-        
-        
     }
     /*
     // MARK: - Navigation

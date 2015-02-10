@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 class Medication: NSObject {
     var name: String
