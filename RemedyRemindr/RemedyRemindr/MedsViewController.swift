@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class MedsViewController: UITableViewController {
 
-    var meds: [Medication] = medsData
+    var meds = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,27 @@ class MedsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Fetch CoreData
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest(entityName:"Medication")
+        
+        var error: NSError?
+        
+        let fetchedResults = managedContext?.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        
+        if let results = fetchedResults{
+            meds = results
+        } else {
+            println("Could not fetch \(error), \(error!.userInfo)")
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,9 +67,9 @@ class MedsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MedicationCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        let med = meds[indexPath.row] as Medication
-        cell.textLabel?.text = med.name
-        cell.detailTextLabel?.text = med.name
+        let med = meds[indexPath.row]
+        cell.textLabel?.text = med.valueForKey("name") as String?
+        cell.detailTextLabel?.text = med.valueForKey("name") as String?
         return cell
     }
 
