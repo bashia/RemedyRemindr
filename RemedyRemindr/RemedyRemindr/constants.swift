@@ -7,5 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
-var xmlDataSource = "data.xml"
+let darkBlueThemeColor = UIColor(red: 93/255, green: 149/255, blue: 210/255, alpha: 1.0)
+let lightBlueThemeColor = UIColor(red: 114/255, green: 182/255, blue: 255/255, alpha: 1.0)
+

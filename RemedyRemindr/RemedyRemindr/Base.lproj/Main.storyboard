@@ -632,7 +632,7 @@
             </objects>
             <point key="canvasLocation" x="-364.5" y="-97.5"/>
         </scene>
-        <!--Meds View Controller-->
+        <!--RemedyRemindr-->
         <scene sceneID="nzV-vf-nBP">
             <objects>
                 <tableViewController id="WkV-bU-Bqr" customClass="MedsViewController" customModule="RemedyRemindr" customModuleProvider="target" sceneMemberID="viewController">
@@ -644,19 +644,22 @@
                         <color key="separatorColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MedicationCell" textLabel="3UB-W3-I2n" style="IBUITableViewCellStyleDefault" id="X1B-Wx-dsB">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MedicationCell" textLabel="3UB-W3-I2n" detailTextLabel="bfp-ey-k9R" style="IBUITableViewCellStyleSubtitle" id="X1B-Wx-dsB">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X1B-Wx-dsB" id="qtW-Bx-bYF">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3UB-W3-I2n">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3UB-W3-I2n">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="31"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="32"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="31"/>
-                                            </variation>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bfp-ey-k9R">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -668,18 +671,17 @@
                             <outlet property="delegate" destination="WkV-bU-Bqr" id="51p-hS-CaO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="1d3-ju-xDu"/>
+                    <navigationItem key="navigationItem" title="RemedyRemindr" id="Uc1-V7-xtk"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ee-VI-gud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1054.5" y="-97.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Meds List Navigation Controller-->
         <scene sceneID="iwA-ee-agW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="auY-8P-yHc" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="auY-8P-yHc" customClass="MedsListNavigationController" customModule="RemedyRemindr" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="gUX-lK-gll">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -698,4 +700,5 @@
             <point key="canvasLocation" x="375" y="-97.5"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
 </document>
