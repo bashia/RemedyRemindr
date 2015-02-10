@@ -37,7 +37,7 @@ class AddMedViewController: UIViewController {
         //doneButton.enabled = false
         
         // Get managed object context
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+       /* let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
         // Create new object
@@ -51,7 +51,12 @@ class AddMedViewController: UIViewController {
         }
         
         names.append(med)
-        print(medNameTextField.text)
+        print(medNameTextField.text)*/
+        
+        let newMed = Medication(name: medNameTextField.text)
+        names.append(MedicationList.insertData(newMed))
+        
+        
         
     }
     /*

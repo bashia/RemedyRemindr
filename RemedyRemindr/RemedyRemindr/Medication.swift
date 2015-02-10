@@ -7,12 +7,13 @@
 //
 
 import Foundation
-import UIKit
 
 class Medication: NSObject {
     var name: String
+    var reminders: [Reminder]
     
     init(name: String) {
         self.name = name
+        reminders = []
     }
 }
