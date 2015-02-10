@@ -109,13 +109,13 @@
 				EAC191DA1A89B182004A38DC /* MedDetailsViewController.swift */,
 				EA49692A1A88276D00CAC52A /* Images.xcassets */,
 				EA49692C1A88276D00CAC52A /* LaunchScreen.xib */,
-				EA4969211A88276D00CAC52A /* Supporting Files */,
 				EA248A1C1A88458800B15D03 /* SampleMeds.swift */,
 				EA3F7D231A8969CA009B2172 /* constants.swift */,
 				EA2933CA1A899BC100589DE5 /* MedicationList.swift */,
 				EAC191DC1A89C1B4004A38DC /* RemindersTableView.swift */,
 				EA248A1A1A88453900B15D03 /* Medication.swift */,
 				EAC191DE1A89C88A004A38DC /* Reminder.swift */,
+				EA4969211A88276D00CAC52A /* Supporting Files */,
 			);
 			path = RemedyRemindr;
 			sourceTree = "<group>";

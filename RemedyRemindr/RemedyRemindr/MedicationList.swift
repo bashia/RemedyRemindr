@@ -29,6 +29,8 @@ class MedicationList {
         for med in fetchedResults! {
             
             var m = Medication(name: med.valueForKey("name") as String)
+            meds.append(m)
+            
             let reminders = med.valueForKey("reminder") as NSSet
             
             for r in reminders{
@@ -46,13 +48,11 @@ class MedicationList {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
-        let entity = NSEntityDescription.entityForName("Medication", inManagedObjectContext:managedContext)
         let reminder = NSEntityDescription.entityForName("Reminder", inManagedObjectContext:managedContext)
-        
-        let med = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
         let rem = NSManagedObject(entity: reminder!, insertIntoManagedObjectContext:managedContext)
         
-        med.setValue(medication.name, forKey: "name")
+        let med = medicationToNSManagedObject(medication, managedContext: managedContext);
+        
         rem.setValue(123, forKey: "time")
         rem.setValue(med, forKey: "medication")
         
@@ -63,6 +63,17 @@ class MedicationList {
         }
         
         return med
+    }
+    
+    private class func medicationToNSManagedObject(medication: Medication, managedContext: NSManagedObjectContext) -> NSManagedObject {
+    
+        let entity = NSEntityDescription.entityForName("Medication", inManagedObjectContext:managedContext)
+        let med = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        
+        med.setValue(medication.name, forKey: "name")
+        
+        return med
+    
     }
     
     
