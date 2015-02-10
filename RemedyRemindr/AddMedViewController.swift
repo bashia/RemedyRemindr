@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
 class AddMedViewController: UIViewController {
 
-    @IBOutlet weak var medNameTextField: UITextField!
-    
+    var names = [NSManagedObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    @IBOutlet weak var medNameTextField: UITextField!
+    
+    @IBOutlet weak var doneButton: UIButton!
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -25,7 +31,28 @@ class AddMedViewController: UIViewController {
     
 
     @IBAction func testAction() {
-        print("test")
+        
+        // Disable the text field and done button so the user can't keep typing
+        //medNameTextField.enabled = false
+        //doneButton.enabled = false
+        
+        // Get managed object context
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        // Create new object
+        let entity = NSEntityDescription.entityForName("Medication", inManagedObjectContext:managedContext)
+        let med = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        med.setValue(medNameTextField.text, forKey: "name")
+        
+        var error: NSError?
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+        
+        names.append(med)
+        print(medNameTextField.text)
+        
     }
     /*
     // MARK: - Navigation
