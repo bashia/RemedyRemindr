@@ -1,45 +1,27 @@
 //
-//  AddMedViewController.swift
+//  MedListViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-08.
+//  Created by Tony on 2015-02-11.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class AddMedViewController: UIViewController {
+class MedListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBOutlet weak var medNameTextField: UITextField!
-    
-    @IBOutlet weak var doneButton: UIButton!
 
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    @IBAction func testAction(sender: UIButton) {
-        
-        // Disable the text field and done button so the user can't keep typing
-        //medNameTextField.enabled = false
-        //doneButton.enabled = false
-        
-        let newMed = Medication(name: medNameTextField.text)
-        MedicationDAO.insertMedication(newMed)
-        
-        performSegueWithIdentifier("addButtonPressed", sender: sender)
-    }
     /*
     // MARK: - Navigation
 

@@ -1,45 +1,40 @@
 //
-//  AddMedViewController.swift
+//  AddReminderViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-08.
+//  Created by Tony on 2015-02-11.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class AddMedViewController: UIViewController {
+class AddReminderViewController: UIViewController {
 
+    var inputMed : Medication?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBOutlet weak var medNameTextField: UITextField!
-    
-    @IBOutlet weak var doneButton: UIButton!
 
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func testAction(sender: UIButton) {
-        
-        // Disable the text field and done button so the user can't keep typing
-        //medNameTextField.enabled = false
-        //doneButton.enabled = false
-        
-        let newMed = Medication(name: medNameTextField.text)
-        MedicationDAO.insertMedication(newMed)
-        
-        performSegueWithIdentifier("addButtonPressed", sender: sender)
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBAction func doneButtonPressed(sender: AnyObject) {
+        let cal = NSCalendar.currentCalendar()
+        let comp = cal.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: datePicker.date)
+        var minutesFromMidnight = Int16(comp.hour * 60 + comp.minute)
+        var rem = Reminder(time: minutesFromMidnight)
+        MedicationDAO.insertReminder(inputMed!, reminder: rem)
+        performSegueWithIdentifier("insertReminder", sender: sender)
     }
+    
+
     /*
     // MARK: - Navigation
 

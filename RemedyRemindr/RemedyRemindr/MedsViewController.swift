@@ -30,7 +30,14 @@ class MedsViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        meds = MedicationDAO.fetchData()!
+        meds = MedicationDAO.getMedications()!
+        
+        println("refreshing view")
+        for med1 in meds {
+            println("med")
+            println(med1.name)
+            println(med1.reminders)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,7 +78,7 @@ class MedsViewController: UITableViewController {
             var indexPath = self.tableView.indexPathForSelectedRow()
             let med = meds[indexPath!.row]
             
-            detailsView.data = med
+            detailsView.inputMed = med
         }
         
     }
