@@ -17,7 +17,7 @@ class MedsListNavigationController: UINavigationController {
         var appearance = UINavigationBar.appearance()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         appearance.barTintColor = darkBlueThemeColor
-        
+        appearance.tintColor = UIColor.whiteColor()
         
     }
     

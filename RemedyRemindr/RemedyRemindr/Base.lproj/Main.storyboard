@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="auY-8P-yHc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -427,7 +427,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ohK-rK-RPg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="U6m-5x-10Z">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pN5-N5-I2j">
@@ -503,8 +503,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="testAction" destination="oaJ-Ud-Qm2" eventType="touchUpInside" id="0c5-4c-iZP"/>
-                                            <segue destination="auY-8P-yHc" kind="show" id="ikG-iK-VlG"/>
+                                            <action selector="testAction:" destination="oaJ-Ud-Qm2" eventType="touchUpInside" id="YhR-Fg-oei"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhO-NE-4cq">
@@ -623,12 +622,15 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="RemedyRemindr" id="Xdf-hf-AJ9"/>
                     <connections>
                         <outlet property="doneButton" destination="0NF-lE-vPL" id="319-CF-k2e"/>
                         <outlet property="medNameTextField" destination="LhO-NE-4cq" id="lMx-bN-3BC"/>
+                        <segue destination="zTH-KF-YLe" kind="unwind" identifier="addButtonPressed" unwindAction="unwindToMain:" id="GpR-1x-64t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="on9-kh-V8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zTH-KF-YLe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-364.5" y="-97.5"/>
         </scene>
@@ -674,11 +676,17 @@
                             <outlet property="delegate" destination="WkV-bU-Bqr" id="51p-hS-CaO"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="RemedyRemindr" id="Uc1-V7-xtk">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="bur-Qw-FG8"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bMd-K1-Pi8">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="oaJ-Ud-Qm2" kind="show" id="LI9-d2-gmy"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ee-VI-gud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -897,7 +905,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="RemedyRemindr" id="oqX-iA-IuG"/>
+                    <navigationItem key="navigationItem" title="RemedyRemindr" id="oqX-iA-IuG">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="ABO-Of-QYt"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="TitleBar" destination="oqX-iA-IuG" id="2Zi-Nw-EYH"/>
                         <segue destination="nFS-VI-qrV" kind="unwind" identifier="deleteMedication" unwindAction="unwindToMain:" id="2ze-nf-czk"/>
@@ -911,14 +921,13 @@
         <!--Add/Modify Reminder-->
         <scene sceneID="8IO-9e-8H4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dFf-WA-bkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="OLb-A7-WuK" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KiB-Ld-dxa"/>
                         <viewControllerLayoutGuide type="bottom" id="unf-PZ-Akd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="utt-3C-2Uk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6t-fc-V4Y">
@@ -942,10 +951,10 @@
                                 <exclude reference="S6t-fc-V4Y"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="oZ9-af-amH"/>
                                 <exclude reference="e8c-yX-nR5"/>
                                 <exclude reference="s4C-DB-CDk"/>
                                 <exclude reference="zqY-T6-fwA"/>
-                                <exclude reference="oZ9-af-amH"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -953,15 +962,16 @@
                                 <include reference="S6t-fc-V4Y"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="oZ9-af-amH"/>
                                 <include reference="e8c-yX-nR5"/>
                                 <include reference="s4C-DB-CDk"/>
                                 <include reference="zqY-T6-fwA"/>
-                                <include reference="oZ9-af-amH"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Add/Modify Reminder" id="aMX-Da-aDV"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFf-WA-bkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2434.5" y="-97.5"/>
         </scene>
@@ -978,6 +988,7 @@
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="XKs-Z5-Ral">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="WkV-bU-Bqr" kind="relationship" relationship="rootViewController" id="8Bv-cD-LNh"/>
@@ -989,6 +1000,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="LI9-d2-gmy"/>
         <segue reference="z5G-CQ-YVc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>

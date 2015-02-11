@@ -29,7 +29,7 @@ class AddMedViewController: UIViewController {
     }
     
 
-    @IBAction func testAction() {
+    @IBAction func testAction(sender: UIButton) {
         
         // Disable the text field and done button so the user can't keep typing
         //medNameTextField.enabled = false
@@ -37,6 +37,8 @@ class AddMedViewController: UIViewController {
         
         let newMed = Medication(name: medNameTextField.text)
         MedicationDAO.insertData(newMed)
+        
+        performSegueWithIdentifier("addButtonPressed", sender: sender)
     }
     /*
     // MARK: - Navigation
