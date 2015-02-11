@@ -11,7 +11,6 @@ import CoreData
 
 class AddMedViewController: UIViewController {
 
-    var names = [NSManagedObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,29 +29,16 @@ class AddMedViewController: UIViewController {
     }
     
 
-    @IBAction func testAction() {
+    @IBAction func testAction(sender: UIButton) {
         
         // Disable the text field and done button so the user can't keep typing
         //medNameTextField.enabled = false
         //doneButton.enabled = false
         
-        // Get managed object context
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
+        let newMed = Medication(name: medNameTextField.text)
+        MedicationDAO.insertData(newMed)
         
-        // Create new object
-        let entity = NSEntityDescription.entityForName("Medication", inManagedObjectContext:managedContext)
-        let med = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
-        med.setValue(medNameTextField.text, forKey: "name")
-        
-        var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        }
-        
-        names.append(med)
-        print(medNameTextField.text)
-        
+        performSegueWithIdentifier("addButtonPressed", sender: sender)
     }
     /*
     // MARK: - Navigation

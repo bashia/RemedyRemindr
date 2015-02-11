@@ -11,7 +11,11 @@ import CoreData
 
 class MedsViewController: UITableViewController {
 
-    var meds = [NSManagedObject]()
+    var meds = [Medication]()
+    
+    @IBAction func unwindToMain(sender: UIStoryboardSegue) {
+        // This comes from the detail view when you press the delete button
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,22 +30,7 @@ class MedsViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Fetch CoreData
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        
-        let fetchRequest = NSFetchRequest(entityName:"Medication")
-        
-        var error: NSError?
-        
-        let fetchedResults = managedContext?.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
-        
-        if let results = fetchedResults{
-            meds = results
-        } else {
-            println("Could not fetch \(error), \(error!.userInfo)")
-        }
-        
+        meds = MedicationDAO.fetchData()!
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,9 +57,23 @@ class MedsViewController: UITableViewController {
 
         // Configure the cell...
         let med = meds[indexPath.row]
-        cell.textLabel?.text = med.valueForKey("name") as String?
-        cell.detailTextLabel?.text = med.valueForKey("name") as String?
+        cell.textLabel?.text = med.name
+        cell.detailTextLabel?.text = med.name
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+        if segue.identifier == "showDetails"
+        {
+            var detailsView : MedDetailsViewController = segue.destinationViewController as MedDetailsViewController
+            
+            var indexPath = self.tableView.indexPathForSelectedRow()
+            let med = meds[indexPath!.row]
+            
+            detailsView.data = med
+        }
+        
     }
 
     /*
