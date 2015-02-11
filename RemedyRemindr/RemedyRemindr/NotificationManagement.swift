@@ -11,6 +11,32 @@ import UIKit
 
 class NotificationManager{
     
+    func fixNotificationDate(dateToFix: NSDate) -> NSDate {
+        var dateComponents: NSDateComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: dateToFix)
+        
+        dateComponents.second = 0
+        
+        var fixedDate: NSDate! = NSCalendar.currentCalendar().dateFromComponents(dateComponents)
+        
+        return fixedDate
+    }
+    
+    func makeNotification(date: NSDate){
+        
+        var localNotification = UILocalNotification()
+        localNotification.fireDate = fixNotificationDate(date)
+        localNotification.alertBody = "Medication Alert!"
+        localNotification.alertAction = "View List"
+        
+        localNotification.category = "RemedyRemindrCategory"
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+    func checkNotifications(){
+        
+    }
+    
     init(){
         let notificationSettings: UIUserNotificationSettings! = UIApplication.sharedApplication().currentUserNotificationSettings()
         
@@ -49,39 +75,11 @@ class NotificationManager{
             RemedyRemindrCategory.setActions(actionsArray, forContext: UIUserNotificationActionContext.Default)
             RemedyRemindrCategory.setActions(actionsArrayMinimal, forContext: UIUserNotificationActionContext.Minimal)
             
-            
             let categoriesForSettings = NSSet(objects: RemedyRemindrCategory)
-            
             
             // Register the notification settings.
             let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings)
             UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
-    }
-    
-        func fixNotificationDate(dateToFix: NSDate) -> NSDate {
-            var dateComponents: NSDateComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: dateToFix)
-            
-            dateComponents.second = 0
-            
-            var fixedDate: NSDate! = NSCalendar.currentCalendar().dateFromComponents(dateComponents)
-            
-            return fixedDate
-        }
-        
-        func makeNotification(date: NSDate){
-        
-        var localNotification = UILocalNotification()
-        localNotification.fireDate = fixNotificationDate(date)
-        localNotification.alertBody = "Medication Alert!"
-        localNotification.alertAction = "View List"
-        
-        localNotification.category = "RemedyRemindrCategory"
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-    }
-    
-    func checkNotifications(){
-        
     }
 
     }
