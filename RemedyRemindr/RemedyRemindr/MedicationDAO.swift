@@ -12,7 +12,7 @@ import UIKit
 
 class MedicationDAO {
 
-    class func fetchData() -> [Medication]? {
+    class func getMedications() -> [Medication]? {
         
         var meds = [Medication]()
         
@@ -45,9 +45,9 @@ class MedicationDAO {
 
     }
     
-    class func insertData(medication: Medication) {
+    class func insertMedication(medication: Medication) {
         
-       let currentMeds = self.fetchData()! as [Medication]
+       let currentMeds = self.getMedications()! as [Medication]
         
        for med in currentMeds {
             if med.name == medication.name {
@@ -69,14 +69,31 @@ class MedicationDAO {
         }
     }
     
-    class func insertReminder(){
-        /*let reminder = NSEntityDescription.entityForName("Reminder", inManagedObjectContext:managedContext)
-        let rem = NSManagedObject(entity: reminder!, insertIntoManagedObjectContext:managedContext)
-        rem.setValue(123, forKey: "time")
-        rem.setValue(med, forKey: "medication")*/
+    class func insertReminder(medication: Medication, reminder: Reminder){
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let predicate = NSPredicate(format: "name = %@", medication.name)
+        
+        let fetchRequest = NSFetchRequest(entityName:"Medication")
+        fetchRequest.predicate = predicate
+        
+        var error: NSError?
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        
+        if fetchedResults?.count > 1
+        {
+            // error
+        }
+        else
+        {
+            let rem = reminderToNSManagedObject(reminder, managedContext: managedContext)
+            rem.setValue(fetchedResults![0], forKey: "medication")
+        }
     }
     
-    class func deleteData(medication: Medication){
+    class func deleteMedication(medication: Medication){
        
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
@@ -113,6 +130,17 @@ class MedicationDAO {
         
         return med
     
+    }
+    
+    private class func reminderToNSManagedObject(reminder: Reminder, managedContext: NSManagedObjectContext) -> NSManagedObject {
+        
+        let entity = NSEntityDescription.entityForName("Reminder", inManagedObjectContext:managedContext)
+        let rem = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        
+        rem.setValue(Int(reminder.time), forKey: "time")
+        
+        return rem
+        
     }
     
     
