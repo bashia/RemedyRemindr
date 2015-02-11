@@ -13,6 +13,10 @@ class MedsViewController: UITableViewController {
 
     var meds = [Medication]()
     
+    @IBAction func unwindToMain(sender: UIStoryboardSegue) {
+        // This comes from the detail view when you press the delete button
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +30,7 @@ class MedsViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        meds = MedicationList.fetchData()!
+        meds = MedicationDAO.fetchData()!
     }
     
     override func didReceiveMemoryWarning() {

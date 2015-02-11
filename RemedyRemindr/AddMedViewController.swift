@@ -11,7 +11,6 @@ import CoreData
 
 class AddMedViewController: UIViewController {
 
-    var names = [NSManagedObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,7 +36,7 @@ class AddMedViewController: UIViewController {
         //doneButton.enabled = false
         
         let newMed = Medication(name: medNameTextField.text)
-        names.append(MedicationList.insertData(newMed))
+        MedicationDAO.insertData(newMed)
     }
     /*
     // MARK: - Navigation

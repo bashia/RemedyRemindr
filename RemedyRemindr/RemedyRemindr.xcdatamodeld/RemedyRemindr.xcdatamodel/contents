@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Medication" representedClassName="" syncable="YES">
+    <entity name="Medication" representedClassName="NSManagedObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="reminder" toMany="YES" deletionRule="Cascade" destinationEntity="Reminder" inverseName="medication" inverseEntity="Reminder" syncable="YES"/>
     </entity>
@@ -9,7 +9,7 @@
         <relationship name="medication" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="reminder" inverseEntity="Medication" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Medication" positionX="223" positionY="-1" width="128" height="73"/>
+        <element name="Medication" positionX="223" positionY="-1" width="128" height="75"/>
         <element name="Reminder" positionX="-54" positionY="0" width="128" height="73"/>
     </elements>
 </model>
