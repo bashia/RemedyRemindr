@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2654270E1A89998A0034250D /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2654270D1A89998A0034250D /* NotificationManagement.swift */; };
 		EA248A191A8844CF00B15D03 /* MedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A181A8844CF00B15D03 /* MedsViewController.swift */; };
 		EA248A1B1A88453900B15D03 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1A1A88453900B15D03 /* Medication.swift */; };
 		EA248A1D1A88458800B15D03 /* SampleMeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1C1A88458800B15D03 /* SampleMeds.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2654270D1A89998A0034250D /* NotificationManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
 		EA248A181A8844CF00B15D03 /* MedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedsViewController.swift; sourceTree = "<group>"; };
 		EA248A1A1A88453900B15D03 /* Medication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
 		EA248A1C1A88458800B15D03 /* SampleMeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMeds.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				EA248A1A1A88453900B15D03 /* Medication.swift */,
 				EA248A1C1A88458800B15D03 /* SampleMeds.swift */,
 				EA3F7D231A8969CA009B2172 /* constants.swift */,
+				2654270D1A89998A0034250D /* NotificationManagement.swift */,
 			);
 			path = RemedyRemindr;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				EA248A211A884DF100B15D03 /* AddMedViewController.swift in Sources */,
 				EA3F7D5D1A898BFF009B2172 /* MedsListNavigationController.swift in Sources */,
 				EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */,
+				2654270E1A89998A0034250D /* NotificationManagement.swift in Sources */,
 				EA248A1D1A88458800B15D03 /* SampleMeds.swift in Sources */,
 				EA3F7D5B1A89700A009B2172 /* RemedyRemindr.xcdatamodeld in Sources */,
 			);
