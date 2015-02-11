@@ -11,7 +11,6 @@
 		EA1DA33A1A8AA93300A04453 /* MedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */; };
 		EA248A191A8844CF00B15D03 /* MedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A181A8844CF00B15D03 /* MedsViewController.swift */; };
 		EA248A1B1A88453900B15D03 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1A1A88453900B15D03 /* Medication.swift */; };
-		EA248A1D1A88458800B15D03 /* SampleMeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1C1A88458800B15D03 /* SampleMeds.swift */; };
 		EA248A211A884DF100B15D03 /* AddMedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A201A884DF100B15D03 /* AddMedViewController.swift */; };
 		EA2933CB1A899BC100589DE5 /* MedicationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */; };
 		EA3F7D241A8969CA009B2172 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F7D231A8969CA009B2172 /* constants.swift */; };
@@ -42,7 +41,6 @@
 		EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedDetailsViewController.swift; sourceTree = "<group>"; };
 		EA248A181A8844CF00B15D03 /* MedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedsViewController.swift; sourceTree = "<group>"; };
 		EA248A1A1A88453900B15D03 /* Medication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
-		EA248A1C1A88458800B15D03 /* SampleMeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMeds.swift; sourceTree = "<group>"; };
 		EA248A201A884DF100B15D03 /* AddMedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMedViewController.swift; sourceTree = "<group>"; };
 		EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationDAO.swift; sourceTree = "<group>"; };
 		EA3F7D231A8969CA009B2172 /* constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
@@ -102,23 +100,16 @@
 			isa = PBXGroup;
 			children = (
 				EA3F7D591A89700A009B2172 /* RemedyRemindr.xcdatamodeld */,
-				EA248A201A884DF100B15D03 /* AddMedViewController.swift */,
-				EA248A181A8844CF00B15D03 /* MedsViewController.swift */,
-				EA3F7D5C1A898BFF009B2172 /* MedsListNavigationController.swift */,
+				EA9BC6EE1A8BF83C00658180 /* Classes */,
+				EA9BC6ED1A8BF78E00658180 /* UI */,
+				EA9BC6EF1A8BF88B00658180 /* Notifications */,
 				EA4969231A88276D00CAC52A /* AppDelegate.swift */,
 				EA4969251A88276D00CAC52A /* ViewController.swift */,
 				EA4969271A88276D00CAC52A /* Main.storyboard */,
-				EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */,
 				EA49692A1A88276D00CAC52A /* Images.xcassets */,
 				EA49692C1A88276D00CAC52A /* LaunchScreen.xib */,
-				EA248A1C1A88458800B15D03 /* SampleMeds.swift */,
 				EA3F7D231A8969CA009B2172 /* constants.swift */,
-				EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */,
-				EAC191DC1A89C1B4004A38DC /* RemindersTableView.swift */,
-				EA248A1A1A88453900B15D03 /* Medication.swift */,
-				EAC191DE1A89C88A004A38DC /* Reminder.swift */,
 				EA4969211A88276D00CAC52A /* Supporting Files */,
-				2654270D1A89998A0034250D /* NotificationManagement.swift */,
 			);
 			path = RemedyRemindr;
 			sourceTree = "<group>";
@@ -146,6 +137,36 @@
 				EA4969381A88276D00CAC52A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA9BC6ED1A8BF78E00658180 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EA3F7D5C1A898BFF009B2172 /* MedsListNavigationController.swift */,
+				EA248A181A8844CF00B15D03 /* MedsViewController.swift */,
+				EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */,
+				EAC191DC1A89C1B4004A38DC /* RemindersTableView.swift */,
+				EA248A201A884DF100B15D03 /* AddMedViewController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		EA9BC6EE1A8BF83C00658180 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EAC191DE1A89C88A004A38DC /* Reminder.swift */,
+				EA248A1A1A88453900B15D03 /* Medication.swift */,
+				EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		EA9BC6EF1A8BF88B00658180 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				2654270D1A89998A0034250D /* NotificationManagement.swift */,
+			);
+			name = Notifications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +278,6 @@
 				EA3F7D5D1A898BFF009B2172 /* MedsListNavigationController.swift in Sources */,
 				EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */,
 				2654270E1A89998A0034250D /* NotificationManagement.swift in Sources */,
-				EA248A1D1A88458800B15D03 /* SampleMeds.swift in Sources */,
 				EAC191DF1A89C88A004A38DC /* Reminder.swift in Sources */,
 				EA2933CB1A899BC100589DE5 /* MedicationDAO.swift in Sources */,
 				EA3F7D5B1A89700A009B2172 /* RemedyRemindr.xcdatamodeld in Sources */,
