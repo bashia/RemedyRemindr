@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
-		EA1DA33A1A8AA93300A04453 /* MedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */; };
 		2654270E1A89998A0034250D /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2654270D1A89998A0034250D /* NotificationManagement.swift */; };
+		EA1DA33A1A8AA93300A04453 /* MedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */; };
 		EA248A191A8844CF00B15D03 /* MedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A181A8844CF00B15D03 /* MedsViewController.swift */; };
 		EA248A1B1A88453900B15D03 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1A1A88453900B15D03 /* Medication.swift */; };
 		EA248A1D1A88458800B15D03 /* SampleMeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1C1A88458800B15D03 /* SampleMeds.swift */; };
@@ -39,12 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedDetailsViewController.swift; sourceTree = "<group>"; };
 		2654270D1A89998A0034250D /* NotificationManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
+		EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedDetailsViewController.swift; sourceTree = "<group>"; };
 		EA248A181A8844CF00B15D03 /* MedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedsViewController.swift; sourceTree = "<group>"; };
 		EA248A1A1A88453900B15D03 /* Medication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
 		EA248A1C1A88458800B15D03 /* SampleMeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMeds.swift; sourceTree = "<group>"; };
-		EA248A201A884DF100B15D03 /* AddMedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddMedViewController.swift; path = ../AddMedViewController.swift; sourceTree = "<group>"; };
+		EA248A201A884DF100B15D03 /* AddMedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMedViewController.swift; sourceTree = "<group>"; };
 		EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationDAO.swift; sourceTree = "<group>"; };
 		EA3F7D231A8969CA009B2172 /* constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		EA3F7D5A1A89700A009B2172 /* RemedyRemindr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RemedyRemindr.xcdatamodel; sourceTree = "<group>"; };
