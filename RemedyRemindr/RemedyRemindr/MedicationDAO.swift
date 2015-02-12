@@ -19,26 +19,27 @@ class MedicationDAO {
         // Fetch CoreData
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
-
+        
         let fetchRequest = NSFetchRequest(entityName:"Medication")
+        
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let sortDescriptors = [sortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
         
         var error: NSError?
         
         let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
         
-        for med in fetchedResults! {
+        for managedMed in fetchedResults! {
             
-            var newMed = Medication(name: med.valueForKey("name") as String)
+            // TODO: Should create using a conversion method
+            var med = Medication(name: managedMed.valueForKey("name") as String)
             
-            
-            let reminders = med.valueForKey("reminder") as NSSet
-            
-            for r in reminders {
-                // append reminder into med
-                var newRem = Reminder(time: Int16(r.valueForKey("time") as Int))
-                newMed.reminders.append(newRem)
+            for mangedRem in (managedMed.valueForKey("reminder") as NSSet) {
+                med.reminders.append(NSManagedObjectToReminder(mangedRem as NSManagedObject))
             }
-            meds.append(newMed)
+            
+            meds.append(med)
         }
         
         return meds
@@ -47,15 +48,15 @@ class MedicationDAO {
     
     class func insertMedication(medication: Medication) {
         
-       let currentMeds = self.getMedications()! as [Medication]
+        let currentMeds = self.getMedications()! as [Medication]
         
-       for med in currentMeds {
+        for med in currentMeds {
             if med.name == medication.name {
                 var alert : UIAlertView = UIAlertView(title: "Medication Already Exists", message: "Medication " + medication.name + " has already been added", delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                    alert.show()
                 return
             }
-       }
+        }
         
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -90,6 +91,7 @@ class MedicationDAO {
         {
             let rem = reminderToNSManagedObject(reminder, managedContext: managedContext)
             rem.setValue(fetchedResults![0], forKey: "medication")
+            medication.reminders.append(reminder)
         }
     }
     
@@ -116,8 +118,6 @@ class MedicationDAO {
             managedContext.save(nil)
         
         }
-        
-       
     
     }
     
@@ -135,11 +135,45 @@ class MedicationDAO {
     private class func reminderToNSManagedObject(reminder: Reminder, managedContext: NSManagedObjectContext) -> NSManagedObject {
         
         let entity = NSEntityDescription.entityForName("Reminder", inManagedObjectContext:managedContext)
-        let rem = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        let managedReminder = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
         
-        rem.setValue(Int(reminder.time), forKey: "time")
+        managedReminder.setValue(reminder.getStartDate(), forKey: "startDate")
+        managedReminder.setValue(reminder.getEndDate(), forKey: "endDate")
+        managedReminder.setValue(Int(reminder.getDays()), forKey: "days")
+        managedReminder.setValue(reminder.getRepeat().rawValue, forKey: "repeat")
+        managedReminder.setValue(reminder.getNotes(), forKey: "repeat")
         
-        return rem
+        
+        var times : NSString = ""
+        for time in reminder.getTimes()
+        {
+            times = times + String(time) + ";"
+        }
+        
+        managedReminder.setValue(times, forKey: "times")
+        return managedReminder
+    }
+    
+    
+    private class func NSManagedObjectToReminder(managedReminder: NSManagedObject) -> Reminder{
+    
+        var reminder = Reminder()
+        reminder.setStartDate(managedReminder.valueForKey("startDate") as NSDate)
+        reminder.setEndDate(managedReminder.valueForKey("endDate") as NSDate)
+        reminder.setDays(Int16(managedReminder.valueForKey("days") as Int))
+        reminder.setRepeat(Repeat(rawValue: managedReminder.valueForKey("repeat") as String)!)
+        reminder.setNotes(managedReminder.valueForKey("notes") as String)
+        
+        var times: [Int16] = []
+        let managedTimes = managedReminder.valueForKey("times") as String
+        
+        for time in (split(managedTimes){$0 == ";"}) {
+            times.append(Int16(time.toInt()!))
+        }
+    
+        reminder.setTimes(times)
+
+        return reminder
         
     }
     

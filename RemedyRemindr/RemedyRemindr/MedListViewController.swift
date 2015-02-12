@@ -11,7 +11,7 @@ import UIKit
 class MedListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var meds = [Medication]()
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var medsTableView: UITableView!
     
     @IBAction func unwindToMain(sender: UIStoryboardSegue) {
         // This comes from the detail view when you press the delete button
@@ -31,13 +31,7 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         
         meds = MedicationDAO.getMedications()!
-        
-        println("refreshing view")
-        for med1 in meds {
-            println("med")
-            println(med1.name)
-            println(med1.reminders)
-        }
+        self.medsTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,11 +67,11 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "showDetails"
+        if segue.identifier == "showMedicationDetails"
         {
             var detailsView : MedDetailsViewController = segue.destinationViewController as MedDetailsViewController
             
-            var indexPath = self.tableView.indexPathForSelectedRow()
+            var indexPath = self.medsTableView.indexPathForSelectedRow()
             let med = meds[indexPath!.row]
             
             detailsView.inputMed = med

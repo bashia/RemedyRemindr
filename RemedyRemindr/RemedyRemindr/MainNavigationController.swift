@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MedsListNavigationController: UINavigationController {
+class MainNavigationController: UINavigationController {
     
     
     

@@ -10,8 +10,7 @@ import UIKit
 
 class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var remindersTableView: UITableView!
     @IBOutlet weak var TitleBar: UINavigationItem!
     
     var inputMed : Medication?
@@ -28,7 +27,6 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         TitleBar.title = inputMed?.name
-        print(inputMed!.reminders.count)
         
         // self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ReminderCell")
         // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -43,6 +41,8 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print("hello")
+        self.remindersTableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -58,7 +58,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
         // Configure the cell...
         let reminder = inputMed?.reminders[indexPath.row]
         cell.textLabel?.text = "Reminder " + String(indexPath.row)
-        cell.detailTextLabel?.text = String(reminder!.time)
+        //cell.detailTextLabel?.text = String(reminder!.time)
         return cell
     }
     
@@ -78,5 +78,16 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
             var insertReminderView : AddReminderViewController = segue.destinationViewController as AddReminderViewController
             insertReminderView.inputMed = inputMed
         }
+        
+        if segue.identifier == "showReminderDetails"
+        {
+            /* var detailsView : MedDetailsViewController = segue.destinationViewController as MedDetailsViewController
+            
+            var indexPath = self.remindersTableView.indexPathForSelectedRow()
+            //let med = meds[indexPath!.row]
+            
+            //detailsView.inputMed = med*/
+        }
     }
+    
 }

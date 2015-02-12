@@ -5,11 +5,16 @@
         <relationship name="reminder" toMany="YES" deletionRule="Cascade" destinationEntity="Reminder" inverseName="medication" inverseEntity="Reminder" syncable="YES"/>
     </entity>
     <entity name="Reminder" syncable="YES">
-        <attribute name="time" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="days" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="repeat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="times" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="medication" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="reminder" inverseEntity="Medication" syncable="YES"/>
     </entity>
     <elements>
         <element name="Medication" positionX="223" positionY="-1" width="128" height="75"/>
-        <element name="Reminder" positionX="-54" positionY="0" width="128" height="73"/>
+        <element name="Reminder" positionX="-54" positionY="0" width="128" height="150"/>
     </elements>
 </model>
