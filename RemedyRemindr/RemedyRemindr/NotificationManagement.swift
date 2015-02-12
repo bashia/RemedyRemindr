@@ -47,7 +47,7 @@ class NotificationManager{
             // Specify the notification actions.
             var confirmDose = UIMutableUserNotificationAction()
             confirmDose.identifier = "confirmDose"
-            confirmDose.title = "Confrim"
+            confirmDose.title = "Confirm"
             confirmDose.activationMode = UIUserNotificationActivationMode.Background
             confirmDose.destructive = false
             confirmDose.authenticationRequired = false
