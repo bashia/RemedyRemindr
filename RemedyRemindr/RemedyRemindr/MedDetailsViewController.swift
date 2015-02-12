@@ -10,8 +10,7 @@ import UIKit
 
 class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var remindersTableView: UITableView!
     @IBOutlet weak var TitleBar: UINavigationItem!
     
     var inputMed : Medication?
@@ -28,7 +27,6 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         TitleBar.title = inputMed?.name
-        print(inputMed!.reminders.count)
         
         // self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ReminderCell")
         // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -43,6 +41,8 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print("hello")
+        self.remindersTableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -57,8 +57,13 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Configure the cell...
         let reminder = inputMed?.reminders[indexPath.row]
-        cell.textLabel?.text = "Reminder " + String(indexPath.row)
-        cell.detailTextLabel?.text = String(reminder!.time)
+        cell.textLabel?.text = String(reminder!.getTimes()[0])
+        
+        let formatter = NSDateFormatter()
+        formatter.stringFromDate(reminder!.getStartDate())
+        
+        cell.detailTextLabel?.text = formatter.stringFromDate(reminder!.getStartDate())
+        
         return cell
     }
     
@@ -75,8 +80,18 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addReminder"
         {
-            var insertReminderView : AddReminderViewController = segue.destinationViewController as AddReminderViewController
+            var insertReminderView : ReminderTypeViewController = segue.destinationViewController as ReminderTypeViewController
             insertReminderView.inputMed = inputMed
         }
+        
+        if segue.identifier == "showReminderDetails"
+        {
+            var indexPath = self.remindersTableView.indexPathForSelectedRow()
+            let rem = inputMed?.reminders[indexPath!.row]
+            
+            var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
+            detailsView.inputReminder = rem/
+        }
     }
+    
 }

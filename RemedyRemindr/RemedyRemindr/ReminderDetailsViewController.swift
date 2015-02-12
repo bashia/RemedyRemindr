@@ -1,5 +1,5 @@
 //
-//  AddReminderViewController.swift
+//  ReminderDetailsViewController.swift
 //  RemedyRemindr
 //
 //  Created by Tony on 2015-02-11.
@@ -8,9 +8,10 @@
 
 import UIKit
 
-class AddReminderViewController: UIViewController {
+class ReminderDetailsViewController: UIViewController {
 
-    var inputMed : Medication?
+    @IBOutlet weak var textArea: UILabel!
+    var inputReminder: Reminder?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,21 +22,6 @@ class AddReminderViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBOutlet weak var datePicker: UIDatePicker!
-    
-    @IBAction func doneButtonPressed(sender: AnyObject) {
-        
-        let cal = NSCalendar.currentCalendar()
-        let comp = cal.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: datePicker.date)
-        var minutesFromMidnight = Int16(comp.hour * 60 + comp.minute)
-        
-        var rem = Reminder()
-        rem.setTimes([minutesFromMidnight])
-        
-        MedicationDAO.insertReminder(inputMed!, reminder: rem)
-        performSegueWithIdentifier("insertReminder", sender: sender)
     }
     
 
