@@ -1,5 +1,5 @@
 //
-//  ReminderDetailsViewController.swift
+//  ReminderNotesViewController.swift
 //  RemedyRemindr
 //
 //  Created by Tony on 2015-02-11.
@@ -8,10 +8,20 @@
 
 import UIKit
 
-class ReminderDetailsViewController: UIViewController {
+class ReminderNotesViewController: UIViewController {
 
-    @IBOutlet weak var textArea: UILabel!
-    var inputReminder: Reminder?
+    var reminder: Reminder?
+    var inputMed : Medication?
+    
+    @IBOutlet weak var notesTextView: UITextView!
+    @IBAction func doneButton(sender: AnyObject) {
+        reminder!.setNotes(notesTextView.text)
+        MedicationDAO.insertReminder(inputMed!, reminder: reminder!)
+        
+        println(reminder!.getRepeat().rawValue)
+        
+        performSegueWithIdentifier("insertReminder", sender: sender)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

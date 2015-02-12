@@ -92,6 +92,11 @@ class MedicationDAO {
             let rem = reminderToNSManagedObject(reminder, managedContext: managedContext)
             rem.setValue(fetchedResults![0], forKey: "medication")
             medication.reminders.append(reminder)
+            
+            var error: NSError?
+            if !managedContext.save(&error) {
+                println("Could not save \(error), \(error?.userInfo)")
+            }
         }
     }
     
@@ -141,7 +146,7 @@ class MedicationDAO {
         managedReminder.setValue(reminder.getEndDate(), forKey: "endDate")
         managedReminder.setValue(Int(reminder.getDays()), forKey: "days")
         managedReminder.setValue(reminder.getRepeat().rawValue, forKey: "repeat")
-        managedReminder.setValue(reminder.getNotes(), forKey: "repeat")
+        managedReminder.setValue(reminder.getNotes(), forKey: "notes")
         
         
         var times : NSString = ""
@@ -161,6 +166,7 @@ class MedicationDAO {
         reminder.setStartDate(managedReminder.valueForKey("startDate") as NSDate)
         reminder.setEndDate(managedReminder.valueForKey("endDate") as NSDate)
         reminder.setDays(Int16(managedReminder.valueForKey("days") as Int))
+        print(managedReminder.valueForKey("repeat"))
         reminder.setRepeat(Repeat(rawValue: managedReminder.valueForKey("repeat") as String)!)
         reminder.setNotes(managedReminder.valueForKey("notes") as String)
         
