@@ -15,7 +15,6 @@ class ReminderStartViewController: UIViewController {
     
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBAction func doneButtonPressed(sender: AnyObject) {
-        // get the date
         reminder!.setStartDate(startDatePicker.date)
         
         if reminder?.getRepeat() == Repeat.NO {

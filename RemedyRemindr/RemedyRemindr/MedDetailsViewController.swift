@@ -41,7 +41,6 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("hello")
         self.remindersTableView.reloadData()
     }
     
@@ -57,12 +56,8 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Configure the cell...
         let reminder = inputMed?.reminders[indexPath.row]
-        cell.textLabel?.text = String(reminder!.getTimes()[0])
-        
-        let formatter = NSDateFormatter()
-        formatter.stringFromDate(reminder!.getStartDate())
-        
-        cell.detailTextLabel?.text = formatter.stringFromDate(reminder!.getStartDate())
+        cell.textLabel?.text = reminder!.getTimesAsString()
+        cell.detailTextLabel?.text = reminder!.getDaysAsString()
         
         return cell
     }
@@ -90,7 +85,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
             let rem = inputMed?.reminders[indexPath!.row]
             
             var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
-            detailsView.inputReminder = rem/
+            detailsView.inputReminder = rem
         }
     }
     

@@ -17,7 +17,6 @@ class ReminderEndViewController: UIViewController {
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
     @IBAction func doneButton(sender: AnyObject) {
-        // get the date
         reminder!.setEndDate(endDatePicker.date)
         performSegueWithIdentifier("reminderCustomEndSet", sender: sender)
     }
