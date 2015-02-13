@@ -21,6 +21,7 @@ class ReminderTimesViewController: UIViewController {
         let comp = cal.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: timePicker.date)
         var minutesFromMidnight = Int16(comp.hour * 60 + comp.minute)
         
+        // Add time picker
         reminder!.setTimes([minutesFromMidnight])
         performSegueWithIdentifier("reminderTimeSet", sender: sender)
     }

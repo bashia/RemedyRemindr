@@ -17,9 +17,6 @@ class ReminderNotesViewController: UIViewController {
     @IBAction func doneButton(sender: AnyObject) {
         reminder!.setNotes(notesTextView.text)
         MedicationDAO.insertReminder(inputMed!, reminder: reminder!)
-        
-        println(reminder!.getRepeat().rawValue)
-        
         performSegueWithIdentifier("insertReminder", sender: sender)
     }
     

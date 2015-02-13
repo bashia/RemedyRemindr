@@ -14,6 +14,18 @@ enum Repeat: String {
     case YES_CUSTOM = "YES_CUSTOM"
 }
 
+enum Days: String {
+    case SUN = "Sun"
+    case MON = "Mon"
+    case TUE = "Tue"
+    case WED = "Wed"
+    case THU = "Thu"
+    case FRI = "Fri"
+    case SAT = "Sat"
+
+    static let allValues = [SUN, MON, TUE, WED, THU, FRI, SAT]
+}
+
 class Reminder: NSObject {
     
     private var startDate : NSDate
@@ -36,20 +48,97 @@ class Reminder: NSObject {
         return startDate
     }
     
+    func getStartDateAsString(style: NSDateFormatterStyle) -> String{
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = style
+        return formatter.stringFromDate(startDate)
+    }
+    
+    func getStartDateAsString() ->String {
+        return getStartDateAsString(NSDateFormatterStyle.ShortStyle)
+    }
+    
     func getEndDate() -> NSDate {
         return endDate
+    }
+    
+    func getEndDateAsString(style: NSDateFormatterStyle) -> String{
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = style
+        return formatter.stringFromDate(endDate)
+    }
+    
+    func getEndDateAsString() ->String {
+        return getEndDateAsString(NSDateFormatterStyle.ShortStyle)
     }
     
     func getRepeat() -> Repeat {
         return repeat
     }
     
+    func getRepeatAsString() -> String {
+        return repeat.rawValue
+    }
+    
     func getDays() -> Int16 {
         return days
     }
     
+    func getDaysAsString() -> String {
+        switch(repeat){
+            case Repeat.NO:
+                return getStartDateAsString()
+            
+            case Repeat.YES_CUSTOM:
+                return "Every " + String(Int(days)) + " days";
+            
+            case Repeat.YES_WEEKLY:
+                
+                var dayString = "Every "
+                var dayBits = days
+                
+                for (var i = 0; i < Days.allValues.count; i++) {
+                    
+                    if((dayBits & 0x0001) == 1)
+                    {
+                        let seperator = dayString == "Every " ? "" : ", "
+                        dayString = dayString + seperator + Days.allValues[i].rawValue
+                    }
+                    
+                    dayBits = (dayBits >> 1)
+                }
+            
+                return dayString;
+        }
+    }
+    
     func getTimes() -> [Int16] {
         return times
+    }
+    
+    func getTimesAsString() -> String {
+        var timeString = ""
+        
+        for time in times {
+        
+            var hour = time / 60
+            var period = " AM"
+            let seperator = timeString == "" ? "" : ", "
+            
+            if(hour > 11) {
+                period = " PM"
+                hour = hour-12
+            }
+            
+            hour = hour == 0 ? 12 : hour
+
+            timeString = timeString + seperator + String(hour)+":"+String(format: "%02d", time%60) + period
+        }
+        return timeString
+    }
+    
+    func getNotesAsString() -> String {
+        return notes
     }
     
     func getNotes() -> String {
