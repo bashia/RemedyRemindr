@@ -10,17 +10,54 @@ import UIKit
 
 class CustomWeeklyViewController: UIViewController {
     
-    var pickerData = [Int](2...100)
+    var reminder: Reminder?
+    var inputMed : Medication?
     
-    @IBOutlet weak var numberOfDaysPicker: UIPickerView!
-    
-    @IBAction func cancelButton(sender: AnyObject) {
-        performSegueWithIdentifier("cancelPopover", sender: sender)
+    @IBOutlet weak var sundaySlider: UISwitch!
+    @IBOutlet weak var mondaySlider: UISwitch!
+    @IBOutlet weak var tuesdaySlider: UISwitch!
+    @IBOutlet weak var wednesdaySlider: UISwitch!
+    @IBOutlet weak var thursdaySlider: UISwitch!
+    @IBOutlet weak var fridaySlider: UISwitch!
+    @IBOutlet weak var saturdaySlider: UISwitch!
+
+    @IBAction func sundayButton(sender: AnyObject) {
+        sundaySlider.setOn(sundaySlider.on == false, animated: true)
+    }
+    @IBAction func mondayButton(sender: AnyObject) {
+        mondaySlider.setOn(mondaySlider.on == false, animated: true)
+    }
+    @IBAction func tuesdayButton(sender: AnyObject) {
+        tuesdaySlider.setOn(tuesdaySlider.on == false, animated: true)
+    }
+    @IBAction func wendesdayButton(sender: AnyObject) {
+        wednesdaySlider.setOn(wednesdaySlider.on == false, animated: true)
+    }
+    @IBAction func thursdayButton(sender: AnyObject) {
+        thursdaySlider.setOn(thursdaySlider.on == false, animated: true)
+    }
+    @IBAction func fridayButton(sender: AnyObject) {
+        fridaySlider.setOn(fridaySlider.on == false, animated: true)
+    }
+    @IBAction func saturdayButton(sender: AnyObject) {
+        saturdaySlider.setOn(saturdaySlider.on == false, animated: true)
     }
     
     @IBAction func doneButton(sender: AnyObject) {
-        performSegueWithIdentifier("donePopover", sender: sender)
+        
+        let sliders = [saturdaySlider, fridaySlider, thursdaySlider, wednesdaySlider, tuesdaySlider, mondaySlider, sundaySlider]
+        var dayBits = Int16(0)
+        
+        for i in 0...6 {
+            dayBits = dayBits << 1
+            var day : Int16 = sliders[i].on ? 0x0001 : 0x0000
+            dayBits = dayBits | day
+        }
+        
+        reminder!.setDays(dayBits)
+        performSegueWithIdentifier("reminderDaysSet", sender: sender)
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,26 +70,13 @@ class CustomWeeklyViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return String(pickerData[row])
-    }
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "donePopover"
+        if segue.identifier == "reminderDaysSet"
         {
-            var daysView : ReminderDaysViewController = segue.destinationViewController as ReminderDaysViewController
-            print(Int16(Int((pickerData[self.numberOfDaysPicker.selectedRowInComponent(0)]))))
-            daysView.reminder!.setDays(Int16(Int((pickerData[self.numberOfDaysPicker.selectedRowInComponent(0)]))))
-            print(daysView.reminder!.getDays())
+            self.dismissViewControllerAnimated(true, completion: nil)
+            var insertReminderView : ReminderTimesViewController = segue.destinationViewController as ReminderTimesViewController
+            insertReminderView.inputMed = inputMed
+            insertReminderView.reminder = reminder
         }
     }
 

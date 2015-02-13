@@ -17,7 +17,6 @@
 		EA3F7D5D1A898BFF009B2172 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F7D5C1A898BFF009B2172 /* MainNavigationController.swift */; };
 		EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969231A88276D00CAC52A /* AppDelegate.swift */; };
 		EA4969261A88276D00CAC52A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969251A88276D00CAC52A /* ViewController.swift */; };
-		EA4969291A88276D00CAC52A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA4969271A88276D00CAC52A /* Main.storyboard */; };
 		EA49692B1A88276D00CAC52A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA49692A1A88276D00CAC52A /* Images.xcassets */; };
 		EA49692E1A88276D00CAC52A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49692C1A88276D00CAC52A /* LaunchScreen.xib */; };
 		EA49693A1A88276D00CAC52A /* RemedyRemindrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */; };
@@ -30,11 +29,12 @@
 		EA856F071A8C78D300BDA1C6 /* ReminderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA856F061A8C78D300BDA1C6 /* ReminderDetailsViewController.swift */; };
 		EA9BC6F11A8C00F000658180 /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9BC6F01A8C00F000658180 /* AddReminderViewController.swift */; };
 		EA9BC6F31A8C0F6400658180 /* MedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9BC6F21A8C0F6400658180 /* MedListViewController.swift */; };
+		EAA536CA1A8D861100CCE572 /* ReminderDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC81A8D837300C28380 /* ReminderDaysViewController.swift */; };
+		EAA536CB1A8D865800CCE572 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA4969271A88276D00CAC52A /* Main.storyboard */; };
 		EAC191DD1A89C1B4004A38DC /* RemindersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC191DC1A89C1B4004A38DC /* RemindersTableView.swift */; };
 		EAC191DF1A89C88A004A38DC /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC191DE1A89C88A004A38DC /* Reminder.swift */; };
 		EAC9FBC51A8D6D0700C28380 /* CustomDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC41A8D6D0700C28380 /* CustomDaysViewController.swift */; };
 		EAC9FBC71A8D7ABB00C28380 /* CustomWeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC61A8D7ABB00C28380 /* CustomWeeklyViewController.swift */; };
-		EAC9FBC91A8D837300C28380 /* ReminderDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC81A8D837300C28380 /* ReminderDaysViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,7 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA4969291A88276D00CAC52A /* Main.storyboard in Resources */,
+				EAA536CB1A8D865800CCE572 /* Main.storyboard in Resources */,
 				EA49692E1A88276D00CAC52A /* LaunchScreen.xib in Resources */,
 				EA49692B1A88276D00CAC52A /* Images.xcassets in Resources */,
 			);
@@ -312,7 +312,7 @@
 			files = (
 				EA856F051A8C585A00BDA1C6 /* ReminderNotesViewController.swift in Sources */,
 				EA248A1B1A88453900B15D03 /* Medication.swift in Sources */,
-				EAC9FBC91A8D837300C28380 /* ReminderDaysViewController.swift in Sources */,
+				EAA536CA1A8D861100CCE572 /* ReminderDaysViewController.swift in Sources */,
 				EA3F7D241A8969CA009B2172 /* constants.swift in Sources */,
 				EA9BC6F31A8C0F6400658180 /* MedListViewController.swift in Sources */,
 				EA856F071A8C78D300BDA1C6 /* ReminderDetailsViewController.swift in Sources */,

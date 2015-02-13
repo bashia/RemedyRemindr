@@ -10,16 +10,17 @@ import UIKit
 
 class CustomDaysViewController: UIViewController {
     
-    @IBAction func cancelButton(sender: AnyObject) {
-        performSegueWithIdentifier("cancelPopover", sender: sender)
-    }
+    var reminder: Reminder?
+    var inputMed : Medication?
     
-    @IBAction func doneButton(sender: AnyObject) {
-        performSegueWithIdentifier("donePopover", sender: sender)
-    }
+    var pickerData = [Int](2...100)
     
     @IBOutlet weak var numberOfDaysPicker: UIPickerView!
-    var pickerData = [Int](2...100)
+    
+    @IBAction func doneButton(sender: AnyObject) {
+        reminder?.setDays(Int16(pickerData[numberOfDaysPicker.selectedRowInComponent(0)]))
+        performSegueWithIdentifier("reminderDaysSet", sender: sender)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +47,12 @@ class CustomDaysViewController: UIViewController {
     
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "donePopover"
+        if segue.identifier == "reminderDaysSet"
         {
-            var daysView : ReminderDaysViewController = segue.destinationViewController as ReminderDaysViewController
-            print(Int16(Int((pickerData[self.numberOfDaysPicker.selectedRowInComponent(0)]))))
-            daysView.reminder!.setDays(Int16(Int((pickerData[self.numberOfDaysPicker.selectedRowInComponent(0)]))))
-            print(daysView.reminder!.getDays())
+            self.dismissViewControllerAnimated(true, completion: nil)
+            var insertReminderView : ReminderTimesViewController = segue.destinationViewController as ReminderTimesViewController
+            insertReminderView.inputMed = inputMed
+            insertReminderView.reminder = reminder
         }
     }
 
