@@ -21,11 +21,13 @@ class NotificationManager{
         return fixedDate
     }
     
-    func makeNotification(date: NSDate){
+    func makeNotificationsforMed(med: Medication){
+        
+        let date = NSDate(timeIntervalSinceNow: 60)
         
         var localNotification = UILocalNotification()
         localNotification.fireDate = fixNotificationDate(date)
-        localNotification.alertBody = "Medication Alert!"
+        localNotification.alertBody = "Medication Alert:" + med.name + "!"
         localNotification.alertAction = "View List"
         
         localNotification.category = "RemedyRemindrCategory"
@@ -80,6 +82,8 @@ class NotificationManager{
             // Register the notification settings.
             let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings)
             UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
+            
+            println("NotificationManager initialized!")
     }
 
     }
