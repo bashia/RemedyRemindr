@@ -10,15 +10,22 @@ import UIKit
 
 class MedListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     var meds = [Medication]()
     @IBOutlet weak var medsTableView: UITableView!
     
     @IBAction func unwindToMain(sender: UIStoryboardSegue) {
         // This comes from the detail view when you press the delete button
+        self.medsTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let font : UIFont? = UIFont(name: "HelveticaNeue-Light", size: 24)
+        addButton.setTitleTextAttributes([NSFontAttributeName: font!], forState: UIControlState.Normal)
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,21 +49,17 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return meds.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MedicationCell", forIndexPath: indexPath) as UITableViewCell
-        
-        print(indexPath.row)
         
         // Configure the cell...
         let med = meds[indexPath.row]

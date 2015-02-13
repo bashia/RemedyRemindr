@@ -13,7 +13,15 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var remindersTableView: UITableView!
     @IBOutlet weak var TitleBar: UINavigationItem!
     
+    @IBOutlet weak var addBarButton: UIBarButtonItem!
+    @IBOutlet weak var deleteBarButton: UIBarButtonItem!
+    
     var inputMed : Medication?
+    
+    @IBAction func deleteButton(sender: AnyObject) {
+        MedicationDAO.deleteMedication(inputMed!)
+        performSegueWithIdentifier("deleteMedication", sender: sender)
+    }
     
     @IBAction func deleteButton(sender: UIButton) {
         MedicationDAO.deleteMedication(inputMed!)
@@ -27,9 +35,9 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         TitleBar.title = inputMed?.name
-        
-        // self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ReminderCell")
-        // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let font : UIFont? = UIFont(name: "HelveticaNeue-Light", size: 24)
+        addBarButton.setTitleTextAttributes([NSFontAttributeName: font!], forState: UIControlState.Normal)
+        deleteBarButton.setTitleTextAttributes([NSFontAttributeName: font!], forState: UIControlState.Normal)
         
         // Do any additional setup after loading the view.
     }
@@ -86,6 +94,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
             
             var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
             detailsView.inputReminder = rem
+            detailsView.inputName = inputMed?.name
         }
     }
     

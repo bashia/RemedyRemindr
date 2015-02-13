@@ -87,7 +87,7 @@ class Reminder: NSObject {
     func getDaysAsString() -> String {
         switch(repeat){
             case Repeat.NO:
-                return getStartDateAsString()
+                return getStartDateAsString(NSDateFormatterStyle.LongStyle)
             
             case Repeat.YES_CUSTOM:
                 return "Every " + String(Int(days)) + " days";
@@ -116,23 +116,29 @@ class Reminder: NSObject {
         return times
     }
     
+    class func timeToString(time: Int16) ->String
+    {
+        var hour = time / 60
+        var period = " AM"
+        
+        if(hour > 11) {
+            period = " PM"
+            hour = hour-12
+        }
+        
+        hour = hour == 0 ? 12 : hour
+        
+        return String(hour)+":"+String(format: "%02d", time%60) + period
+    }
+    
     func getTimesAsString() -> String {
         var timeString = ""
         
         for time in times {
         
-            var hour = time / 60
-            var period = " AM"
             let seperator = timeString == "" ? "" : ", "
             
-            if(hour > 11) {
-                period = " PM"
-                hour = hour-12
-            }
-            
-            hour = hour == 0 ? 12 : hour
-
-            timeString = timeString + seperator + String(hour)+":"+String(format: "%02d", time%60) + period
+            timeString = timeString + seperator + Reminder.timeToString(time)
         }
         return timeString
     }

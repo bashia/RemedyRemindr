@@ -31,10 +31,10 @@
 		EA9BC6F31A8C0F6400658180 /* MedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9BC6F21A8C0F6400658180 /* MedListViewController.swift */; };
 		EAA536CA1A8D861100CCE572 /* ReminderDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC81A8D837300C28380 /* ReminderDaysViewController.swift */; };
 		EAA536CB1A8D865800CCE572 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA4969271A88276D00CAC52A /* Main.storyboard */; };
-		EAC191DD1A89C1B4004A38DC /* RemindersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC191DC1A89C1B4004A38DC /* RemindersTableView.swift */; };
 		EAC191DF1A89C88A004A38DC /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC191DE1A89C88A004A38DC /* Reminder.swift */; };
 		EAC9FBC51A8D6D0700C28380 /* CustomDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC41A8D6D0700C28380 /* CustomDaysViewController.swift */; };
 		EAC9FBC71A8D7ABB00C28380 /* CustomWeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC61A8D7ABB00C28380 /* CustomWeeklyViewController.swift */; };
+		EAEDF55F1A8E8F4C00F4735A /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEDF55E1A8E8F4C00F4735A /* TimePickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,11 +75,11 @@
 		EA856F061A8C78D300BDA1C6 /* ReminderDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderDetailsViewController.swift; sourceTree = "<group>"; };
 		EA9BC6F01A8C00F000658180 /* AddReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
 		EA9BC6F21A8C0F6400658180 /* MedListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedListViewController.swift; sourceTree = "<group>"; };
-		EAC191DC1A89C1B4004A38DC /* RemindersTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersTableView.swift; sourceTree = "<group>"; };
 		EAC191DE1A89C88A004A38DC /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		EAC9FBC41A8D6D0700C28380 /* CustomDaysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDaysViewController.swift; sourceTree = "<group>"; };
 		EAC9FBC61A8D7ABB00C28380 /* CustomWeeklyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWeeklyViewController.swift; sourceTree = "<group>"; };
 		EAC9FBC81A8D837300C28380 /* ReminderDaysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderDaysViewController.swift; sourceTree = "<group>"; };
+		EAEDF55E1A8E8F4C00F4735A /* TimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +103,7 @@
 		EA0816701A8C4EB9008935FD /* AddReminder */ = {
 			isa = PBXGroup;
 			children = (
+				EAEDF55E1A8E8F4C00F4735A /* TimePickerViewController.swift */,
 				EAC9FBC81A8D837300C28380 /* ReminderDaysViewController.swift */,
 				EA9BC6F01A8C00F000658180 /* AddReminderViewController.swift */,
 				EA856EF81A8C57AE00BDA1C6 /* ReminderTypeViewController.swift */,
@@ -183,7 +184,6 @@
 			children = (
 				EA3F7D5C1A898BFF009B2172 /* MainNavigationController.swift */,
 				EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */,
-				EAC191DC1A89C1B4004A38DC /* RemindersTableView.swift */,
 				EA248A201A884DF100B15D03 /* AddMedViewController.swift */,
 				EA0816701A8C4EB9008935FD /* AddReminder */,
 				EA9BC6F21A8C0F6400658180 /* MedListViewController.swift */,
@@ -318,6 +318,7 @@
 				EA856F071A8C78D300BDA1C6 /* ReminderDetailsViewController.swift in Sources */,
 				EA4969261A88276D00CAC52A /* ViewController.swift in Sources */,
 				EA856EF91A8C57AE00BDA1C6 /* ReminderTypeViewController.swift in Sources */,
+				EAEDF55F1A8E8F4C00F4735A /* TimePickerViewController.swift in Sources */,
 				EA248A211A884DF100B15D03 /* AddMedViewController.swift in Sources */,
 				EAC9FBC51A8D6D0700C28380 /* CustomDaysViewController.swift in Sources */,
 				EA1DA33A1A8AA93300A04453 /* MedDetailsViewController.swift in Sources */,
@@ -333,7 +334,6 @@
 				EAC9FBC71A8D7ABB00C28380 /* CustomWeeklyViewController.swift in Sources */,
 				EA856EFB1A8C57CD00BDA1C6 /* ReminderStartViewController.swift in Sources */,
 				EA856EFF1A8C580000BDA1C6 /* ReminderEndViewController.swift in Sources */,
-				EAC191DD1A89C1B4004A38DC /* RemindersTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

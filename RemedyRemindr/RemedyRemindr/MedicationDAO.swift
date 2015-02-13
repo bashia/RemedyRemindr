@@ -166,7 +166,6 @@ class MedicationDAO {
         reminder.setStartDate(managedReminder.valueForKey("startDate") as NSDate)
         reminder.setEndDate(managedReminder.valueForKey("endDate") as NSDate)
         reminder.setDays(Int16(managedReminder.valueForKey("days") as Int))
-        print(managedReminder.valueForKey("repeat"))
         reminder.setRepeat(Repeat(rawValue: managedReminder.valueForKey("repeat") as String)!)
         reminder.setNotes(managedReminder.valueForKey("notes") as String)
         

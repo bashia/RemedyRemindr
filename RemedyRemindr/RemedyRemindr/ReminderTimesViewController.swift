@@ -13,23 +13,16 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
     var reminder: Reminder?
     var inputMed : Medication?
     
-    var times = [123, 234, 345]
+    var times = [Int16]()
     
     @IBOutlet weak var timesTable: UITableView!
     @IBOutlet weak var timePicker: UIDatePicker!
     
     @IBOutlet weak var doneButtonOutlet: UIButton!
-    @IBAction func doneButton(sender: AnyObject) {
-        // Get the time
-        /*let cal = NSCalendar.currentCalendar()
-        let comp = cal.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: timePicker.date)
-        var minutesFromMidnight = Int16(comp.hour * 60 + comp.minute)
-        
-        // Add time picker
-        reminder!.setTimes([minutesFromMidnight])
-        performSegueWithIdentifier("reminderTimeSet", sender: sender)*/
-    }
     
+    @IBAction func doneButton(sender: AnyObject) {
+        performSegueWithIdentifier("reminderTimeSet", sender: sender)
+    }
     
     @IBAction func deleteButton(sender: UIButton) {
         let rowToSelect:NSIndexPath  = NSIndexPath(forRow: sender.tag, inSection: 0)
@@ -37,7 +30,6 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         times.removeAtIndex(sender.tag)
         timesTable.deleteRowsAtIndexPaths([rowToSelect], withRowAnimation: UITableViewRowAnimation.Fade)
         timesTable.reloadData()
-        print (sender.tag)
     }
 
     @IBAction func timePopoverCancel(sender: UIStoryboardSegue) {
@@ -48,6 +40,7 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         doneButtonOutlet.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         doneButtonOutlet.enabled = true
         dismissViewControllerAnimated(true, nil)
+        timesTable.reloadData()
     }
 
     override func viewDidLoad() {
@@ -88,7 +81,7 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         cell.addSubview(deleteButton)
         deleteButton.setTitleColor(darkBlueThemeColor, forState: UIControlState.Normal)
         deleteButton.addTarget(self, action: "deleteButton:", forControlEvents: UIControlEvents.TouchUpInside)
-        title.text = String(times[indexPath.row])
+        title.text = Reminder.timeToString(times[indexPath.row])
         
         return cell
     }
@@ -106,6 +99,8 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         if segue.identifier == "reminderTimeSet"
         {
             var insertReminderView : ReminderNotesViewController = segue.destinationViewController as ReminderNotesViewController
+            
+            reminder!.setTimes(times)
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder
         }
@@ -115,5 +110,7 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
             popoverViewController.popoverPresentationController!.delegate = self
         }
     }
+    
+ 
 
 }
