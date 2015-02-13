@@ -1,6 +1,7 @@
 # Created by https://www.gitignore.io
 
 ### Xcode ###
+.DS_STORE
 build/
 *.pbxuser
 !default.pbxuser

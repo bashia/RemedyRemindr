@@ -1,45 +1,40 @@
 //
-//  AddMedViewController.swift
+//  ReminderNotesViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-08.
+//  Created by Tony on 2015-02-11.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class AddMedViewController: UIViewController {
+class ReminderNotesViewController: UIViewController {
 
+    var reminder: Reminder?
+    var inputMed : Medication?
+    
+    @IBOutlet weak var notesTextView: UITextView!
+    @IBAction func doneButton(sender: AnyObject) {
+        reminder!.setNotes(notesTextView.text)
+        MedicationDAO.insertReminder(inputMed!, reminder: reminder!)
+        
+        println(reminder!.getRepeat().rawValue)
+        
+        performSegueWithIdentifier("insertReminder", sender: sender)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBOutlet weak var medNameTextField: UITextField!
-    
-    @IBOutlet weak var doneButton: UIButton!
 
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    @IBAction func testAction(sender: UIButton) {
-        
-        // Disable the text field and done button so the user can't keep typing
-        //medNameTextField.enabled = false
-        //doneButton.enabled = false
-        
-        let newMed = Medication(name: medNameTextField.text)
-        MedicationDAO.insertData(newMed)
-        
-        performSegueWithIdentifier("addButtonPressed", sender: sender)
-    }
     /*
     // MARK: - Navigation
 

@@ -10,22 +10,23 @@ import UIKit
 
 class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var remindersTableView: UITableView!
     @IBOutlet weak var TitleBar: UINavigationItem!
     
-    // Need to rename this
-    var data : Medication?
+    var inputMed : Medication?
     
     @IBAction func deleteButton(sender: UIButton) {
-        MedicationDAO.deleteData(data!)
+        MedicationDAO.deleteMedication(inputMed!)
         performSegueWithIdentifier("deleteMedication", sender: sender)
     }
 
+    @IBAction func unwindToDetails(sender: UIStoryboardSegue) {
+        // This happens after a new reminder is created
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        TitleBar.title = data?.name
-        print(data!.reminders.count)
+        TitleBar.title = inputMed?.name
         
         // self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ReminderCell")
         // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -40,12 +41,14 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print("hello")
+        self.remindersTableView.reloadData()
     }
     
     // MARK: - Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data!.reminders.count
+        return inputMed!.reminders.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -53,9 +56,14 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("ReminderCell", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        let reminder = data?.reminders[indexPath.row]
-        cell.textLabel?.text = "Reminder " + String(indexPath.row)
-        cell.detailTextLabel?.text = String(reminder!.time)
+        let reminder = inputMed?.reminders[indexPath.row]
+        cell.textLabel?.text = String(reminder!.getTimes()[0])
+        
+        let formatter = NSDateFormatter()
+        formatter.stringFromDate(reminder!.getStartDate())
+        
+        cell.detailTextLabel?.text = formatter.stringFromDate(reminder!.getStartDate())
+        
         return cell
     }
     
@@ -70,6 +78,20 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "addReminder"
+        {
+            var insertReminderView : ReminderTypeViewController = segue.destinationViewController as ReminderTypeViewController
+            insertReminderView.inputMed = inputMed
+        }
         
+        if segue.identifier == "showReminderDetails"
+        {
+            var indexPath = self.remindersTableView.indexPathForSelectedRow()
+            let rem = inputMed?.reminders[indexPath!.row]
+            
+            var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
+            detailsView.inputReminder = rem/
+        }
     }
+    
 }
