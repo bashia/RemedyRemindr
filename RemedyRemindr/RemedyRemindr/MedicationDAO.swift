@@ -70,7 +70,85 @@ class MedicationDAO {
         }
     }
     
-    class func insertReminder(medication: Medication, reminder: Reminder){
+    /* Error codes
+     * 0: OK
+     * 1: Duplicate
+     * 2: Error
+     */
+    class func insertReminder(medication: Medication, reminder: Reminder) -> Int {
+        
+        for existRem in medication.reminders{
+            if reminder.isEqual(existRem) {
+                return 1
+            }
+        }
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let predicate = NSPredicate(format: "name = %@", medication.name)
+        
+        let fetchRequest = NSFetchRequest(entityName:"Medication")
+        fetchRequest.predicate = predicate
+        
+        var error: NSError?
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        
+        if fetchedResults?.count > 1
+        {
+            return 2
+        }
+        else
+        {
+            let rem = reminderToNSManagedObject(reminder, managedContext: managedContext)
+            rem.setValue(fetchedResults![0], forKey: "medication")
+            medication.reminders.append(reminder)
+            
+            var error: NSError?
+            if !managedContext.save(&error) {
+                println("Could not save \(error), \(error?.userInfo)")
+                // Make a better message thing here
+                return 2
+            }
+            else {
+                return 0
+            }
+        }
+    }
+    
+    /*class func getRemindersForMedication(medication :Medication) -> [Reminder]
+    {
+    
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let predicate = NSPredicate(format: "name = %@", medication.name)
+        
+        let fetchRequest = NSFetchRequest(entityName:"Medication")
+        fetchRequest.predicate = predicate
+        
+        var error: NSError?
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        
+        if fetchedResults?.count > 1
+        {
+            //error
+        }
+        else
+        {
+            var reminders = [Reminder]()
+            for mangedRem in (fetchedResults![0].valueForKey("reminder") as NSSet) {
+                reminders.append(NSManagedObjectToReminder(mangedRem as NSManagedObject))
+            }
+            
+            return reminders
+        }
+        
+        return [Remiders]()
+        
+    }*/
+    
+    class func deleteReminder(reminder: Reminder, medication :Medication) {
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
@@ -89,14 +167,15 @@ class MedicationDAO {
         }
         else
         {
-            let rem = reminderToNSManagedObject(reminder, managedContext: managedContext)
-            rem.setValue(fetchedResults![0], forKey: "medication")
-            medication.reminders.append(reminder)
-            
-            var error: NSError?
-            if !managedContext.save(&error) {
-                println("Could not save \(error), \(error?.userInfo)")
+            for managedRem in (fetchedResults![0].valueForKey("reminder") as NSSet)
+            {
+                if(NSManagedObjectToReminder(managedRem as NSManagedObject).isEqual(reminder)) {
+                    
+                    managedContext.deleteObject(managedRem as NSManagedObject)
+                    managedContext.save(nil)
+                }
             }
+        
         }
     }
     

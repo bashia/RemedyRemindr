@@ -12,14 +12,19 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBOutlet weak var reminderTitle: UILabel!
     
+
+    @IBAction func deleteReminder(sender: AnyObject) {
+        MedicationDAO.deleteReminder(inputReminder!, medication: inputMed!)
+        performSegueWithIdentifier("deleteButtonPressed", sender: sender)
+    }
     
     @IBOutlet weak var textArea: UILabel!
     var inputReminder: Reminder?
-    var inputName: String?
+    var inputMed: Medication?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.reminderTitle.text = inputName
+        self.reminderTitle.text = inputMed!.name
         // Do any additional setup after loading the view.
     }
 

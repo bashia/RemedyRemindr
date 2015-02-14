@@ -168,14 +168,24 @@ class Reminder: NSObject {
     }
     
     func setTimes(times: [Int16]) {
-        self.times = times
+        self.times = times.sorted({(t1: Int16, t2: Int16) -> Bool in return t1 < t2})
     }
     
     func setNotes(notes: String) {
         self.notes = notes
     }
     
+    func toString() -> String {
+        return getStartDateAsString() + getEndDateAsString() + getRepeatAsString() + getDaysAsString() + getTimesAsString()
+    }
     
+    override func isEqual(object: AnyObject?) -> Bool {
+        return (object as Reminder).toString() == toString()
+    }
+    
+    override var hash: Int {
+        return toString().hashValue
+    }
 
 
 }

@@ -11,8 +11,7 @@ import UIKit
 class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var remindersTableView: UITableView!
-    @IBOutlet weak var TitleBar: UINavigationItem!
-    
+    @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var deleteBarButton: UIBarButtonItem!
     
@@ -34,12 +33,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        TitleBar.title = inputMed?.name
-        let font : UIFont? = UIFont(name: "HelveticaNeue-Light", size: 24)
-        addBarButton.setTitleTextAttributes([NSFontAttributeName: font!], forState: UIControlState.Normal)
-        deleteBarButton.setTitleTextAttributes([NSFontAttributeName: font!], forState: UIControlState.Normal)
-        
-        // Do any additional setup after loading the view.
+        titleText.text = inputMed!.name
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,7 +88,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
             
             var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
             detailsView.inputReminder = rem
-            detailsView.inputName = inputMed?.name
+            detailsView.inputMed = inputMed
         }
     }
     

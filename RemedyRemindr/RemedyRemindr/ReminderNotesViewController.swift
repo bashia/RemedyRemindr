@@ -16,8 +16,16 @@ class ReminderNotesViewController: UIViewController {
     @IBOutlet weak var notesTextView: UITextView!
     @IBAction func doneButton(sender: AnyObject) {
         reminder!.setNotes(notesTextView.text)
-        MedicationDAO.insertReminder(inputMed!, reminder: reminder!)
-        performSegueWithIdentifier("insertReminder", sender: sender)
+        
+        if(MedicationDAO.insertReminder(inputMed!, reminder: reminder!) == 1)
+        {
+            var alert : UIAlertView = UIAlertView(title: "Duplicate Reminder", message: "A reminder already exists with the same date and time settings. Please go back and change some settings.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+        else
+        {
+            performSegueWithIdentifier("insertReminder", sender: sender)
+        }
     }
     
     override func viewDidLoad() {

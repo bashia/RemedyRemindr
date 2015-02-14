@@ -23,8 +23,7 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let font : UIFont? = UIFont(name: "HelveticaNeue-Light", size: 24)
-        addButton.setTitleTextAttributes([NSFontAttributeName: font!], forState: UIControlState.Normal)
+        addButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -64,7 +63,7 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Configure the cell...
         let med = meds[indexPath.row]
         cell.textLabel?.text = med.name
-        cell.detailTextLabel?.text = med.name
+        cell.detailTextLabel?.text = String(med.reminders.count) + " active reminders"
         return cell
     }
     
