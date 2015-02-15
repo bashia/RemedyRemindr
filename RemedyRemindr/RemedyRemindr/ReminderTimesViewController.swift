@@ -84,11 +84,6 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

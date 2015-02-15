@@ -25,8 +25,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
             if let deleteMedication = MedicationDAO.deleteMedication(self.inputMed!) {
                 self.performSegueWithIdentifier("deleteMedication", sender: sender)
             } else {
-                var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                newAlert("Unexpected Error", "An unexpected error has occurred, please try again.")
             }
         }))
         
@@ -95,7 +94,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "showReminderDetails"
         {
             var indexPath = self.remindersTableView.indexPathForSelectedRow()
-            let rem = inputMed?.reminders[indexPath!.row]
+            let rem = inputMed!.reminders[indexPath!.row]
             
             var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
             detailsView.inputReminder = rem
