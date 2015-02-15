@@ -49,7 +49,6 @@ class CustomDaysViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "reminderDaysSet"
         {
-            self.dismissViewControllerAnimated(true, completion: nil)
             var insertReminderView : ReminderTimesViewController = segue.destinationViewController as ReminderTimesViewController
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder

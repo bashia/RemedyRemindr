@@ -54,8 +54,12 @@ class CustomWeeklyViewController: UIViewController {
             dayBits = dayBits | day
         }
         
-        reminder!.setDays(dayBits)
-        performSegueWithIdentifier("reminderDaysSet", sender: sender)
+        if (dayBits == 0) {
+            newAlert("No days selected", "Please select at least one day of the week for this reminder to occur on.")
+        } else {
+            reminder!.setDays(dayBits)
+            performSegueWithIdentifier("reminderDaysSet", sender: sender)
+        }
     }
 
     
@@ -73,7 +77,6 @@ class CustomWeeklyViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "reminderDaysSet"
         {
-            self.dismissViewControllerAnimated(true, completion: nil)
             var insertReminderView : ReminderTimesViewController = segue.destinationViewController as ReminderTimesViewController
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder

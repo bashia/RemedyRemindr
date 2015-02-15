@@ -28,27 +28,38 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         times.removeAtIndex(sender.tag)
         timesTable.deleteRowsAtIndexPaths([rowToSelect], withRowAnimation: UITableViewRowAnimation.Fade)
         timesTable.reloadData()
+        updateDoneButtonState()
     }
 
     @IBAction func timePopoverCancel(sender: UIStoryboardSegue) {
         dismissViewControllerAnimated(true, nil)
+        updateDoneButtonState()
     }
     
     @IBAction func timePopoverDone(sender: UIStoryboardSegue) {
-        doneButtonOutlet.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        doneButtonOutlet.enabled = true
         dismissViewControllerAnimated(true, nil)
         timesTable.reloadData()
+        updateDoneButtonState()
     }
 
+    func updateDoneButtonState() {
+        if (times.count > 0) {
+            doneButtonOutlet.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            doneButtonOutlet.enabled = true
+        } else {
+            doneButtonOutlet.enabled = false
+            doneButtonOutlet.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        doneButtonOutlet.enabled = false
-        doneButtonOutlet.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-        
-
-        // Do any additional setup after loading the view.
+        // If we have been passed a partially-completed reminder, load the previously-set time values
+        if (reminder!.getTimes().count > 0) {
+            times = reminder!.getTimes()
+        }
+        updateDoneButtonState()
     }
 
     override func didReceiveMemoryWarning() {
