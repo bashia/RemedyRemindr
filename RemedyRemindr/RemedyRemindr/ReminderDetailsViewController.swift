@@ -11,8 +11,11 @@ import UIKit
 class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var reminderTitle: UILabel!
+    @IBOutlet weak var textArea: UILabel!
     
-
+    var inputReminder: Reminder?
+    var inputMed: Medication?
+    
     @IBAction func deleteReminder(sender: AnyObject) {
         
         if let deleteReminder = MedicationDAO.deleteReminder(inputReminder!, medication: inputMed!) {
@@ -22,10 +25,6 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
             alert.show()
         }
     }
-    
-    @IBOutlet weak var textArea: UILabel!
-    var inputReminder: Reminder?
-    var inputMed: Medication?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +46,7 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
            return 5
         }
     }
-    
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("InfoCell", forIndexPath: indexPath) as UITableViewCell
@@ -105,23 +103,6 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
                 }
             }
         }
-        
-        
-        
-        
-        /*
-        var deleteButton = UIButton()
-        
-        deleteButton.tag = indexPath.row
-        deleteButton.frame = CGRectMake(200, 5, 75, 30)
-        deleteButton.setTitle("Delete", forState: UIControlState.Normal)
-        
-        
-        cell.addSubview(deleteButton)
-        deleteButton.setTitleColor(darkBlueThemeColor, forState: UIControlState.Normal)
-        deleteButton.addTarget(self, action: "deleteButton:", forControlEvents: UIControlEvents.TouchUpInside)
-        */
-        
         return cell
     }
     

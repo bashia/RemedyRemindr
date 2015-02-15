@@ -20,8 +20,7 @@ class TimePickerViewController: UIViewController {
     @IBAction func doneButton(sender: AnyObject) {
         performSegueWithIdentifier("timePopoverDone", sender: sender)
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

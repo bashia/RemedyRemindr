@@ -14,6 +14,7 @@ class ReminderNotesViewController: UIViewController {
     var inputMed : Medication?
     
     @IBOutlet weak var notesTextView: UITextView!
+    
     @IBAction func doneButton(sender: AnyObject) {
         reminder!.setNotes(notesTextView.text)
         

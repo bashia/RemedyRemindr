@@ -12,12 +12,10 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
 
     var reminder: Reminder?
     var inputMed : Medication?
-    
     var times = [Int16]()
     
     @IBOutlet weak var timesTable: UITableView!
     @IBOutlet weak var timePicker: UIDatePicker!
-    
     @IBOutlet weak var doneButtonOutlet: UIButton!
     
     @IBAction func doneButton(sender: AnyObject) {

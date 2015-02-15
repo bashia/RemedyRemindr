@@ -12,8 +12,7 @@ class ReminderEndViewController: UIViewController {
 
     var reminder: Reminder?
     var inputMed : Medication?
-    
-    
+ 
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
     @IBAction func doneButton(sender: AnyObject) {
