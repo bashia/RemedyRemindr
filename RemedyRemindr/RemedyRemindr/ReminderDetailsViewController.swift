@@ -14,8 +14,13 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
     
 
     @IBAction func deleteReminder(sender: AnyObject) {
-        MedicationDAO.deleteReminder(inputReminder!, medication: inputMed!)
-        performSegueWithIdentifier("deleteButtonPressed", sender: sender)
+        
+        if let deleteReminder = MedicationDAO.deleteReminder(inputReminder!, medication: inputMed!) {
+            performSegueWithIdentifier("deleteButtonPressed", sender: sender)
+        } else {
+            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
     }
     
     @IBOutlet weak var textArea: UILabel!

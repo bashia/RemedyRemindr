@@ -11,10 +11,10 @@ import UIKit
 class MedListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var addButton: UIBarButtonItem!
-    
-    var meds = [Medication]()
     @IBOutlet weak var medsTableView: UITableView!
     
+    var meds = [Medication]()
+
     @IBAction func unwindToMain(sender: UIStoryboardSegue) {
         // This comes from the detail view when you press the delete button
         self.medsTableView.reloadData()
@@ -36,8 +36,14 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        meds = MedicationDAO.getMedications()!
-        self.medsTableView.reloadData()
+        if let meds = MedicationDAO.getMedications() {
+            self.meds = meds
+            self.medsTableView.reloadData()
+        } else {
+            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred while loading the medication list.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

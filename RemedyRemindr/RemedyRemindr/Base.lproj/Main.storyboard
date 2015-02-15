@@ -1896,40 +1896,18 @@
                                             <constraint firstAttribute="height" constant="135" id="nh6-KQ-A3k"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimeCell" id="3Hy-q3-hwo">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimeCell" textLabel="mUd-Fy-0yZ" style="IBUITableViewCellStyleDefault" id="3Hy-q3-hwo">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Hy-q3-hwo" id="ie8-Xb-NA7">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lng-Oy-d3K">
-                                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mUd-Fy-0yZ">
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="centerY" secondItem="lng-Oy-d3K" secondAttribute="centerY" id="2wm-97-eO0"/>
-                                                        <constraint firstItem="lng-Oy-d3K" firstAttribute="leading" secondItem="ie8-Xb-NA7" secondAttribute="leadingMargin" id="iln-ez-Xeu"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="subviews">
-                                                            <exclude reference="lng-Oy-d3K"/>
-                                                        </mask>
-                                                        <mask key="constraints">
-                                                            <exclude reference="2wm-97-eO0"/>
-                                                            <exclude reference="iln-ez-Xeu"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <mask key="subviews">
-                                                            <include reference="lng-Oy-d3K"/>
-                                                        </mask>
-                                                        <mask key="constraints">
-                                                            <include reference="2wm-97-eO0"/>
-                                                            <include reference="iln-ez-Xeu"/>
-                                                        </mask>
-                                                    </variation>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>

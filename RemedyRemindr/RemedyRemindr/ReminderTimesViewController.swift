@@ -71,17 +71,17 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         
         let cell = tableView.dequeueReusableCellWithIdentifier("TimeCell", forIndexPath: indexPath) as UITableViewCell
         
-        let title = cell.viewWithTag(4) as UILabel
+        cell.textLabel?.text = Reminder.timeToString(times[indexPath.row])
         var deleteButton = UIButton()
         
         deleteButton.tag = indexPath.row
-        deleteButton.frame = CGRectMake(200, 5, 75, 30)
+        deleteButton.frame = CGRectMake(200, 10, 75, 30)
         deleteButton.setTitle("Delete", forState: UIControlState.Normal)
+        deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
         
         cell.addSubview(deleteButton)
         deleteButton.setTitleColor(darkBlueThemeColor, forState: UIControlState.Normal)
         deleteButton.addTarget(self, action: "deleteButton:", forControlEvents: UIControlEvents.TouchUpInside)
-        title.text = Reminder.timeToString(times[indexPath.row])
         
         return cell
     }

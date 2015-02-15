@@ -17,15 +17,17 @@ class ReminderNotesViewController: UIViewController {
     @IBAction func doneButton(sender: AnyObject) {
         reminder!.setNotes(notesTextView.text)
         
-        // needs to be updated
-        if(MedicationDAO.insertReminder(inputMed!, reminder: reminder!) == false)
-        {
-            var alert : UIAlertView = UIAlertView(title: "Duplicate Reminder", message: "A reminder already exists with the same date and time settings. Please go back and change some settings.", delegate: nil, cancelButtonTitle: "OK")
+        if let insertRem = MedicationDAO.insertReminder(inputMed!, reminder: reminder!) {
+            if insertRem {
+                performSegueWithIdentifier("insertReminder", sender: sender)
+            }
+            else {
+                var alert : UIAlertView = UIAlertView(title: "Duplicate Reminder", message: "A reminder already exists with the same date and time settings. Please go back and change some settings.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        } else {
+            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
-        }
-        else
-        {
-            performSegueWithIdentifier("insertReminder", sender: sender)
         }
     }
     

@@ -18,8 +18,13 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     var inputMed : Medication?
     
     @IBAction func deleteButton(sender: UIButton) {
-        MedicationDAO.deleteMedication(inputMed!)
-        performSegueWithIdentifier("deleteMedication", sender: sender)
+        
+        if let deleteMedication = MedicationDAO.deleteMedication(inputMed!) {
+            performSegueWithIdentifier("deleteMedication", sender: sender)
+        } else {
+            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
     }
 
     @IBAction func unwindToDetails(sender: UIStoryboardSegue) {
