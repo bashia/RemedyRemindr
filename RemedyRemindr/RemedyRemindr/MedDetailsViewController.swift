@@ -69,7 +69,6 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ReminderCell", forIndexPath: indexPath) as UITableViewCell
         
-        // Configure the cell...
         let reminder = inputMed?.reminders[indexPath.row]
         cell.textLabel?.text = reminder!.getTimesAsString()
         cell.detailTextLabel?.text = reminder!.getDaysAsString()
@@ -85,8 +84,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addReminder"
         {

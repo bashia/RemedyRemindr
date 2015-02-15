@@ -18,12 +18,20 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
     
     @IBAction func deleteReminder(sender: AnyObject) {
         
-        if let deleteReminder = MedicationDAO.deleteReminder(inputReminder!, medication: inputMed!) {
-            performSegueWithIdentifier("deleteButtonPressed", sender: sender)
-        } else {
-            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-        }
+        var deleteConfirmationAlert = UIAlertController(title: "Delete Reminder", message: "This reminder will be deleted.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            if let deleteReminder = MedicationDAO.deleteReminder(self.inputReminder!, medication: self.inputMed!) {
+                self.performSegueWithIdentifier("deleteButtonPressed", sender: sender)
+            } else {
+                var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        }))
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        
+        presentViewController(deleteConfirmationAlert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
