@@ -17,7 +17,8 @@ class ReminderNotesViewController: UIViewController {
     @IBAction func doneButton(sender: AnyObject) {
         reminder!.setNotes(notesTextView.text)
         
-        if(MedicationDAO.insertReminder(inputMed!, reminder: reminder!) == 1)
+        // needs to be updated
+        if(MedicationDAO.insertReminder(inputMed!, reminder: reminder!) == false)
         {
             var alert : UIAlertView = UIAlertView(title: "Duplicate Reminder", message: "A reminder already exists with the same date and time settings. Please go back and change some settings.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()

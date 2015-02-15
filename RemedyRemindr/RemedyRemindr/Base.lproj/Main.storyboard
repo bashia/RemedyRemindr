@@ -504,7 +504,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="testAction:" destination="oaJ-Ud-Qm2" eventType="touchUpInside" id="YhR-Fg-oei"/>
+                                            <action selector="doneButtonPressed:" destination="oaJ-Ud-Qm2" eventType="touchUpInside" id="5Zt-rK-Qv8"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhO-NE-4cq">
@@ -1038,6 +1038,7 @@
                                 <exclude reference="5g0-EI-L4U"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="IC0-sH-Ksv"/>
                                 <exclude reference="1oi-X6-CWx"/>
                                 <exclude reference="dKB-bj-ozg"/>
                                 <exclude reference="zbi-lY-j7O"/>
@@ -1045,7 +1046,6 @@
                                 <exclude reference="QQo-Rl-Fv7"/>
                                 <exclude reference="SIQ-kI-Wjt"/>
                                 <exclude reference="y4d-6X-8Fd"/>
-                                <exclude reference="IC0-sH-Ksv"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1054,6 +1054,7 @@
                                 <include reference="5g0-EI-L4U"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="IC0-sH-Ksv"/>
                                 <include reference="1oi-X6-CWx"/>
                                 <include reference="dKB-bj-ozg"/>
                                 <include reference="zbi-lY-j7O"/>
@@ -1061,7 +1062,6 @@
                                 <include reference="QQo-Rl-Fv7"/>
                                 <include reference="SIQ-kI-Wjt"/>
                                 <exclude reference="y4d-6X-8Fd"/>
-                                <include reference="IC0-sH-Ksv"/>
                             </mask>
                         </variation>
                     </view>
@@ -1260,6 +1260,8 @@
                                 <exclude reference="cJv-3D-JXX"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="oZ9-af-amH"/>
+                                <exclude reference="vkz-Nk-uaB"/>
                                 <exclude reference="e8c-yX-nR5"/>
                                 <exclude reference="qxz-uF-aFZ"/>
                                 <exclude reference="s4C-DB-CDk"/>
@@ -1268,8 +1270,6 @@
                                 <exclude reference="Iut-jk-Zt6"/>
                                 <exclude reference="SKK-KQ-SZQ"/>
                                 <exclude reference="Y1N-zd-g52"/>
-                                <exclude reference="vkz-Nk-uaB"/>
-                                <exclude reference="oZ9-af-amH"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1278,6 +1278,8 @@
                                 <include reference="cJv-3D-JXX"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="oZ9-af-amH"/>
+                                <exclude reference="vkz-Nk-uaB"/>
                                 <include reference="e8c-yX-nR5"/>
                                 <exclude reference="qxz-uF-aFZ"/>
                                 <include reference="s4C-DB-CDk"/>
@@ -1286,8 +1288,6 @@
                                 <include reference="Iut-jk-Zt6"/>
                                 <include reference="SKK-KQ-SZQ"/>
                                 <include reference="Y1N-zd-g52"/>
-                                <exclude reference="vkz-Nk-uaB"/>
-                                <include reference="oZ9-af-amH"/>
                             </mask>
                         </variation>
                     </view>
@@ -1305,7 +1305,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="reminderTitle" destination="o65-Fb-u5r" id="K2I-Og-s5w"/>
-                        <segue destination="pex-D0-QU0" kind="unwind" identifier="deleteButtonPressed" unwindAction="unwindToDetails:" id="VGn-fA-CTx"/>
+                        <segue destination="pex-D0-QU0" kind="unwind" identifier="deleteButtonPressed" unwindAction="unwindToDetailsAfterDeleteReminder:" id="VGn-fA-CTx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFf-WA-bkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1658,9 +1658,6 @@
                                         <date key="date" timeIntervalSinceReferenceDate="445403724.13745397">
                                             <!--2015-02-12 03:15:24 +0000-->
                                         </date>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="40" y="83" width="320" height="162"/>
-                                        </variation>
                                     </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" red="0.44559698040000001" green="0.71270142540000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>

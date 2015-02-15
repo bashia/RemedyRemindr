@@ -116,8 +116,8 @@ class Reminder: NSObject {
         return times
     }
     
-    class func timeToString(time: Int16) ->String
-    {
+    // Converts a time of day in "minutes from midnight" form to a string
+    class func timeToString(time: Int16) -> String {
         var hour = time / 60
         var period = " AM"
         
@@ -131,6 +131,7 @@ class Reminder: NSObject {
         return String(hour)+":"+String(format: "%02d", time%60) + period
     }
     
+    // Returns a string representation of the reminder's time array
     func getTimesAsString() -> String {
         var timeString = ""
         
@@ -175,6 +176,7 @@ class Reminder: NSObject {
         self.notes = notes
     }
     
+    // This is used to check if a reminder occurrs at the exact same date and times as another
     func toString() -> String {
         return getStartDateAsString() + getEndDateAsString() + getRepeatAsString() + getDaysAsString() + getTimesAsString()
     }

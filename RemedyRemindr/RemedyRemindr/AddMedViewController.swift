@@ -11,43 +11,34 @@ import CoreData
 
 class AddMedViewController: UIViewController {
 
+    @IBOutlet weak var medNameTextField: UITextField!
+    @IBOutlet weak var doneButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBOutlet weak var medNameTextField: UITextField!
-    
-    @IBOutlet weak var doneButton: UIButton!
 
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func testAction(sender: UIButton) {
-        
-        // Disable the text field and done button so the user can't keep typing
-        //medNameTextField.enabled = false
-        //doneButton.enabled = false
+    @IBAction func doneButtonPressed(sender: AnyObject) {
         
         let newMed = Medication(name: medNameTextField.text)
-        MedicationDAO.insertMedication(newMed)
-        
-        performSegueWithIdentifier("addButtonPressed", sender: sender)
+        if let insertMed = MedicationDAO.insertMedication(newMed) {
+            if insertMed {
+                performSegueWithIdentifier("addButtonPressed", sender: sender)
+            }
+            else {
+                var alert : UIAlertView = UIAlertView(title: "Medication Already Exists", message: "A medication with name " + newMed.name + " has already been added, please choose another name.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        } else {
+            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

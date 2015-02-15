@@ -123,5 +123,18 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "deleteButtonPressed"
+        {
+            var medDetailsView : MedDetailsViewController = segue.destinationViewController as MedDetailsViewController
+            for i in 0..<medDetailsView.inputMed!.reminders.count {
+                if inputReminder!.isEqual(medDetailsView.inputMed!.reminders[i]) {
+                    medDetailsView.inputMed!.reminders.removeAtIndex(i)
+                }
+            }
+        }
+    }
+    
 
 }

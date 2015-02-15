@@ -17,11 +17,6 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var inputMed : Medication?
     
-    @IBAction func deleteButton(sender: AnyObject) {
-        MedicationDAO.deleteMedication(inputMed!)
-        performSegueWithIdentifier("deleteMedication", sender: sender)
-    }
-    
     @IBAction func deleteButton(sender: UIButton) {
         MedicationDAO.deleteMedication(inputMed!)
         performSegueWithIdentifier("deleteMedication", sender: sender)
@@ -29,6 +24,11 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBAction func unwindToDetails(sender: UIStoryboardSegue) {
         // This happens after a new reminder is created
+    }
+    
+    @IBAction func unwindToDetailsAfterDeleteReminder(sender: UIStoryboardSegue) {
+        // This happens after a reminder is deleted
+        self.remindersTableView.reloadData()
     }
     
     override func viewDidLoad() {
