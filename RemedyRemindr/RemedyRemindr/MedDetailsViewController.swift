@@ -19,12 +19,20 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func deleteButton(sender: UIButton) {
         
-        if let deleteMedication = MedicationDAO.deleteMedication(inputMed!) {
-            performSegueWithIdentifier("deleteMedication", sender: sender)
-        } else {
-            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-        }
+        var deleteConfirmationAlert = UIAlertController(title: "Delete Medication", message: "This medication and all associated reminders will be deleted.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            if let deleteMedication = MedicationDAO.deleteMedication(self.inputMed!) {
+                self.performSegueWithIdentifier("deleteMedication", sender: sender)
+            } else {
+                var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        }))
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        
+        presentViewController(deleteConfirmationAlert, animated: true, completion: nil)
     }
 
     @IBAction func unwindToDetails(sender: UIStoryboardSegue) {

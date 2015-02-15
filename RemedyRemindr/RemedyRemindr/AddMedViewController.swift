@@ -31,6 +31,11 @@ class AddMedViewController: UIViewController {
             return
         }
         
+        if countElements(medNameTextField.text) > 128 {
+            newAlert("Name Too Long", "Please type a medication name that is shorter than 128 characters.")
+            return
+        }
+        
         // Only allow numbers and letters for medication name
         if !checkValidCharacters(medNameTextField.text) {
             newAlert("Invalid Characters", "Please only use letters and numbers when entering a medication.")
