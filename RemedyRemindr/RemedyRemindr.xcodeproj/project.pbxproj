@@ -34,6 +34,7 @@
 		EAC9FBC51A8D6D0700C28380 /* CustomDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC41A8D6D0700C28380 /* CustomDaysViewController.swift */; };
 		EAC9FBC71A8D7ABB00C28380 /* CustomWeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC61A8D7ABB00C28380 /* CustomWeeklyViewController.swift */; };
 		EAEDF55F1A8E8F4C00F4735A /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEDF55E1A8E8F4C00F4735A /* TimePickerViewController.swift */; };
+		EAF0DC8A1A914917004D56F7 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0DC891A914917004D56F7 /* functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		EAC9FBC61A8D7ABB00C28380 /* CustomWeeklyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWeeklyViewController.swift; sourceTree = "<group>"; };
 		EAC9FBC81A8D837300C28380 /* ReminderDaysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderDaysViewController.swift; sourceTree = "<group>"; };
 		EAEDF55E1A8E8F4C00F4735A /* TimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
+		EAF0DC891A914917004D56F7 /* functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,15 +139,16 @@
 			isa = PBXGroup;
 			children = (
 				EA3F7D591A89700A009B2172 /* RemedyRemindr.xcdatamodeld */,
+				EA4969271A88276D00CAC52A /* Main.storyboard */,
 				EA9BC6EE1A8BF83C00658180 /* Classes */,
 				EA9BC6ED1A8BF78E00658180 /* UI */,
 				EA9BC6EF1A8BF88B00658180 /* Notifications */,
 				EA4969231A88276D00CAC52A /* AppDelegate.swift */,
 				EA4969251A88276D00CAC52A /* ViewController.swift */,
-				EA4969271A88276D00CAC52A /* Main.storyboard */,
+				EA3F7D231A8969CA009B2172 /* constants.swift */,
+				EAF0DC891A914917004D56F7 /* functions.swift */,
 				EA49692A1A88276D00CAC52A /* Images.xcassets */,
 				EA49692C1A88276D00CAC52A /* LaunchScreen.xib */,
-				EA3F7D231A8969CA009B2172 /* constants.swift */,
 				EA4969211A88276D00CAC52A /* Supporting Files */,
 			);
 			path = RemedyRemindr;
@@ -319,6 +322,7 @@
 				EA248A211A884DF100B15D03 /* AddMedViewController.swift in Sources */,
 				EAC9FBC51A8D6D0700C28380 /* CustomDaysViewController.swift in Sources */,
 				EA1DA33A1A8AA93300A04453 /* MedDetailsViewController.swift in Sources */,
+				EAF0DC8A1A914917004D56F7 /* functions.swift in Sources */,
 				EA3F7D5D1A898BFF009B2172 /* MainNavigationController.swift in Sources */,
 				EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */,
 				2654270E1A89998A0034250D /* NotificationManagement.swift in Sources */,

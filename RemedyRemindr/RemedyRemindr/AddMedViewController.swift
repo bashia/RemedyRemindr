@@ -16,7 +16,6 @@ class AddMedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -27,18 +26,29 @@ class AddMedViewController: UIViewController {
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
         
+        if countElements(medNameTextField.text) < 1 {
+            newAlert("No Name Entered", "Please type a medication name.")
+            return
+        }
+        
+        // Only allow numbers and letters for medication name
+        if !checkValidCharacters(medNameTextField.text) {
+            newAlert("Invalid Characters", "Please only use letters and numbers when entering a medication.")
+            return
+        }
+            
         let newMed = Medication(name: medNameTextField.text)
         if let insertMed = MedicationDAO.insertMedication(newMed) {
+            
             if insertMed {
                 performSegueWithIdentifier("addButtonPressed", sender: sender)
             }
             else {
-                var alert : UIAlertView = UIAlertView(title: "Medication Already Exists", message: "A medication with name " + newMed.name + " has already been added, please choose another name.", delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                newAlert("Medication Already Exists", "A medication with name " + newMed.name + " has already been added, please choose another name.")
             }
+            
         } else {
-            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            newAlert("Unexpected Error", "An unexpected error has occurred, please try again.")
         }
     }
 }
