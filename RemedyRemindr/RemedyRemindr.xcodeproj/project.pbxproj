@@ -100,7 +100,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EA0816701A8C4EB9008935FD /* AddReminder */ = {
+		EA0816701A8C4EB9008935FD /* AddReminderWizard */ = {
 			isa = PBXGroup;
 			children = (
 				EAEDF55E1A8E8F4C00F4735A /* TimePickerViewController.swift */,
@@ -114,7 +114,7 @@
 				EAC9FBC41A8D6D0700C28380 /* CustomDaysViewController.swift */,
 				EAC9FBC61A8D7ABB00C28380 /* CustomWeeklyViewController.swift */,
 			);
-			name = AddReminder;
+			name = AddReminderWizard;
 			sourceTree = "<group>";
 		};
 		EA4969151A88276D00CAC52A = {
@@ -187,7 +187,7 @@
 				EA248A201A884DF100B15D03 /* AddMedViewController.swift */,
 				EA1DA3391A8AA93300A04453 /* MedDetailsViewController.swift */,
 				EA856F061A8C78D300BDA1C6 /* ReminderDetailsViewController.swift */,
-				EA0816701A8C4EB9008935FD /* AddReminder */,
+				EA0816701A8C4EB9008935FD /* AddReminderWizard */,
 			);
 			name = UI;
 			sourceTree = "<group>";

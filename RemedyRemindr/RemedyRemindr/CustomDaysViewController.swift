@@ -15,6 +15,7 @@ class CustomDaysViewController: UIViewController {
     
     var pickerData = [Int](2...100)
     
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var numberOfDaysPicker: UIPickerView!
     
     @IBAction func doneButton(sender: AnyObject) {
@@ -24,8 +25,8 @@ class CustomDaysViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

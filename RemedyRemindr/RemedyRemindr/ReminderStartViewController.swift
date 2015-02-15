@@ -10,10 +10,12 @@ import UIKit
 
 class ReminderStartViewController: UIViewController {
 
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+    @IBOutlet weak var startDatePicker: UIDatePicker!
+    
     var reminder: Reminder?
     var inputMed : Medication?
     
-    @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBAction func doneButtonPressed(sender: AnyObject) {
         reminder!.setStartDate(startDatePicker.date)
         
@@ -27,8 +29,8 @@ class ReminderStartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        startDatePicker.minimumDate = NSDate()
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
 
     override func didReceiveMemoryWarning() {

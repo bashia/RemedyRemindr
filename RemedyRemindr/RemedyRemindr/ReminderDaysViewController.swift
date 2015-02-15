@@ -11,6 +11,7 @@ import UIKit
 class ReminderDaysViewController: UIViewController {
 
     @IBOutlet weak var confirmLabel: UILabel!
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     var reminder: Reminder?
     var inputMed : Medication?
@@ -31,7 +32,8 @@ class ReminderDaysViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
     
     override func viewDidAppear(animated: Bool) {

@@ -1565,6 +1565,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="jWj-1Y-RHU"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="qfj-Uc-hBF" id="vmy-4q-RDK"/>
                         <segue destination="cz2-QZ-Guk" kind="show" identifier="reminderTypeSet" id="5by-sb-6RJ"/>
                     </connections>
                 </viewController>
@@ -1779,6 +1780,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="wyf-Ml-Lfz"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="dys-ZM-s1l" id="h65-6D-1vJ"/>
                         <outlet property="startDatePicker" destination="GQR-KY-3El" id="uLd-aK-uIB"/>
                         <segue destination="mCr-AO-DuM" kind="show" identifier="reminderStartSetRepeat" id="eYR-j5-mtc"/>
                         <segue destination="D13-1P-z91" kind="show" identifier="reminderStartSetNoRepeat" id="Qr3-kY-Q1G"/>
@@ -2064,6 +2066,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="499-zs-efG"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="WBo-vK-oD2" id="eYK-6H-0aI"/>
                         <outlet property="doneButtonOutlet" destination="NWt-xP-oum" id="6bV-0R-eCM"/>
                         <outlet property="timePicker" destination="W7Y-yw-e2w" id="3IF-0s-fC3"/>
                         <outlet property="timesTable" destination="hB0-Sa-YpC" id="tYv-Zg-yoR"/>
@@ -2298,6 +2301,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="UU7-6B-VBZ"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="8WH-PO-3ap" id="zWD-1K-SHs"/>
                         <outlet property="notesTextView" destination="RhC-ce-sDE" id="7DZ-gb-cLM"/>
                         <segue destination="Tw9-ES-Tbb" kind="unwind" identifier="insertReminder" unwindAction="unwindToDetails:" id="a8f-5p-tIV"/>
                     </connections>
@@ -2710,6 +2714,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="hKm-6E-2bI"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="vtx-hy-hx2" id="bp1-s3-MI6"/>
                         <segue destination="D13-1P-z91" kind="show" identifier="reminderDaysSet" id="iKf-vg-eMz"/>
                         <segue destination="OnZ-p3-unm" kind="show" identifier="customWeekly" id="kY1-yg-hnk"/>
                         <segue destination="7VY-0m-Pho" kind="show" identifier="customDays" id="tRr-KE-VEv"/>
@@ -2971,6 +2976,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="pWC-bJ-eaw"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="lfd-Zm-zsj" id="9Zb-P5-iwk"/>
                         <segue destination="sKO-ux-vQt" kind="show" identifier="reminderRepeatForever" id="6xS-FK-xrT"/>
                         <segue destination="8bk-ic-0Wn" kind="show" identifier="reminderCustomEnd" id="RRj-Xx-0Hy"/>
                     </connections>
@@ -3186,6 +3192,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Bq1-SE-9T7"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="HBj-BC-UTl" id="URM-Gj-USk"/>
                         <outlet property="endDatePicker" destination="sd6-DJ-9pD" id="dd8-oz-Ngk"/>
                         <segue destination="sKO-ux-vQt" kind="show" identifier="reminderCustomEndSet" id="qha-Xz-d2U"/>
                     </connections>
@@ -3614,6 +3621,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="lV8-go-fo0"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="NZd-xp-q14" id="EQe-7g-qkf"/>
                         <outlet property="fridaySlider" destination="D9d-SH-hvv" id="FvD-rg-RHv"/>
                         <outlet property="mondaySlider" destination="P3N-dx-M85" id="v68-ab-pv3"/>
                         <outlet property="saturdaySlider" destination="Laa-2t-5k5" id="MiR-SP-z8R"/>
@@ -3895,6 +3903,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="qgU-If-TUB"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="4Oz-8Q-16H" id="Lvd-1e-SbA"/>
                         <outlet property="numberOfDaysPicker" destination="MLd-oZ-qCi" id="0E2-gC-yhk"/>
                         <segue destination="D13-1P-z91" kind="show" identifier="reminderDaysSet" id="UlT-hl-QFN"/>
                     </connections>

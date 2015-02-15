@@ -13,6 +13,7 @@ class ReminderNotesViewController: UIViewController {
     var reminder: Reminder?
     var inputMed : Medication?
     
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var notesTextView: UITextView!
     
     @IBAction func doneButton(sender: AnyObject) {
@@ -34,8 +35,8 @@ class ReminderNotesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
 
     override func didReceiveMemoryWarning() {

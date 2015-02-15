@@ -10,6 +10,8 @@ import UIKit
 
 class ReminderTypeViewController: UIViewController {
 
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+    
     var reminder: Reminder?
     var inputMed : Medication?
     
@@ -27,8 +29,8 @@ class ReminderTypeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

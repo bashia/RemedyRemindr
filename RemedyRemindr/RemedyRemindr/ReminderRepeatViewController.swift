@@ -13,6 +13,8 @@ class ReminderRepeatViewController: UIViewController {
     var reminder: Reminder?
     var inputMed : Medication?
     
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+    
     @IBAction func foreverButtonPressed(sender: AnyObject) {
         reminder!.setEndDate(reminder!.getStartDate())
         performSegueWithIdentifier("reminderRepeatForever", sender: sender)
@@ -24,8 +26,8 @@ class ReminderRepeatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
 
     override func didReceiveMemoryWarning() {

@@ -14,6 +14,7 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
     var inputMed : Medication?
     var times = [Int16]()
     
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var timesTable: UITableView!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var doneButtonOutlet: UIButton!
@@ -55,6 +56,8 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
+    
         // If we have been passed a partially-completed reminder, load the previously-set time values
         if (reminder!.getTimes().count > 0) {
             times = reminder!.getTimes()
