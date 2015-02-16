@@ -1552,14 +1552,25 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="zVs-Rp-f7B"/>
+                        <barButtonItem title="Cancel" id="qfj-Uc-hBF">
+                            <connections>
+                                <segue destination="4UX-XP-04h" kind="unwind" unwindAction="unwindToDetails:" id="AVU-QC-68e"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="vUd-RX-2wu"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="RemedyRemindr" id="XAp-gu-7pq">
                         <barButtonItem key="backBarButtonItem" title="Back" id="jWj-1Y-RHU"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="qfj-Uc-hBF" id="vmy-4q-RDK"/>
                         <segue destination="cz2-QZ-Guk" kind="show" identifier="reminderTypeSet" id="5by-sb-6RJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Okw-Vc-npQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4UX-XP-04h" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="214.5" y="700.5"/>
         </scene>
@@ -1756,16 +1767,27 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="yyR-qN-m5S"/>
+                        <barButtonItem title="Cancel" id="dys-ZM-s1l">
+                            <connections>
+                                <segue destination="j09-AL-gUR" kind="unwind" unwindAction="unwindToDetails:" id="DSe-Uu-d3G"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HnQ-F3-g9g"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="RemedyRemindr" id="aha-wN-4tS">
                         <barButtonItem key="backBarButtonItem" title="Back" id="wyf-Ml-Lfz"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="dys-ZM-s1l" id="h65-6D-1vJ"/>
                         <outlet property="startDatePicker" destination="GQR-KY-3El" id="uLd-aK-uIB"/>
                         <segue destination="mCr-AO-DuM" kind="show" identifier="reminderStartSetRepeat" id="eYR-j5-mtc"/>
                         <segue destination="D13-1P-z91" kind="show" identifier="reminderStartSetNoRepeat" id="Qr3-kY-Q1G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HVo-pP-14j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="j09-AL-gUR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="976.5" y="700.5"/>
         </scene>
@@ -2031,10 +2053,20 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="J6B-ZA-uGb"/>
+                        <barButtonItem title="Cancel" id="WBo-vK-oD2">
+                            <connections>
+                                <segue destination="Agx-Sz-2Nh" kind="unwind" unwindAction="unwindToDetails:" id="TKD-la-T4w"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="xbh-LI-QU5"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="RemedyRemindr" id="bGu-Xd-iE5">
                         <barButtonItem key="backBarButtonItem" title="Back" id="499-zs-efG"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="WBo-vK-oD2" id="eYK-6H-0aI"/>
                         <outlet property="doneButtonOutlet" destination="NWt-xP-oum" id="6bV-0R-eCM"/>
                         <outlet property="timePicker" destination="W7Y-yw-e2w" id="3IF-0s-fC3"/>
                         <outlet property="timesTable" destination="hB0-Sa-YpC" id="tYv-Zg-yoR"/>
@@ -2042,6 +2074,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sn1-n9-92s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Agx-Sz-2Nh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3438" y="591"/>
         </scene>
@@ -2255,10 +2288,20 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KLg-wp-aBM"/>
+                        <barButtonItem title="Cancel" id="8WH-PO-3ap">
+                            <connections>
+                                <segue destination="Tw9-ES-Tbb" kind="unwind" unwindAction="unwindToDetails:" id="uUq-aC-b0H"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="wKq-hK-Gno"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="RemedyRemindr" id="Umw-I3-YKX">
                         <barButtonItem key="backBarButtonItem" title="Back" id="UU7-6B-VBZ"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="8WH-PO-3ap" id="zWD-1K-SHs"/>
                         <outlet property="notesTextView" destination="RhC-ce-sDE" id="7DZ-gb-cLM"/>
                         <segue destination="Tw9-ES-Tbb" kind="unwind" identifier="insertReminder" unwindAction="unwindToDetails:" id="a8f-5p-tIV"/>
                     </connections>
@@ -2658,16 +2701,27 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="kcM-wK-0rh"/>
+                        <barButtonItem title="Cancel" id="vtx-hy-hx2">
+                            <connections>
+                                <segue destination="wWU-6v-Jwp" kind="unwind" unwindAction="unwindToDetails:" id="sBY-Ei-vSf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="IJG-Df-3Ud"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="RemedyRemindr" id="4ha-qG-Abt">
                         <barButtonItem key="backBarButtonItem" title="Back" id="hKm-6E-2bI"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="vtx-hy-hx2" id="bp1-s3-MI6"/>
                         <segue destination="D13-1P-z91" kind="show" identifier="reminderDaysSet" id="iKf-vg-eMz"/>
                         <segue destination="OnZ-p3-unm" kind="show" identifier="customWeekly" id="kY1-yg-hnk"/>
                         <segue destination="7VY-0m-Pho" kind="show" identifier="customDays" id="tRr-KE-VEv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crg-jc-ckM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wWU-6v-Jwp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3076.5" y="1444.5"/>
         </scene>
@@ -2909,13 +2963,26 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="RemedyRemindr" id="q0g-xR-tW3"/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2lJ-vK-f51"/>
+                        <barButtonItem title="Cancel" id="lfd-Zm-zsj">
+                            <connections>
+                                <segue destination="wcm-Ii-klh" kind="unwind" unwindAction="unwindToDetails:" id="YOX-KE-Zac"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="4Ga-zw-roh"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="RemedyRemindr" id="q0g-xR-tW3">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="pWC-bJ-eaw"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="lfd-Zm-zsj" id="9Zb-P5-iwk"/>
                         <segue destination="sKO-ux-vQt" kind="show" identifier="reminderRepeatForever" id="6xS-FK-xrT"/>
                         <segue destination="8bk-ic-0Wn" kind="show" identifier="reminderCustomEnd" id="RRj-Xx-0Hy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpY-jq-xQZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wcm-Ii-klh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1630.5" y="1281"/>
         </scene>
@@ -3112,13 +3179,26 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="RemedyRemindr" id="xb1-1E-mHD"/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FL7-pG-DVQ"/>
+                        <barButtonItem title="Cancel" id="HBj-BC-UTl">
+                            <connections>
+                                <segue destination="1Av-Nj-Df7" kind="unwind" unwindAction="unwindToDetails:" id="3oA-v8-wb7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Te3-cP-w5u"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="RemedyRemindr" id="xb1-1E-mHD">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Bq1-SE-9T7"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="HBj-BC-UTl" id="URM-Gj-USk"/>
                         <outlet property="endDatePicker" destination="sd6-DJ-9pD" id="dd8-oz-Ngk"/>
                         <segue destination="sKO-ux-vQt" kind="show" identifier="reminderCustomEndSet" id="qha-Xz-d2U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCN-rI-ylN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1Av-Nj-Df7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2365.5" y="988.5"/>
         </scene>
@@ -3354,7 +3434,7 @@
                                     <constraint firstItem="xFb-UI-qOZ" firstAttribute="centerX" secondItem="j0M-c6-vOc" secondAttribute="centerX" id="chc-09-MLP"/>
                                     <constraint firstItem="RBh-lF-nDp" firstAttribute="leading" secondItem="D9d-SH-hvv" secondAttribute="trailing" constant="8" id="e8Y-hN-fRJ"/>
                                     <constraint firstItem="7Ow-eI-Qha" firstAttribute="top" secondItem="4qL-fT-6gh" secondAttribute="bottom" constant="209" id="ea8-RL-DKz">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="297"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="281"/>
                                     </constraint>
                                     <constraint firstItem="4qL-fT-6gh" firstAttribute="top" secondItem="Vwj-o9-CuE" secondAttribute="top" constant="39" id="hlF-ai-Rd7">
                                         <variation key="heightClass=regular-widthClass=compact" constant="32"/>
@@ -3528,10 +3608,20 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="bKr-Ex-cw9"/>
+                        <barButtonItem title="Cancel" id="NZd-xp-q14">
+                            <connections>
+                                <segue destination="VPo-H4-Zor" kind="unwind" unwindAction="unwindToDetails:" id="YLX-iu-uhE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ba0-aL-5FN"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="RemedyRemindr" id="kwr-1S-gOO">
                         <barButtonItem key="backBarButtonItem" title="Back" id="lV8-go-fo0"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="NZd-xp-q14" id="EQe-7g-qkf"/>
                         <outlet property="fridaySlider" destination="D9d-SH-hvv" id="FvD-rg-RHv"/>
                         <outlet property="mondaySlider" destination="P3N-dx-M85" id="v68-ab-pv3"/>
                         <outlet property="saturdaySlider" destination="Laa-2t-5k5" id="MiR-SP-z8R"/>
@@ -3543,6 +3633,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cf-Ye-Ldc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VPo-H4-Zor" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3763.5" y="1275.75"/>
         </scene>
@@ -3700,7 +3791,7 @@
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
                                     <constraint firstItem="tq4-db-kZJ" firstAttribute="top" secondItem="q5a-hY-JK4" secondAttribute="bottom" constant="104" id="qzS-r9-7J8">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="75"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="82"/>
                                     </constraint>
                                     <constraint firstAttribute="centerX" secondItem="MLd-oZ-qCi" secondAttribute="centerX" constant="-0.5" id="toy-SY-Enl"/>
                                 </constraints>
@@ -3799,23 +3890,34 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="zSZ-ft-ZS6"/>
+                        <barButtonItem title="Cancel" id="4Oz-8Q-16H">
+                            <connections>
+                                <segue destination="KrJ-jq-cmW" kind="unwind" unwindAction="unwindToDetails:" id="Z2r-fV-dqF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FO5-zE-v6u"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="RemedyRemindr" id="ES6-aT-H3m">
-                        <barButtonItem key="backBarButtonItem" title="RemedyRemindr" id="qgU-If-TUB"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="qgU-If-TUB"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="4Oz-8Q-16H" id="Lvd-1e-SbA"/>
                         <outlet property="numberOfDaysPicker" destination="MLd-oZ-qCi" id="0E2-gC-yhk"/>
                         <segue destination="D13-1P-z91" kind="show" identifier="reminderDaysSet" id="UlT-hl-QFN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xhv-eE-PzK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KrJ-jq-cmW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3763.5" y="1945.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Fxn-UQ-r5v"/>
-        <segue reference="Qr3-kY-Q1G"/>
         <segue reference="qha-Xz-d2U"/>
+        <segue reference="KIJ-Nn-oGz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
 </document>

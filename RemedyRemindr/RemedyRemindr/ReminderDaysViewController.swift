@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ReminderDaysViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class ReminderDaysViewController: UIViewController {
 
     @IBOutlet weak var confirmLabel: UILabel!
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     var reminder: Reminder?
     var inputMed : Medication?
@@ -31,7 +32,8 @@ class ReminderDaysViewController: UIViewController, UIPopoverPresentationControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -41,27 +43,20 @@ class ReminderDaysViewController: UIViewController, UIPopoverPresentationControl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "reminderDaysSet"
         {
-            self.dismissViewControllerAnimated(true, completion: nil)
             var insertReminderView : ReminderTimesViewController = segue.destinationViewController as ReminderTimesViewController
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder
         }
         else if segue.identifier == "customDays" {
-            self.dismissViewControllerAnimated(true, completion: nil)
             var insertReminderView : CustomDaysViewController = segue.destinationViewController as CustomDaysViewController
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder
         }
         else if segue.identifier == "customWeekly" {
-            self.dismissViewControllerAnimated(true, completion: nil)
             var insertReminderView : CustomWeeklyViewController = segue.destinationViewController as CustomWeeklyViewController
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder

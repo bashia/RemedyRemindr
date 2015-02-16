@@ -14,6 +14,7 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
     var inputMed : Medication?
     var times = [Int16]()
     
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var timesTable: UITableView!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var doneButtonOutlet: UIButton!
@@ -28,27 +29,40 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         times.removeAtIndex(sender.tag)
         timesTable.deleteRowsAtIndexPaths([rowToSelect], withRowAnimation: UITableViewRowAnimation.Fade)
         timesTable.reloadData()
+        updateDoneButtonState()
     }
 
     @IBAction func timePopoverCancel(sender: UIStoryboardSegue) {
         dismissViewControllerAnimated(true, nil)
+        updateDoneButtonState()
     }
     
     @IBAction func timePopoverDone(sender: UIStoryboardSegue) {
-        doneButtonOutlet.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        doneButtonOutlet.enabled = true
         dismissViewControllerAnimated(true, nil)
         timesTable.reloadData()
+        updateDoneButtonState()
     }
 
+    func updateDoneButtonState() {
+        if (times.count > 0) {
+            doneButtonOutlet.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            doneButtonOutlet.enabled = true
+        } else {
+            doneButtonOutlet.enabled = false
+            doneButtonOutlet.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        doneButtonOutlet.enabled = false
-        doneButtonOutlet.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-        
-
-        // Do any additional setup after loading the view.
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
+    
+        // If we have been passed a partially-completed reminder, load the previously-set time values
+        if (reminder!.getTimes().count > 0) {
+            times = reminder!.getTimes()
+        }
+        updateDoneButtonState()
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,11 +97,6 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
         
         return cell
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

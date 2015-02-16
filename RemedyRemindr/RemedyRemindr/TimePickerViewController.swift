@@ -40,7 +40,12 @@ class TimePickerViewController: UIViewController {
             let cal = NSCalendar.currentCalendar()
             let comp = cal.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: timePicker.date)
             var minutesFromMidnight = Int16(comp.hour * 60 + comp.minute)
-            destinationView.times.append(minutesFromMidnight)
+            
+            if contains(destinationView.times, minutesFromMidnight) {
+                newAlert("Duplicate Time", "This time has already been added for this reminder.")
+            } else {
+                destinationView.times.append(minutesFromMidnight)
+            }
         }
     }
 

@@ -13,6 +13,7 @@ class CustomWeeklyViewController: UIViewController {
     var reminder: Reminder?
     var inputMed : Medication?
     
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var sundaySlider: UISwitch!
     @IBOutlet weak var mondaySlider: UISwitch!
     @IBOutlet weak var tuesdaySlider: UISwitch!
@@ -54,15 +55,19 @@ class CustomWeeklyViewController: UIViewController {
             dayBits = dayBits | day
         }
         
-        reminder!.setDays(dayBits)
-        performSegueWithIdentifier("reminderDaysSet", sender: sender)
+        if (dayBits == 0) {
+            newAlert("No days selected", "Please select at least one day of the week for this reminder to occur on.")
+        } else {
+            reminder!.setDays(dayBits)
+            performSegueWithIdentifier("reminderDaysSet", sender: sender)
+        }
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +78,6 @@ class CustomWeeklyViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "reminderDaysSet"
         {
-            self.dismissViewControllerAnimated(true, completion: nil)
             var insertReminderView : ReminderTimesViewController = segue.destinationViewController as ReminderTimesViewController
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder
