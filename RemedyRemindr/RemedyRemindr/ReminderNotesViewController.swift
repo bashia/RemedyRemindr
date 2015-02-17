@@ -13,20 +13,30 @@ class ReminderNotesViewController: UIViewController {
     var reminder: Reminder?
     var inputMed : Medication?
     
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var notesTextView: UITextView!
+    
     @IBAction func doneButton(sender: AnyObject) {
         reminder!.setNotes(notesTextView.text)
-        MedicationDAO.insertReminder(inputMed!, reminder: reminder!)
         
-        println(reminder!.getRepeat().rawValue)
-        
-        performSegueWithIdentifier("insertReminder", sender: sender)
+        if let insertRem = MedicationDAO.insertReminder(inputMed!, reminder: reminder!) {
+            if insertRem {
+                performSegueWithIdentifier("insertReminder", sender: sender)
+            }
+            else {
+                var alert : UIAlertView = UIAlertView(title: "Duplicate Reminder", message: "A reminder already exists with the same date and time settings. Please go back and change some settings.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        } else {
+            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred, please try again.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,15 +44,4 @@ class ReminderNotesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

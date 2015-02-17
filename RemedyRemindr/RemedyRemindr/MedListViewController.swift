@@ -10,15 +10,21 @@ import UIKit
 
 class MedListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var meds = [Medication]()
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var medsTableView: UITableView!
     
+    var meds = [Medication]()
+
     @IBAction func unwindToMain(sender: UIStoryboardSegue) {
         // This comes from the detail view when you press the delete button
+        self.medsTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,8 +39,14 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        meds = MedicationDAO.getMedications()!
-        self.medsTableView.reloadData()
+        if let meds = MedicationDAO.getMedications() {
+            self.meds = meds
+            self.medsTableView.reloadData()
+        } else {
+            var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred while loading the medication list.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,13 +57,11 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return meds.count
     }
@@ -59,12 +69,10 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MedicationCell", forIndexPath: indexPath) as UITableViewCell
         
-        print(indexPath.row)
-        
         // Configure the cell...
         let med = meds[indexPath.row]
         cell.textLabel?.text = med.name
-        cell.detailTextLabel?.text = med.name
+        cell.detailTextLabel?.text = String(med.reminders.count) + " active reminders"
         return cell
     }
     
@@ -81,15 +89,5 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

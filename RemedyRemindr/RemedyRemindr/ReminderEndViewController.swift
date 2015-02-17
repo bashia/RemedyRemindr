@@ -12,20 +12,23 @@ class ReminderEndViewController: UIViewController {
 
     var reminder: Reminder?
     var inputMed : Medication?
-    
-    
+ 
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
     @IBAction func doneButton(sender: AnyObject) {
-        // get the date
         reminder!.setEndDate(endDatePicker.date)
-        performSegueWithIdentifier("reminderCustomEndSet", sender: sender)
+        if reminder!.getStartDateAsString() == reminder!.getEndDateAsString() {
+            newAlert("Invalid Date", "You have chosen the end date to be the same as the start date. Please make a \"One Time\" reminder for this purpose.")
+        } else {
+            performSegueWithIdentifier("reminderCustomEndSet", sender: sender)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        endDatePicker.minimumDate = reminder!.getStartDate()
+        cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
     }
 
     override func didReceiveMemoryWarning() {

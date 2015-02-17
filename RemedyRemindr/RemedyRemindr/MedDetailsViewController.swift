@@ -11,27 +11,41 @@ import UIKit
 class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var remindersTableView: UITableView!
-    @IBOutlet weak var TitleBar: UINavigationItem!
+    @IBOutlet weak var titleText: UILabel!
+    @IBOutlet weak var addBarButton: UIBarButtonItem!
+    @IBOutlet weak var deleteBarButton: UIBarButtonItem!
     
     var inputMed : Medication?
     
     @IBAction func deleteButton(sender: UIButton) {
-        MedicationDAO.deleteMedication(inputMed!)
-        performSegueWithIdentifier("deleteMedication", sender: sender)
+        
+        var deleteConfirmationAlert = UIAlertController(title: "Delete Medication", message: "This medication and all associated reminders will be deleted.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            if let deleteMedication = MedicationDAO.deleteMedication(self.inputMed!) {
+                self.performSegueWithIdentifier("deleteMedication", sender: sender)
+            } else {
+                newAlert("Unexpected Error", "An unexpected error has occurred, please try again.")
+            }
+        }))
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        
+        presentViewController(deleteConfirmationAlert, animated: true, completion: nil)
     }
 
     @IBAction func unwindToDetails(sender: UIStoryboardSegue) {
         // This happens after a new reminder is created
     }
     
+    @IBAction func unwindToDetailsAfterDeleteReminder(sender: UIStoryboardSegue) {
+        // This happens after a reminder is deleted
+        self.remindersTableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        TitleBar.title = inputMed?.name
-        
-        // self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ReminderCell")
-        // self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        // Do any additional setup after loading the view.
+        titleText.text = inputMed!.name
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +55,6 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("hello")
         self.remindersTableView.reloadData()
     }
     
@@ -55,14 +68,9 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ReminderCell", forIndexPath: indexPath) as UITableViewCell
         
-        // Configure the cell...
         let reminder = inputMed?.reminders[indexPath.row]
-        cell.textLabel?.text = String(reminder!.getTimes()[0])
-        
-        let formatter = NSDateFormatter()
-        formatter.stringFromDate(reminder!.getStartDate())
-        
-        cell.detailTextLabel?.text = formatter.stringFromDate(reminder!.getStartDate())
+        cell.textLabel?.text = reminder!.getTimesAsString()
+        cell.detailTextLabel?.text = reminder!.getDaysAsString()
         
         return cell
     }
@@ -75,8 +83,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addReminder"
         {
@@ -87,7 +94,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "showReminderDetails"
         {
             var indexPath = self.remindersTableView.indexPathForSelectedRow()
-            let rem = inputMed?.reminders[indexPath!.row]
+            let rem = inputMed!.reminders[indexPath!.row]
             
             var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
             detailsView.inputReminder = rem
