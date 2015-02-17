@@ -90,7 +90,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
             let rem = inputMed?.reminders[indexPath!.row]
             
             var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
-            detailsView.inputReminder = rem/
+            detailsView.inputReminder = rem
         }
     }
     
