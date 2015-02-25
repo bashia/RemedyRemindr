@@ -90,6 +90,12 @@ class Reminder: NSObject {
                 return getStartDateAsString(NSDateFormatterStyle.LongStyle)
             
             case Repeat.YES_CUSTOM:
+                if days == 0
+                {
+                    return  "Every Day"
+                
+                }
+                
                 return "Every " + String(Int(days)) + " days";
             
             case Repeat.YES_WEEKLY:
