@@ -69,7 +69,16 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Configure the cell...
         let med = meds[indexPath.row]
         cell.textLabel?.text = med.name
-        cell.detailTextLabel?.text = String(med.reminders.count) + " active reminders"
+        
+        var reminders = String(med.reminders.count) + " active reminder"
+        if(med.reminders.count != 1)
+        {
+            reminders = reminders + "s"
+        }
+        
+        cell.detailTextLabel?.text = reminders
+    
+        
         return cell
     }
     
