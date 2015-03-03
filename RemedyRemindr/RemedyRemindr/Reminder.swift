@@ -116,6 +116,56 @@ class Reminder: NSObject {
         return times
     }
     
+    private func getclosestTimeinDay(nowday: NSDateComponents, remday: NSDateComponents)->NSDate{
+        
+        if ((nowday.day == remday.day) &
+            (nowday.month == remday.month) &
+            (nowday.year == remday.year)){        //If now is the same day as the first instance
+                for time in self.times.reverse(){
+                    if nowday.minute<=Int(time){
+                        var retdatecomps = remday
+                        retdatecomps.minute = Int(time)
+                        return retdatecomps.date!
+                    }
+                }
+        }
+        else {
+            
+            return getclosestTimeinDay(nowday, remday: remday)
+        }
+        print("ERROR!")
+        return NSDate() //Should never happen
+    }
+    
+    
+    
+    func getnextInstance()->NSDate {
+        let now = NSDate()
+        var compdate = self.getStartDate()
+        
+        if now.laterDate(self.getEndDate())==now
+        {
+            return now
+        }
+        if now.earlierDate(compdate)===now{         // If now is before the first instance
+            var time = self.times[0]*60
+            return compdate.dateByAddingTimeInterval(Double(time))
+        }
+        else if now.laterDate(compdate)===now{
+            
+            let calendar = NSCalendar()
+            var dateunits = NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay|NSCalendarUnit.CalendarUnitMinute
+            var nowday = calendar.components(dateunits, fromDate: now)
+            var remday = calendar.components(dateunits, fromDate: compdate)
+            
+            return getclosestTimeinDay(nowday, remday: remday)
+            
+        }
+        
+        
+        return now
+    }
+    
     // Converts a time of day in "minutes from midnight" form to a string
     class func timeToString(time: Int16) -> String {
         var hour = time / 60

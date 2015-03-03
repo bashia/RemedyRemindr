@@ -16,4 +16,14 @@ class Medication: NSObject {
         self.name = name
         reminders = []
     }
+    
+    func getnextReminderDate()->NSDate {
+        let now = NSDate()
+        var nextdate = NSDate()
+        
+        for rem in reminders {
+            nextdate = nextdate.earlierDate(rem.getnextInstance())
+        }
+        return nextdate
+    }
 }

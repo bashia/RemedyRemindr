@@ -21,6 +21,8 @@ class ReminderNotesViewController: UIViewController {
         
         if let insertRem = MedicationDAO.insertReminder(inputMed!, reminder: reminder!) {
             if insertRem {
+                let notman = NotificationManager()
+                notman.makeNotification(inputMed!)
                 performSegueWithIdentifier("insertReminder", sender: sender)
             }
             else {

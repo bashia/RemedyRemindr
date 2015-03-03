@@ -25,28 +25,17 @@ class NotificationManager{
         
     }
     
-    func makeNotificationsforMed(med: Medication){
+    func makeNotification(med:Medication){
+        let date = med.getnextReminderDate()
         
-        let date = NSDate(timeIntervalSinceNow: 60)
-        
-        for reminder in med.reminders{
+        var localNotification = UILocalNotification()
+        localNotification.fireDate = fixNotificationDate(date)
+        localNotification.alertBody = "Medication Alert:" + med.name + "!"
+        localNotification.alertAction = "View List"
+        localNotification.category = "RemedyRemindrCategory"
+        localNotification.userInfo = ["med":med]
             
-            var localNotification = UILocalNotification()
-            localNotification.fireDate = fixNotificationDate(date)
-            localNotification.alertBody = "Medication Alert:" + med.name + "!"
-            localNotification.alertAction = "View List"
-            localNotification.category = "RemedyRemindrCategory"
-            localNotification.userInfo = ["med":med]
-            
-            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-            
-            
-        }
-        
-        
-        
-        
-        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
     
     func checkNotifications(med: Medication){
