@@ -21,19 +21,17 @@ class NotificationManager{
         return fixedDate
     }
     
-    func makeNotificationforReminder(reminder: Reminder){
-        
-    }
-    
     func makeNotification(med:Medication){
         let date = med.getnextReminderDate()
         
-        var localNotification = UILocalNotification()
+        var localNotification:UILocalNotification = UILocalNotification()
         localNotification.fireDate = fixNotificationDate(date)
-        localNotification.alertBody = "Medication Alert:" + med.name + "!"
+        localNotification.alertBody = "Medication Alert: " + med.name + "!"
         localNotification.alertAction = "View List"
         localNotification.category = "RemedyRemindrCategory"
-        localNotification.userInfo = ["med":med]
+        //var userinfo = [String:Medication]()      //These caused exceptions, but might be useful in the future if used properly
+        //userinfo["med"] = med
+        //localNotification.userInfo = userinfo
             
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
