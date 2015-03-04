@@ -49,7 +49,7 @@ class NotificationManager{
         
         if (notificationSettings.types == UIUserNotificationType.None){
             // Specify the notification types.
-            var notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound
+            var notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound | UIUserNotificationType.Badge
             
             // Specify the notification actions.
             var confirmDose = UIMutableUserNotificationAction()
