@@ -10,6 +10,7 @@ import UIKit
 
 class MedListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var logButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var medsTableView: UITableView!
     
@@ -24,6 +25,7 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
         addButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
+        logButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
         
         
         // Uncomment the following line to preserve selection between presentations

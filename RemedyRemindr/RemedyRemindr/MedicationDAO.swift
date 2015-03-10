@@ -49,6 +49,40 @@ class MedicationDAO {
     }
     
     /*
+    * Retrieves all log entries from the data store and returns them in an array of LogEntry objects, sorted by date
+    * Returns nil if there is an error retrieving the log entries
+    */
+    class func getLogEntries() -> [LogEntry]? {
+    
+        var entries = [LogEntry]()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName:"LogEntry")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptors = [sortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        var error: NSError?
+        if let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]? {
+            
+            // Convert medication data objects into Medication objects
+            for managedEntry in fetchedResults {
+                var entry = LogEntry(date: managedEntry.valueForKey("date") as NSDate, text: managedEntry.valueForKey("text") as String)
+                entries.append(entry)
+            }
+            
+        } else {
+            println("Error retrieving log entries: \(error), \(error?.userInfo)")
+            return nil
+        }
+
+        return entries
+
+    }
+    
+    /*
     * Retrieves the NSManagedObject for a given medication name from the data store
     * Returns nil if the medication doesn't exist or there are duplicates (which is not allowed)
     */
@@ -202,6 +236,26 @@ class MedicationDAO {
     }
     
     /*
+    * Inserts a new log entry into the database
+    * Returns nil if there was an error
+    */
+    
+    class func insertLogEntry(entry:LogEntry) -> Bool? {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let med = logEntryToNSManagedObject(entry, managedContext: managedContext);
+        
+        var error: NSError?
+        if !managedContext.save(&error) {
+            println("Error saving data: \(error), \(error?.userInfo)")
+            return nil
+        }
+        
+        return true
+    }
+    
+    /*
     * Converts a Medication object into an NSManagedObject representation of the medication
     */
     private class func medicationToNSManagedObject(medication: Medication, managedContext: NSManagedObjectContext) -> NSManagedObject {
@@ -237,6 +291,22 @@ class MedicationDAO {
         managedReminder.setValue(times, forKey: "times")
         return managedReminder
     }
+    
+    /*
+    * Converts a LogEntry object into an NSManaged representation of the log entry
+    */
+    
+    private class func logEntryToNSManagedObject(entry: LogEntry, managedContext: NSManagedObjectContext) -> NSManagedObject {
+        
+        let entity = NSEntityDescription.entityForName("LogEntry", inManagedObjectContext:managedContext)
+        let managedEntry = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        
+        managedEntry.setValue(entry.getDate(), forKey: "date")
+        managedEntry.setValue(entry.getText(), forKey: "text")
+        
+        return managedEntry
+    }
+    
     
     /*
     * Converts an NSManagedObject to a Reminder object
