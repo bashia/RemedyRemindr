@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="LogEntry" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Medication" representedClassName="NSManagedObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="reminder" toMany="YES" deletionRule="Cascade" destinationEntity="Reminder" inverseName="medication" inverseEntity="Reminder" syncable="YES"/>
@@ -16,5 +20,6 @@
     <elements>
         <element name="Medication" positionX="223" positionY="-1" width="128" height="75"/>
         <element name="Reminder" positionX="-54" positionY="0" width="128" height="150"/>
+        <element name="LogEntry" positionX="-54" positionY="225" width="128" height="73"/>
     </elements>
 </model>
