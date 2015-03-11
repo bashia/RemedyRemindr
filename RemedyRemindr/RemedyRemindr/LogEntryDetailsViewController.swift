@@ -15,11 +15,32 @@ class LogEntryDetailsViewController: UIViewController {
     
     var entry : LogEntry?
     
+    @IBAction func deleteButtonPressed(sender: AnyObject) {
+        
+        
+        var deleteConfirmationAlert = UIAlertController(title: "Delete Log Entry", message: "This log entry will be deleted.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            if let deleteMedication = MedicationDAO.deleteLogEntry(self.entry!) {
+                self.performSegueWithIdentifier("DeleteLogEntry", sender: sender)
+            } else {
+                newAlert("Unexpected Error", "An unexpected error has occurred, please try again.")
+            }
+        }))
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        
+        presentViewController(deleteConfirmationAlert, animated: true, completion: nil)
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dateTextView.text = entry?.getDateAsString()
         entryTextView.text = entry?.getText()
+        entryTextView.editable = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +48,4 @@ class LogEntryDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func entryPopoverOK(sender: AnyObject) {
-        performSegueWithIdentifier("EntryPopoverOK", sender: sender)
-    }
 }

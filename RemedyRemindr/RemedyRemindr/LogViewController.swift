@@ -24,6 +24,11 @@ class LogViewController: UIViewController, UIPopoverPresentationControllerDelega
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func deleteLogEntry(sender: UIStoryboardSegue) {
+        // This comes from the log entry view when you hit delete
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,7 +36,10 @@ class LogViewController: UIViewController, UIPopoverPresentationControllerDelega
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        reloadData()
+    }
+    
+    func reloadData() {
         if let entries = MedicationDAO.getLogEntries() {
             self.entries = entries
             self.entriesViewTable.reloadData()
@@ -39,7 +47,6 @@ class LogViewController: UIViewController, UIPopoverPresentationControllerDelega
             var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred while loading the log entry list", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
-        
     }
     
     @IBAction func entryPopoverCancel(sender: UIStoryboardSegue) {
@@ -51,16 +58,13 @@ class LogViewController: UIViewController, UIPopoverPresentationControllerDelega
         entriesViewTable.reloadData()
     }
     
-    @IBAction func entryPopoverOK(sender: UIStoryboardSegue) {
-        dismissViewControllerAnimated(true, nil)
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("LogCell", forIndexPath: indexPath) as UITableViewCell
         
         let entry = entries[indexPath.row]
-        cell.textLabel?.text = entry.getDateAsString()
-        cell.detailTextLabel?.text = entry.getText()
+        cell.textLabel?.text = entry.getText()
+        cell.detailTextLabel?.text = entry.getDateAsString()
 
         return cell
     }

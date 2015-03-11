@@ -41,7 +41,7 @@ class LogEntryViewController: UIViewController {
             if let insertedEntry = MedicationDAO.insertLogEntry(newEntry) {
                 
                 var destinationView : LogViewController = segue.destinationViewController as LogViewController
-                destinationView.entries.append(newEntry)
+                destinationView.reloadData()
                 
             }
             else {
