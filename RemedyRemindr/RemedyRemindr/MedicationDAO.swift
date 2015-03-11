@@ -60,7 +60,7 @@ class MedicationDAO {
         let managedContext = appDelegate.managedObjectContext!
         
         let fetchRequest = NSFetchRequest(entityName:"LogEntry")
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         let sortDescriptors = [sortDescriptor]
         fetchRequest.sortDescriptors = sortDescriptors
         
@@ -107,6 +107,35 @@ class MedicationDAO {
         }
         else {
             println("Error retrieving medication named " + name + ": \(error), \(error?.userInfo)")
+            return nil
+        }
+    }
+    
+    /*
+    * Retrieves the NSManagedObject for a given medication name from the data store
+    * Returns nil if the medication doesn't exist or there are duplicates (which is not allowed)
+    */
+    class func getLogEntryByDate(date: NSDate) -> NSManagedObject? {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let predicate = NSPredicate(format: "date = %@", date)
+        let fetchRequest = NSFetchRequest(entityName:"LogEntry")
+        fetchRequest.predicate = predicate
+        
+        var error: NSError?
+        if let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]? {
+            if fetchedResults.count != 1 {
+                println("Error finding log entry from date : Found " + String(fetchedResults.count))
+                return nil
+            }
+            else {
+                return fetchedResults[0]
+            }
+        }
+        else {
+            println("Error retrieving log entry : \(error), \(error?.userInfo)")
             return nil
         }
     }
@@ -236,15 +265,38 @@ class MedicationDAO {
     }
     
     /*
+    *
+    */
+    class func deleteLogEntry(entry: LogEntry) -> Bool? {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        if let logEntryObject = getLogEntryByDate(entry.getDate()) {
+            managedContext.deleteObject(logEntryObject)
+            var error: NSError?
+            if !managedContext.save(&error) {
+                println("Error saving data: \(error), \(error?.userInfo)")
+                return nil
+            } else {
+                return true
+            }
+        }
+        else {
+            println("Error: Could not delete log entry.")
+            return nil
+        }
+    }
+    
+    /*
     * Inserts a new log entry into the database
     * Returns nil if there was an error
     */
-    
     class func insertLogEntry(entry:LogEntry) -> Bool? {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
-        let med = logEntryToNSManagedObject(entry, managedContext: managedContext);
+        let logEntry = logEntryToNSManagedObject(entry, managedContext: managedContext);
         
         var error: NSError?
         if !managedContext.save(&error) {
