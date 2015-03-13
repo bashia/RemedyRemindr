@@ -58,14 +58,48 @@ class LogViewController: UIViewController, UIPopoverPresentationControllerDelega
         entriesViewTable.reloadData()
     }
     
+    func getImageForCell(entry: LogEntry) -> UIImage? {
+        
+        if entry.getFeeling() < 0.20 {
+            return UIImage(named: "sad-red")
+        }
+        
+        if entry.getFeeling() < 0.40{
+            return UIImage(named: "sad-yellow")
+        }
+        
+        if entry.getFeeling() < 0.60{
+            return UIImage(named: "ok-yellow")
+        }
+        
+        
+        if entry.getFeeling() < 0.80{
+            return UIImage(named: "happy-yellow")
+        }
+        
+        return UIImage(named: "happy-green")
+        
+
+    }
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("LogCell", forIndexPath: indexPath) as UITableViewCell
         
         let entry = entries[indexPath.row]
-        cell.textLabel?.text = entry.getText()
-        cell.detailTextLabel?.text = entry.getDateAsString()
+        
+        if let mainLabel = cell.viewWithTag(3) as? UILabel {
+            mainLabel.text = entry.getText()
+        }
+        if let subLabel = cell.viewWithTag(4) as? UILabel {
+            subLabel.text = entry.getDateAsString()
+        }
 
+        if let imView = cell.viewWithTag(5) as? UIImageView{
+            imView.image = getImageForCell(entry)
+        }
+        
         return cell
     }
     

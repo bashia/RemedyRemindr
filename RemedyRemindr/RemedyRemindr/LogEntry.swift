@@ -11,10 +11,12 @@ import Foundation
 class LogEntry: NSObject {
     private var date: NSDate
     private var text: String
+    private var feeling: Float
     
-    init(date:NSDate, text:String){
+    init(date:NSDate, text:String, feeling:Float){
         self.date = date
         self.text = text
+        self.feeling = feeling
     }
 
     func getDate() -> NSDate{
@@ -33,6 +35,10 @@ class LogEntry: NSObject {
         return text
     }
     
+    func getFeeling() -> Float{
+        return feeling
+    }
+    
     func setDate(date:NSDate){
         self.date = date
     }
@@ -40,7 +46,9 @@ class LogEntry: NSObject {
     func setText(text:String){
         self.text = text
     }
-
-
+    
+    func setFeeling(feeling:Float){
+        self.feeling = feeling
+    }
 
 }

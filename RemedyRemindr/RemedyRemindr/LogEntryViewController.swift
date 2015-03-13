@@ -11,6 +11,7 @@ import UIKit
 class LogEntryViewController: UIViewController {
 
     
+    @IBOutlet weak var feelingSlider: UISlider!
     @IBOutlet weak var textArea: UITextView!
     
     
@@ -24,7 +25,9 @@ class LogEntryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        textArea.layer.borderWidth = 1.0
+    
         // Do any additional setup after loading the view.
     }
 
@@ -37,7 +40,8 @@ class LogEntryViewController: UIViewController {
         if segue.identifier == "EntryPopoverDone"
         {
             
-            let newEntry = LogEntry(date: NSDate(), text: textArea.text)
+            let newEntry = LogEntry(date: NSDate(), text: textArea.text, feeling: feelingSlider.value)
+
             if let insertedEntry = MedicationDAO.insertLogEntry(newEntry) {
                 
                 var destinationView : LogViewController = segue.destinationViewController as LogViewController
