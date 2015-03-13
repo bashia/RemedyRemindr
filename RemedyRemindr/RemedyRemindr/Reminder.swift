@@ -139,7 +139,7 @@ class Reminder: NSObject {
             
             return getclosestTimeinDay(nowday, remday: remday)
         }
-        print("ERROR!")
+        println("ERROR!")
         return NSDate() //Should never happen
     }
     

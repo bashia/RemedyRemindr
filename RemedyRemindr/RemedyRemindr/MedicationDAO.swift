@@ -69,7 +69,7 @@ class MedicationDAO {
             
             // Convert medication data objects into Medication objects
             for managedEntry in fetchedResults {
-                var entry = LogEntry(date: managedEntry.valueForKey("date") as NSDate, text: managedEntry.valueForKey("text") as String)
+                var entry = LogEntry(date: managedEntry.valueForKey("date") as NSDate, text: managedEntry.valueForKey("text") as String, feeling: managedEntry.valueForKey("feeling") as Float)
                 entries.append(entry)
             }
             
@@ -355,6 +355,7 @@ class MedicationDAO {
         
         managedEntry.setValue(entry.getDate(), forKey: "date")
         managedEntry.setValue(entry.getText(), forKey: "text")
+        managedEntry.setValue(entry.getFeeling(), forKey: "feeling")
         
         return managedEntry
     }

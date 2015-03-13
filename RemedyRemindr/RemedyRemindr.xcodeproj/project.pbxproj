@@ -22,6 +22,12 @@
 		EA49692B1A88276D00CAC52A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA49692A1A88276D00CAC52A /* Images.xcassets */; };
 		EA49692E1A88276D00CAC52A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49692C1A88276D00CAC52A /* LaunchScreen.xib */; };
 		EA49693A1A88276D00CAC52A /* RemedyRemindrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */; };
+		EA7FD7C61AB38ECB000BA990 /* AdherePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7FD7C51AB38ECB000BA990 /* AdherePoint.swift */; };
+		EA7FD7CC1AB39018000BA990 /* sad-red.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7FD7C71AB39018000BA990 /* sad-red.png */; };
+		EA7FD7CD1AB39018000BA990 /* sad-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7FD7C81AB39018000BA990 /* sad-yellow.png */; };
+		EA7FD7CE1AB39018000BA990 /* ok-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7FD7C91AB39018000BA990 /* ok-yellow.png */; };
+		EA7FD7CF1AB39018000BA990 /* happy-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7FD7CA1AB39018000BA990 /* happy-yellow.png */; };
+		EA7FD7D01AB39018000BA990 /* happy-green.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7FD7CB1AB39018000BA990 /* happy-green.png */; };
 		EA856EF91A8C57AE00BDA1C6 /* ReminderTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA856EF81A8C57AE00BDA1C6 /* ReminderTypeViewController.swift */; };
 		EA856EFB1A8C57CD00BDA1C6 /* ReminderStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA856EFA1A8C57CD00BDA1C6 /* ReminderStartViewController.swift */; };
 		EA856EFD1A8C57EE00BDA1C6 /* ReminderRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA856EFC1A8C57EE00BDA1C6 /* ReminderRepeatViewController.swift */; };
@@ -72,6 +78,12 @@
 		EA4969331A88276D00CAC52A /* RemedyRemindrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemedyRemindrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4969381A88276D00CAC52A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyRemindrTests.swift; sourceTree = "<group>"; };
+		EA7FD7C51AB38ECB000BA990 /* AdherePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherePoint.swift; sourceTree = "<group>"; };
+		EA7FD7C71AB39018000BA990 /* sad-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sad-red.png"; path = "../../../../Downloads/sad-red.png"; sourceTree = "<group>"; };
+		EA7FD7C81AB39018000BA990 /* sad-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sad-yellow.png"; path = "../../../../Downloads/sad-yellow.png"; sourceTree = "<group>"; };
+		EA7FD7C91AB39018000BA990 /* ok-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ok-yellow.png"; path = "../../../../Downloads/ok-yellow.png"; sourceTree = "<group>"; };
+		EA7FD7CA1AB39018000BA990 /* happy-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "happy-yellow.png"; path = "../../../../Downloads/happy-yellow.png"; sourceTree = "<group>"; };
+		EA7FD7CB1AB39018000BA990 /* happy-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "happy-green.png"; path = "../../../../Downloads/happy-green.png"; sourceTree = "<group>"; };
 		EA856EF81A8C57AE00BDA1C6 /* ReminderTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTypeViewController.swift; sourceTree = "<group>"; };
 		EA856EFA1A8C57CD00BDA1C6 /* ReminderStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderStartViewController.swift; sourceTree = "<group>"; };
 		EA856EFC1A8C57EE00BDA1C6 /* ReminderRepeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderRepeatViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +158,7 @@
 		EA4969201A88276D00CAC52A /* RemedyRemindr */ = {
 			isa = PBXGroup;
 			children = (
+				EA664F6D1AB35B8F0003B9A2 /* Images */,
 				EA3F7D591A89700A009B2172 /* RemedyRemindr.xcdatamodeld */,
 				EA4969271A88276D00CAC52A /* Main.storyboard */,
 				EA9BC6EE1A8BF83C00658180 /* Classes */,
@@ -187,6 +200,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EA664F6D1AB35B8F0003B9A2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EA7FD7C71AB39018000BA990 /* sad-red.png */,
+				EA7FD7C81AB39018000BA990 /* sad-yellow.png */,
+				EA7FD7C91AB39018000BA990 /* ok-yellow.png */,
+				EA7FD7CA1AB39018000BA990 /* happy-yellow.png */,
+				EA7FD7CB1AB39018000BA990 /* happy-green.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		EA9BC6ED1A8BF78E00658180 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +235,7 @@
 				EA248A1A1A88453900B15D03 /* Medication.swift */,
 				EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */,
 				EADB14501AAF845D00040010 /* LogEntry.swift */,
+				EA7FD7C51AB38ECB000BA990 /* AdherePoint.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -304,6 +330,11 @@
 			files = (
 				EAA536CB1A8D865800CCE572 /* Main.storyboard in Resources */,
 				EA49692E1A88276D00CAC52A /* LaunchScreen.xib in Resources */,
+				EA7FD7D01AB39018000BA990 /* happy-green.png in Resources */,
+				EA7FD7CC1AB39018000BA990 /* sad-red.png in Resources */,
+				EA7FD7CE1AB39018000BA990 /* ok-yellow.png in Resources */,
+				EA7FD7CF1AB39018000BA990 /* happy-yellow.png in Resources */,
+				EA7FD7CD1AB39018000BA990 /* sad-yellow.png in Resources */,
 				EA49692B1A88276D00CAC52A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +377,7 @@
 				EA2933CB1A899BC100589DE5 /* MedicationDAO.swift in Sources */,
 				EA3F7D5B1A89700A009B2172 /* RemedyRemindr.xcdatamodeld in Sources */,
 				EADB14531AAFA17C00040010 /* LogEntryDetailsViewController.swift in Sources */,
+				EA7FD7C61AB38ECB000BA990 /* AdherePoint.swift in Sources */,
 				EA856F031A8C584B00BDA1C6 /* ReminderTimesViewController.swift in Sources */,
 				EAC9FBC71A8D7ABB00C28380 /* CustomWeeklyViewController.swift in Sources */,
 				EA856EFB1A8C57CD00BDA1C6 /* ReminderStartViewController.swift in Sources */,
