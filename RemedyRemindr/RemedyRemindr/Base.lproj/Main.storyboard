@@ -4449,12 +4449,6 @@
                                 <exclude reference="7zI-5l-ixg"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="8KI-eR-2ab"/>
-                                <exclude reference="HUS-Ch-mEa"/>
-                                <exclude reference="MPN-9P-K6s"/>
-                                <exclude reference="c64-4V-MW8"/>
-                                <exclude reference="e6s-VF-bTe"/>
-                                <exclude reference="ypi-1Y-Mdu"/>
                                 <exclude reference="0MI-qe-fzd"/>
                                 <exclude reference="AHS-6P-g7h"/>
                                 <exclude reference="ASB-gy-yQM"/>
@@ -4470,6 +4464,12 @@
                                 <exclude reference="Cq3-89-4gm"/>
                                 <exclude reference="PdG-dB-SoN"/>
                                 <exclude reference="jSf-NW-odF"/>
+                                <exclude reference="8KI-eR-2ab"/>
+                                <exclude reference="HUS-Ch-mEa"/>
+                                <exclude reference="MPN-9P-K6s"/>
+                                <exclude reference="c64-4V-MW8"/>
+                                <exclude reference="e6s-VF-bTe"/>
+                                <exclude reference="ypi-1Y-Mdu"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -4479,12 +4479,6 @@
                                 <include reference="7zI-5l-ixg"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="8KI-eR-2ab"/>
-                                <include reference="HUS-Ch-mEa"/>
-                                <exclude reference="MPN-9P-K6s"/>
-                                <include reference="c64-4V-MW8"/>
-                                <include reference="e6s-VF-bTe"/>
-                                <exclude reference="ypi-1Y-Mdu"/>
                                 <include reference="0MI-qe-fzd"/>
                                 <exclude reference="AHS-6P-g7h"/>
                                 <include reference="ASB-gy-yQM"/>
@@ -4500,6 +4494,12 @@
                                 <exclude reference="Cq3-89-4gm"/>
                                 <exclude reference="PdG-dB-SoN"/>
                                 <include reference="jSf-NW-odF"/>
+                                <exclude reference="8KI-eR-2ab"/>
+                                <include reference="HUS-Ch-mEa"/>
+                                <exclude reference="MPN-9P-K6s"/>
+                                <include reference="c64-4V-MW8"/>
+                                <include reference="e6s-VF-bTe"/>
+                                <exclude reference="ypi-1Y-Mdu"/>
                             </mask>
                         </variation>
                     </view>
