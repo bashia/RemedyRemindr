@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddMedViewController: UIViewController {
+class AddMedViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var medNameTextField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
@@ -22,6 +22,16 @@ class AddMedViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
