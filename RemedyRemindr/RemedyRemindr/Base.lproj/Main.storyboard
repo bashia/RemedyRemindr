@@ -63,7 +63,7 @@
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NF-lE-vPL">
-                                        <rect key="frame" x="156" y="181" width="288" height="55"/>
+                                        <rect key="frame" x="156" y="196" width="288" height="55"/>
                                         <color key="backgroundColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="288" id="99V-JK-ROu">
@@ -86,7 +86,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhO-NE-4cq">
-                                        <rect key="frame" x="153" y="116" width="295" height="40"/>
+                                        <rect key="frame" x="153" y="116" width="295" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="295" id="8wI-2N-2ec">
                                                 <variation key="heightClass=compact" constant="400"/>
@@ -105,7 +105,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGx-K1-JXp">
-                                        <rect key="frame" x="156" y="248" width="288" height="55"/>
+                                        <rect key="frame" x="156" y="263" width="288" height="55"/>
                                         <color key="backgroundColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="288" id="Z66-oF-FFU">
@@ -127,7 +127,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="b5x-hJ-Rbz" kind="show" id="hqe-Bo-AbZ"/>
+                                            <segue destination="b5x-hJ-Rbz" kind="show" identifier="ScanQRButtonPressed" id="hqe-Bo-AbZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -377,14 +377,14 @@
                         <barButtonItem title="Add Medication" id="VEm-S3-A61" colorLabel="IBBuiltInLabel-Orange">
                             <color key="tintColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="oaJ-Ud-Qm2" kind="show" id="n6O-qC-RtN"/>
+                                <segue destination="oaJ-Ud-Qm2" kind="show" identifier="AddMedFromBottomBar" id="n6O-qC-RtN"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Ho8-qU-ZHS"/>
                         <barButtonItem title="View Log" id="izO-T8-uvO">
                             <color key="tintColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="faD-9d-n3O" kind="show" id="iLz-wV-eWI"/>
+                                <segue destination="faD-9d-n3O" kind="show" identifier="ViewLogFromBottomBar" id="iLz-wV-eWI"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -392,7 +392,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="AJC-B2-ScY"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="j3m-m4-TDV">
                             <connections>
-                                <segue destination="oaJ-Ud-Qm2" kind="show" id="Fxn-UQ-r5v"/>
+                                <segue destination="oaJ-Ud-Qm2" kind="show" identifier="AddMedFromPlus" id="Fxn-UQ-r5v"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -773,7 +773,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="zVs-Rp-f7B"/>
                         <barButtonItem title="Cancel" id="qfj-Uc-hBF">
                             <connections>
-                                <segue destination="4UX-XP-04h" kind="unwind" unwindAction="unwindToDetails:" id="AVU-QC-68e"/>
+                                <segue destination="4UX-XP-04h" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="AVU-QC-68e"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="vUd-RX-2wu"/>
@@ -926,7 +926,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="yyR-qN-m5S"/>
                         <barButtonItem title="Cancel" id="dys-ZM-s1l">
                             <connections>
-                                <segue destination="j09-AL-gUR" kind="unwind" unwindAction="unwindToDetails:" id="DSe-Uu-d3G"/>
+                                <segue destination="j09-AL-gUR" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="DSe-Uu-d3G"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="HnQ-F3-g9g"/>
@@ -1118,7 +1118,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="J6B-ZA-uGb"/>
                         <barButtonItem title="Cancel" id="WBo-vK-oD2">
                             <connections>
-                                <segue destination="Agx-Sz-2Nh" kind="unwind" unwindAction="unwindToDetails:" id="TKD-la-T4w"/>
+                                <segue destination="Agx-Sz-2Nh" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="TKD-la-T4w"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="xbh-LI-QU5"/>
@@ -1255,7 +1255,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="KLg-wp-aBM"/>
                         <barButtonItem title="Cancel" id="8WH-PO-3ap">
                             <connections>
-                                <segue destination="Tw9-ES-Tbb" kind="unwind" unwindAction="unwindToDetails:" id="uUq-aC-b0H"/>
+                                <segue destination="Tw9-ES-Tbb" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="uUq-aC-b0H"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wKq-hK-Gno"/>
@@ -1502,7 +1502,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="kcM-wK-0rh"/>
                         <barButtonItem title="Cancel" id="vtx-hy-hx2">
                             <connections>
-                                <segue destination="wWU-6v-Jwp" kind="unwind" unwindAction="unwindToDetails:" id="sBY-Ei-vSf"/>
+                                <segue destination="wWU-6v-Jwp" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="sBY-Ei-vSf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="IJG-Df-3Ud"/>
@@ -1646,7 +1646,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2lJ-vK-f51"/>
                         <barButtonItem title="Cancel" id="lfd-Zm-zsj">
                             <connections>
-                                <segue destination="wcm-Ii-klh" kind="unwind" unwindAction="unwindToDetails:" id="YOX-KE-Zac"/>
+                                <segue destination="wcm-Ii-klh" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="YOX-KE-Zac"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="4Ga-zw-roh"/>
@@ -1799,7 +1799,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FL7-pG-DVQ"/>
                         <barButtonItem title="Cancel" id="HBj-BC-UTl">
                             <connections>
-                                <segue destination="1Av-Nj-Df7" kind="unwind" unwindAction="unwindToDetails:" id="3oA-v8-wb7"/>
+                                <segue destination="1Av-Nj-Df7" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="3oA-v8-wb7"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Te3-cP-w5u"/>
@@ -2090,9 +2090,9 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="L9Y-aR-BkF"/>
                                         <exclude reference="OKA-RF-Yho"/>
                                         <exclude reference="XhY-yo-mfF"/>
+                                        <exclude reference="L9Y-aR-BkF"/>
                                         <exclude reference="EN2-h2-rJa"/>
                                         <exclude reference="amK-6W-mdu"/>
                                         <exclude reference="mGm-LV-eRc"/>
@@ -2109,10 +2109,10 @@
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <include reference="L9Y-aR-BkF"/>
                                         <exclude reference="80G-nN-1FS"/>
                                         <include reference="OKA-RF-Yho"/>
                                         <include reference="XhY-yo-mfF"/>
+                                        <include reference="L9Y-aR-BkF"/>
                                         <include reference="EN2-h2-rJa"/>
                                         <exclude reference="OXz-IF-74F"/>
                                         <exclude reference="42Y-3W-6Oj"/>
@@ -2157,7 +2157,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="bKr-Ex-cw9"/>
                         <barButtonItem title="Cancel" id="NZd-xp-q14">
                             <connections>
-                                <segue destination="VPo-H4-Zor" kind="unwind" unwindAction="unwindToDetails:" id="YLX-iu-uhE"/>
+                                <segue destination="VPo-H4-Zor" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="YLX-iu-uhE"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ba0-aL-5FN"/>
@@ -2325,7 +2325,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="zSZ-ft-ZS6"/>
                         <barButtonItem title="Cancel" id="4Oz-8Q-16H">
                             <connections>
-                                <segue destination="KrJ-jq-cmW" kind="unwind" unwindAction="unwindToDetails:" id="Z2r-fV-dqF"/>
+                                <segue destination="KrJ-jq-cmW" kind="unwind" identifier="CancelButtonPressed" unwindAction="unwindToDetails:" id="Z2r-fV-dqF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FO5-zE-v6u"/>
@@ -2470,11 +2470,9 @@
                     <connections>
                         <outlet property="entriesViewTable" destination="xsW-Sl-iGf" id="Qff-HK-dQG"/>
                         <outlet property="newButton" destination="8hG-dF-UTL" id="Yia-2V-xRg"/>
-                        <segue destination="dlJ-uI-xEZ" kind="unwind" unwindAction="unwindToMain:" id="uWt-Kz-8fL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ufU-ks-ABF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="dlJ-uI-xEZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1885.5" y="-768.75"/>
         </scene>
@@ -2750,9 +2748,9 @@
         <image name="sad-red.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6xS-FK-xrT"/>
-        <segue reference="n6O-qC-RtN"/>
-        <segue reference="UlT-hl-QFN"/>
+        <segue reference="Fxn-UQ-r5v"/>
+        <segue reference="Qr3-kY-Q1G"/>
+        <segue reference="qha-Xz-d2U"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
 </document>
