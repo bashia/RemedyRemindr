@@ -98,6 +98,8 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
             
             var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
             detailsView.inputReminder = rem
+            detailsView.inputMed = self.inputMed
+            
         }
     }
     
