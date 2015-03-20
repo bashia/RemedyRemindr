@@ -16,7 +16,7 @@ func newAlert(title: String, message: String) {
 
 func checkValidCharacters(text: String) -> Bool {
     let textNSString = text as NSString
-    let validCharacters = NSCharacterSet.alphanumericCharacterSet().invertedSet
-    let rangeOfInvalidCharacters = textNSString.rangeOfCharacterFromSet(validCharacters)
+    let invalidCharacters = NSCharacterSet.alphanumericCharacterSet().invertedSet
+    let rangeOfInvalidCharacters = textNSString.rangeOfCharacterFromSet(invalidCharacters)
     return rangeOfInvalidCharacters.location == NSNotFound
 }
