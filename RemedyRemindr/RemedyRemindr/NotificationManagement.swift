@@ -9,62 +9,65 @@
 import Foundation
 import UIKit
 
+
 class NotificationManager{
     
-    func fixNotificationDate(dateToFix: NSDate) -> NSDate {
-        var dateComponents: NSDateComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: dateToFix)
-        
-        dateComponents.second = 0
-        
-        var fixedDate: NSDate! = NSCalendar.currentCalendar().dateFromComponents(dateComponents)
-        
-        return fixedDate
-    }
+    let snoozedefault = 1
     
     func makeNotification(med:Medication){
-        let date = med.getnextReminderDate()
+        var remdatelist = med.getnextReminderDates()
         
-        var localNotification:UILocalNotification = UILocalNotification()
-        localNotification.fireDate = fixNotificationDate(date)
-        localNotification.alertBody = "Medication Alert: " + med.name + "!"
-        localNotification.alertAction = "View List"
-        localNotification.category = "RemedyRemindrCategory"
-        //var userinfo = [String:Medication]()      //These caused exceptions, but might be useful in the future if used properly
-        //userinfo["med"] = med
-        //localNotification.userInfo = userinfo
+        for date in remdatelist{
+        
+            var localNotification = UILocalNotification()
+            localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: date)
+            localNotification.alertBody = "Medication Alert: " + med.name + "!"
+            localNotification.alertAction = "View"
             
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            localNotification.category = "RemCat"
+            
+            
+            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        }
     }
     
-    func checkNotifications(med: Medication){
+    func rescheduleNotification(note:UILocalNotification, minsoffset: Int){
+        var newnot = note
+        var secsoffset = 60*minsoffset
+        newnot.fireDate = NSDate(timeInterval: NSTimeInterval(secsoffset), sinceDate: note.fireDate!)
         
-        let app = UIApplication()
-        let notifications = app.scheduledLocalNotifications
+        UIApplication.sharedApplication().scheduleLocalNotification(newnot)
+        println("Notification resheduled for" + newnot.fireDate!.description)
+    }
+    
+    func updateNotifications(){
+    
+        if UIApplication.sharedApplication().scheduledLocalNotifications.count > 16{
+            return
+        }
         
+        let medications:[Medication] = MedicationDAO.getMedications()!
+        
+        for med in medications{
+            makeNotification(med)
+        }
         
     }
     
     init(){
         let notificationSettings: UIUserNotificationSettings! = UIApplication.sharedApplication().currentUserNotificationSettings()
         
-        if (notificationSettings.types == UIUserNotificationType.None){
+        //if (/*notificationSettings.types == UIUserNotificationType.None*/true){
             // Specify the notification types.
-            var notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound | UIUserNotificationType.Badge
-            
+            var notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound
             // Specify the notification actions.
+            
             var confirmDose = UIMutableUserNotificationAction()
             confirmDose.identifier = "confirmDose"
-            confirmDose.title = "Confirm"
+            confirmDose.title = "Confirm Dose"
             confirmDose.activationMode = UIUserNotificationActivationMode.Background
             confirmDose.destructive = false
             confirmDose.authenticationRequired = false
-            
-            var editMed = UIMutableUserNotificationAction()
-            editMed.identifier = "editMed"
-            editMed.title = "Go to App"
-            editMed.activationMode = UIUserNotificationActivationMode.Foreground
-            editMed.destructive = false
-            editMed.authenticationRequired = true
             
             var snooze = UIMutableUserNotificationAction()
             snooze.identifier = "snooze"
@@ -73,23 +76,26 @@ class NotificationManager{
             snooze.destructive = false
             snooze.authenticationRequired = false
             
-            let actionsArray = NSArray(objects: confirmDose,snooze,editMed)
+            let actionsArray = NSArray(objects: confirmDose,snooze)
             let actionsArrayMinimal = NSArray(objects: confirmDose,snooze)
             
             // Specify the category related to the above actions.
             var RemedyRemindrCategory = UIMutableUserNotificationCategory()
-            RemedyRemindrCategory.identifier = "RemedyRemindrCategory"
+            RemedyRemindrCategory.identifier = "RemCat"
             RemedyRemindrCategory.setActions(actionsArray, forContext: UIUserNotificationActionContext.Default)
             RemedyRemindrCategory.setActions(actionsArrayMinimal, forContext: UIUserNotificationActionContext.Minimal)
-            
-            let categoriesForSettings = NSSet(objects: RemedyRemindrCategory)
+        
+            var TestCat = UIMutableUserNotificationCategory()
+            TestCat.identifier = "TestCat"
+        
+            let categoriesForSettings = NSSet(objects: RemedyRemindrCategory,TestCat)
             
             // Register the notification settings.
             let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings)
             UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
-            
+        
             println("NotificationManager initialized!")
-    }
+    //}
 
     }
 }

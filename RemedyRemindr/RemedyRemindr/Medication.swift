@@ -17,13 +17,13 @@ class Medication: NSObject {
         reminders = []
     }
     
-    func getnextReminderDate()->NSDate {
-        let now = NSDate()
-        var nextdate = NSDate()
+    func getnextReminderDates()->[NSDate] {
         
-        for rem in reminders {
-            nextdate = nextdate.earlierDate(rem.getnextInstance())
+        var remlist = reminders.filter({(x:Reminder) -> Bool in return x.getnextInstance() != nil}) //afternow's reminders all have next instances
+        var datelist = [NSDate]()
+        for rem in remlist {
+            datelist.append(rem.popnextInstance()!)
         }
-        return nextdate
+        return datelist
     }
 }

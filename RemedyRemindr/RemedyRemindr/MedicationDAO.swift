@@ -257,6 +257,7 @@ class MedicationDAO {
             times.append(Int16(time.toInt()!))
         }
         reminder.setTimes(times)
+        
 
         return reminder
     }

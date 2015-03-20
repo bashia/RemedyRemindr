@@ -13,13 +13,22 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
         
-        if identifier == "editMed" {
-            NSNotificationCenter.defaultCenter().postNotificationName("editMedNotification", object: nil)
+        if identifier == "confirmDose" {
+            NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
+            println("Confirmed")
+            var notman = NotificationManager()
+            notman.updateNotifications()
+            //Confirm dose in backend somewhere
         }
-        
+        else if identifier == "snooze" {
+            println("Snooze pressed")
+            NSNotificationCenter.defaultCenter().postNotificationName("SnoozeNotification", object: nil)
+            var notman = NotificationManager()
+            notman.rescheduleNotification(notification, minsoffset: notman.snoozedefault)
+        }
         completionHandler()
     }
 
@@ -40,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
+        var notman = NotificationManager()
+        notman.updateNotifications()
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 

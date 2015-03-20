@@ -108,6 +108,7 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
             var insertReminderView : ReminderNotesViewController = segue.destinationViewController as ReminderNotesViewController
             
             reminder!.setTimes(times)
+            
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder
         }

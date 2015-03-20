@@ -8,6 +8,14 @@
 
 import Foundation
 
+extension String {  //Let strings be indexed with the subscript operator
+    
+    subscript (i: Int) -> Character {
+        return self[advance(self.startIndex, i)]
+    }
+    
+}
+
 enum Repeat: String {
     case NO = "NO"
     case YES_WEEKLY = "YES_WEEKLY"
@@ -30,14 +38,17 @@ class Reminder: NSObject {
     
     private var startDate : NSDate
     private var endDate : NSDate
+    private var nextInstance: NSDate?
     private var repeat : Repeat
     private var days : Int16
     private var times: [Int16]
     private var notes: String
     
     override init() {
+        
         startDate = NSDate()
         endDate = NSDate()
+        nextInstance = NSDate()
         repeat = Repeat.NO
         days = 0
         times = []
@@ -122,7 +133,7 @@ class Reminder: NSObject {
         return times
     }
     
-    private func getclosestTimeinDay(nowday: NSDateComponents, remday: NSDateComponents)->NSDate{
+    private func getclosestMinute(nowday: NSDateComponents, remday: NSDateComponents)->NSDate?{
         
         if ((nowday.day == remday.day) &
             (nowday.month == remday.month) &
@@ -131,45 +142,88 @@ class Reminder: NSObject {
                     if nowday.minute<=Int(time){
                         var retdatecomps = remday
                         retdatecomps.minute = Int(time)
-                        return retdatecomps.date!
+                        return retdatecomps.date
                     }
                 }
         }
         else {
-            
-            return getclosestTimeinDay(nowday, remday: remday)
+            var advance = nowday
+            advance.day+=1
+            return getclosestMinute(advance, remday: remday)
         }
         print("ERROR!")
-        return NSDate() //Should never happen
+        return nil //Should never happen
     }
     
     
+    func getnextInstance()->NSDate? {
+        return self.nextInstance
+    }
     
-    func getnextInstance()->NSDate {
-        let now = NSDate()
-        var compdate = self.getStartDate()
+    func popnextInstance()->NSDate?{    //Get next instance in time
+        let gregorian = NSCalendar.currentCalendar()
+        var curnextdate: NSDate = self.nextInstance!
         
-        if now.laterDate(self.getEndDate())==now
-        {
-            return now
+        var curnextcomps = gregorian.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitWeekday, fromDate: curnextdate)
+        var a = curnextcomps.minute
+        var b = curnextcomps.hour
+        var curnextminute = 60*curnextcomps.hour + curnextcomps.minute
+        if curnextminute != Int(self.times[self.times.count-1]) { //If current nextinstance is not the last one of its day
+            var nexttimeindex = find(self.times,Int16(curnextminute))! + 1
+            var minstonext = self.times[nexttimeindex]-curnextminute
+            var olddate = self.nextInstance
+            self.nextInstance = NSDate(timeInterval: NSTimeInterval(minstonext), sinceDate: self.nextInstance!)
+            return olddate
         }
-        if now.earlierDate(compdate)===now{         // If now is before the first instance
-            var time = self.times[0]*60
-            return compdate.dateByAddingTimeInterval(Double(time))
+        if (self.repeat == Repeat.NO){
+            return nil
         }
-        else if now.laterDate(compdate)===now{
-            
-            let calendar = NSCalendar()
-            var dateunits = NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay|NSCalendarUnit.CalendarUnitMinute
-            var nowday = calendar.components(dateunits, fromDate: now)
-            var remday = calendar.components(dateunits, fromDate: compdate)
-            
-            return getclosestTimeinDay(nowday, remday: remday)
-            
+        else if self.repeat == Repeat.YES_WEEKLY{
+            var currentweekday = curnextcomps.weekday
+            var bitstring = String(self.days,radix: 2) //make binary array of days array
+            var padded = bitstring
+            for i in 0..<(7 - countElements(bitstring)) { //pad binary array to 7 bits
+                bitstring = "0" + bitstring
+            }
+            var numdays:Int = 0
+            for numdays = 1; numdays < 8; numdays++ { //numdays will always be less than or equal to 7
+                var test = padded[(currentweekday + numdays-1)%7]
+                if test == "1"{
+                    break
+                }
+            }
+            var oldnextdaycomp = gregorian.components(NSCalendarUnit.DayCalendarUnit, fromDate: self.nextInstance!)
+            var oldnextday = gregorian.dateFromComponents(oldnextdaycomp) //NSDate from only the day component of nextday
+            var newnextinst = NSDate(timeInterval: NSTimeInterval(numdays*1440 + self.times[0]), sinceDate: oldnextday!)
+            if (newnextinst.earlierDate(self.endDate) == self.endDate){
+                var lastinst = self.nextInstance
+                self.nextInstance = nil
+                return lastinst
+            }
+            else{
+                var olddate = self.nextInstance
+                self.nextInstance = newnextinst
+                return olddate
+            }
+        }
+        else if (self.repeat == Repeat.YES_CUSTOM){
+            var oldnextdaycomp = gregorian.components(NSCalendarUnit.DayCalendarUnit, fromDate: self.nextInstance!)
+            var oldnextday = gregorian.dateFromComponents(oldnextdaycomp) //NSDate from only the day component of nextday
+            var newnextinst = NSDate(timeInterval: NSTimeInterval(days*1440 + self.times[0]), sinceDate: oldnextday!)
+            if (newnextinst.earlierDate(self.endDate) == self.endDate){
+                var lastinst = self.nextInstance
+                self.nextInstance = nil
+                return lastinst
+            }
+            else{
+                self.nextInstance = newnextinst
+                return newnextinst
+            }
+        }
+        else{
+            return nil //ERROR!! ERROR!!
         }
         
-        
-        return now
     }
     
     // Converts a time of day in "minutes from midnight" form to a string
@@ -226,10 +280,18 @@ class Reminder: NSObject {
     
     func setTimes(times: [Int16]) {
         self.times = times.sorted({(t1: Int16, t2: Int16) -> Bool in return t1 < t2})
+        
+        let gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        self.nextInstance = NSDate(timeInterval: NSTimeInterval(self.times[0]), sinceDate: gregorian!.startOfDayForDate(self.startDate))
+        
     }
     
     func setNotes(notes: String) {
         self.notes = notes
+    }
+    
+    func setnextInstance(instance: NSDate) {
+        self.nextInstance = instance
     }
     
     // This is used to check if a reminder occurrs at the exact same date and times as another
