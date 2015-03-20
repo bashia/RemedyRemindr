@@ -87,8 +87,8 @@
                                             <action selector="doneButtonPressed:" destination="oaJ-Ud-Qm2" eventType="touchUpInside" id="5Zt-rK-Qv8"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhO-NE-4cq">
-                                        <rect key="frame" x="153" y="116" width="295" height="40"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhO-NE-4cq">
+                                        <rect key="frame" x="154" y="116" width="295" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="295" id="8wI-2N-2ec">
                                                 <variation key="heightClass=compact" constant="400"/>
@@ -480,8 +480,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5g0-EI-L4U">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medication Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rl6-hP-SYN">
-                                        <rect key="frame" x="132" y="35" width="337" height="55"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Medication Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rl6-hP-SYN">
+                                        <rect key="frame" x="133" y="35" width="337" height="55"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="46"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -4295,7 +4295,7 @@
                             <constraint firstItem="MSa-dv-EqL" firstAttribute="top" secondItem="1bx-Fb-ez4" secondAttribute="bottom" constant="8" id="Ck8-Iu-wUD"/>
                             <constraint firstItem="MSa-dv-EqL" firstAttribute="width" secondItem="1bx-Fb-ez4" secondAttribute="width" id="Cq3-89-4gm"/>
                             <constraint firstItem="VJ3-5K-sba" firstAttribute="leading" secondItem="75j-wJ-uLj" secondAttribute="trailing" constant="75" id="DWl-mc-siw">
-                                <variation key="heightClass=regular-widthClass=compact" constant="121"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="75"/>
                             </constraint>
                             <constraint firstItem="UW2-fC-B30" firstAttribute="top" secondItem="1bx-Fb-ez4" secondAttribute="bottom" constant="-6" id="DcW-wq-Y6k"/>
                             <constraint firstAttribute="centerX" secondItem="LSG-pY-yr5" secondAttribute="centerX" id="ENf-d9-dZd"/>
@@ -4313,7 +4313,7 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="75j-wJ-uLj" firstAttribute="leading" secondItem="jnO-2t-dDp" secondAttribute="trailing" constant="75" id="cIC-P1-6CM">
-                                <variation key="heightClass=regular-widthClass=compact" constant="123"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="75"/>
                             </constraint>
                             <constraint firstItem="LSG-pY-yr5" firstAttribute="top" secondItem="1bx-Fb-ez4" secondAttribute="bottom" constant="-10" id="e0W-GC-oF0"/>
                             <constraint firstItem="7zI-5l-ixg" firstAttribute="leading" secondItem="u6R-mh-WYl" secondAttribute="leading" id="e6s-VF-bTe"/>
@@ -4473,9 +4473,9 @@
         <image name="sad-red.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KIJ-Nn-oGz"/>
-        <segue reference="qha-Xz-d2U"/>
         <segue reference="n6O-qC-RtN"/>
+        <segue reference="qha-Xz-d2U"/>
+        <segue reference="iKf-vg-eMz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.36628479689999999" green="0.58584709580000005" blue="0.82200915399999996" alpha="1" colorSpace="calibratedRGB"/>
 </document>

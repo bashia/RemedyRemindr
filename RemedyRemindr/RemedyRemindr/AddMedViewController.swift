@@ -8,16 +8,11 @@
 
 import UIKit
 import CoreData
-import AVFoundation
 
 class AddMedViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var medNameTextField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
-    
-    var captureSession:AVCaptureSession?
-    var videoPreviewLayer:AVCaptureVideoPreviewLayer?
-    var qrCodeFrameView:UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,5 +66,4 @@ class AddMedViewController: UIViewController, UITextFieldDelegate {
             newAlert("Unexpected Error", "An unexpected error has occurred, please try again.")
         }
     }
-    
 }

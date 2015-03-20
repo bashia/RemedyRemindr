@@ -80,7 +80,7 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             if insertMed {
                 captureSession?.stopRunning()
                 
-                // Hacky. Might what to fix the way the DAO handles dupicates
+                // This is kinda dumb to have to do this. Might what to fix the way the DAO handles dupicate reminders
                 var reminders = [Reminder](newMed.reminders)
                 newMed.reminders = []
                 
@@ -152,19 +152,16 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 // Check name
                 let name = json["medication"]["name"].stringValue
                 if countElements(name) < 1 {
-                    print("Med name was empty")
                     presentViewController(invalidQRAlert, animated: true, completion: nil)
                     return
                 }
                 
                 if countElements(name) > 128 {
-                    print("Med name too long")
                     presentViewController(invalidQRAlert, animated: true, completion: nil)
                     return
                 }
                 
                 if !checkValidCharacters(name) {
-                    print("Medname invalid chars")
                     presentViewController(invalidQRAlert, animated: true, completion: nil)
                     return
                 }
@@ -174,30 +171,27 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 // Check the reminder count
                 if let remCount = json["medication"]["remCount"].stringValue.toInt()
                 {
-                    var reminder = Reminder()
-                    
                     for(var i = 0; i < remCount; i++)
                     {
+                        var reminder = Reminder()
+                        
+                        
                         var dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "YYYY-MM-DD"
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
                         
                         // Check start date
-                        let startDate:NSDate? = dateFormatter.dateFromString(json["medication"]["reminders"][i]["startDate"].stringValue)
-                        if startDate == nil {
-                            print("date start invalid: " + json["medication"]["reminders"][i]["startDate"].stringValue)
+                        if let startDate = dateFormatter.dateFromString(json["medication"]["reminders"][i]["startDate"].stringValue) {
+                            reminder.setStartDate(startDate)
+                        
+                        }
+                        else {
                             presentViewController(invalidQRAlert, animated: true, completion: nil)
                             return
                         }
-                        else
-                        {
-                            reminder.setStartDate(startDate!)
                         
-                        }
-                    
                         // Check end date
                         if let endDate = dateFormatter.dateFromString(json["medication"]["reminders"][i]["endDate"].stringValue) {
-                            if endDate.compare(startDate!)  == .OrderedAscending || startDate!.compare(endDate)  == .OrderedSame {
-                                print("start date greater than end ")
+                            if endDate.compare(reminder.getStartDate())  == .OrderedAscending || reminder.getStartDate().compare(endDate)  == .OrderedSame {
                                 presentViewController(invalidQRAlert, animated: true, completion: nil)
                                 return
                             }
@@ -207,21 +201,18 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                             }
                         }
                         else {
-                            print("date end invalid: " + json["medication"]["reminders"][i]["endDate"].stringValue)
                             presentViewController(invalidQRAlert, animated: true, completion: nil)
                             return
                         }
                         
                         // Check repeat
-                        let repeat: Repeat? = Repeat(rawValue: json["medication"]["reminders"][i]["repeat"].stringValue)
-                        if repeat == nil  {
-                            print("repeat was invalid")
-                            presentViewController(invalidQRAlert, animated: true, completion: nil)
-                            return
+                        if let repeat = Repeat(rawValue: json["medication"]["reminders"][i]["repeat"].stringValue) {
+                            reminder.setRepeat(repeat)
                         }
                         else
                         {
-                            reminder.setRepeat(repeat!)
+                            presentViewController(invalidQRAlert, animated: true, completion: nil)
+                            return
                         }
                         
                         // Check days
@@ -230,8 +221,7 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                         }
                         else
                         {
-                            if repeat! != .NO {
-                                print("days was invalid")
+                            if reminder.getRepeat() != .NO {
                                 presentViewController(invalidQRAlert, animated: true, completion: nil)
                                 return
                             }
@@ -254,7 +244,6 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                                     // Check time
                                     if let time = json["medication"]["reminders"][i]["times"][j]["time"].stringValue.toInt() {
                                         if time < 0 || time >= 1440 { // Maximum minutes from midnight
-                                            print("time was out of range")
                                             presentViewController(invalidQRAlert, animated: true, completion: nil)
                                             return
                                         }
@@ -265,7 +254,6 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                                     }
                                     else
                                     {
-                                        print("time did not exist")
                                         presentViewController(invalidQRAlert, animated: true, completion: nil)
                                         return
                                     }
@@ -275,7 +263,6 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                             }
                             else
                             {
-                                print("times count less than zero")
                                 presentViewController(invalidQRAlert, animated: true, completion: nil)
                                 return
                             
@@ -283,10 +270,8 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                         }
                         else
                         {
-                            print("times count")
                             presentViewController(invalidQRAlert, animated: true, completion: nil)
                             return
-                
                         }
                         
                         // Do notes
@@ -298,7 +283,6 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 }
                 else
                 {
-                    print("Rem Count was invalid")
                     presentViewController(invalidQRAlert, animated: true, completion: nil)
                     return
                 }
