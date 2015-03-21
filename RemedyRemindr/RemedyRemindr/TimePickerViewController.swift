@@ -32,6 +32,11 @@ class TimePickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Rotating the screen messes up the popover, so we dismiss it if the screen rotates
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)  {
+        performSegueWithIdentifier("timePopoverCancel", sender: nil)
+    }
+    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "timePopoverDone"

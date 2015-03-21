@@ -37,6 +37,8 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         // Initialize the captureSession object.
         captureSession = AVCaptureSession()
         // Set the input device on the capture session.
+        //captureSession.
+        
         captureSession?.addInput(input as AVCaptureInput)
         
         // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
@@ -50,7 +52,9 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-        videoPreviewLayer?.frame = view.layer.bounds
+        
+        setOrientation(view.layer.bounds.size)
+        
         view.layer.addSublayer(videoPreviewLayer)
         
         // Start video capture.
@@ -67,10 +71,52 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         view.bringSubviewToFront(qrCodeFrameView!)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        setOrientation(size)
+    }
+    
+    /*
+     * Sets the screen orientation of the video capture
+     */
+    func setOrientation(size: CGSize) {
+        if (videoPreviewLayer?.connection.supportsVideoOrientation == true) {
+            let deviceOrientation: UIDeviceOrientation  = UIDevice.currentDevice().orientation
+            
+            
+            var newOrientation: AVCaptureVideoOrientation
+            
+            if (deviceOrientation == UIDeviceOrientation.Portrait){
+                newOrientation = AVCaptureVideoOrientation.Portrait;
+            }
+            else if (deviceOrientation == UIDeviceOrientation.PortraitUpsideDown){
+                newOrientation = AVCaptureVideoOrientation.PortraitUpsideDown;
+            }
+            else if (deviceOrientation == UIDeviceOrientation.LandscapeLeft){
+                newOrientation = AVCaptureVideoOrientation.LandscapeRight;
+            }
+            else if (deviceOrientation == UIDeviceOrientation.LandscapeRight){
+                newOrientation = AVCaptureVideoOrientation.LandscapeLeft;
+            }
+                
+            else if (deviceOrientation == UIDeviceOrientation.Unknown){
+                newOrientation = AVCaptureVideoOrientation.Portrait;
+            }
+                
+            else{
+                newOrientation = AVCaptureVideoOrientation.Portrait;
+            }
+            
+            videoPreviewLayer?.connection.videoOrientation = newOrientation
+            
+            videoPreviewLayer?.frame = CGRectMake(view.layer.bounds.origin.x, view.layer.bounds.origin.y , size.width, size.height)
+        }
     }
     
     func addMedicationConfirmed(newMed: Medication, sender: AnyObject) {
@@ -118,10 +164,6 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
-    
-        
-        // Maybe add a counter here to force the user to hover over a code for a second before validating
-        
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {

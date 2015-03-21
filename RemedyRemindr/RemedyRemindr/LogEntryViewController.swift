@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogEntryViewController: UIViewController {
+class LogEntryViewController: UIViewController, UITextViewDelegate {
 
     
     @IBOutlet weak var feelingSlider: UISlider!
@@ -27,6 +27,23 @@ class LogEntryViewController: UIViewController {
         super.viewDidLoad()
         
         textArea.layer.borderWidth = 1.0
+        
+        textArea.text = "Enter any notes here"
+        textArea.textColor = UIColor.lightGrayColor()
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textArea.textColor == UIColor.lightGrayColor() {
+            textArea.text = nil
+            textArea.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textArea.text.isEmpty {
+            textArea.text = "Enter any notes here"
+            textArea.textColor = UIColor.lightGrayColor()
+        }
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -42,6 +59,9 @@ class LogEntryViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EntryPopoverDone"
         {
+            if textArea.textColor == UIColor.lightGrayColor() {
+                textArea.text = ""
+            }
             
             let newEntry = LogEntry(date: NSDate(), text: textArea.text, feeling: feelingSlider.value)
 

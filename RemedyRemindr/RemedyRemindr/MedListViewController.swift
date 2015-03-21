@@ -25,15 +25,7 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
         addButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
-        logButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+        logButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleeditMed", name: "editMedNotification", object: nil)
     }
