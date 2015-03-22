@@ -14,18 +14,52 @@ class NotificationManager{
     
     let snoozedefault = 1
     
-    func makeNotification(med:Medication){
+    
+    /*
+    * Sets the fire date's second as zero so the notification will appear at the start of the minute
+    */
+    func fixNotificationDate(dateToFix: NSDate) -> NSDate {
+        var dateComponets: NSDateComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: dateToFix)
+        
+        dateComponets.second = 0
+        
+        var fixedDate: NSDate! = NSCalendar.currentCalendar().dateFromComponents(dateComponets)
+        
+        return fixedDate
+    }
+    
+    
+    
+    
+    
+    func makeNotification(med:Medication) {
+        
+        var localNotification = UILocalNotification()
+        
+        //localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: date)
+        
+        
+        /*localNotification.fireDate = NSDate(timeInterval: 40, sinceDate: NSDate())
+        //localNotification.fireDate = fixNotificationDate(date)
+        localNotification.alertBody = "Medication Alert: " + med.name + "!"
+        localNotification.alertAction = "View"
+        localNotification.category = "RemCat"
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)*/
+        
         var remdatelist = med.getnextReminderDates()
         
         for date in remdatelist{
         
             var localNotification = UILocalNotification()
-            localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: date)
+            
+            //localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: date)
+            
+            
+            localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: fixNotificationDate(date))
+            //localNotification.fireDate = fixNotificationDate(date)
             localNotification.alertBody = "Medication Alert: " + med.name + "!"
             localNotification.alertAction = "View"
-            
             localNotification.category = "RemCat"
-            
             
             UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
         }
@@ -51,51 +85,62 @@ class NotificationManager{
         for med in medications{
             makeNotification(med)
         }
-        
     }
     
     init(){
-        let notificationSettings: UIUserNotificationSettings! = UIApplication.sharedApplication().currentUserNotificationSettings()
         
-        //if (/*notificationSettings.types == UIUserNotificationType.None*/true){
-            // Specify the notification types.
-            var notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound
-            // Specify the notification actions.
-            
-            var confirmDose = UIMutableUserNotificationAction()
-            confirmDose.identifier = "confirmDose"
-            confirmDose.title = "Confirm Dose"
-            confirmDose.activationMode = UIUserNotificationActivationMode.Background
-            confirmDose.destructive = false
-            confirmDose.authenticationRequired = false
-            
-            var snooze = UIMutableUserNotificationAction()
-            snooze.identifier = "snooze"
-            snooze.title = "Snooze"
-            snooze.activationMode = UIUserNotificationActivationMode.Background
-            snooze.destructive = false
-            snooze.authenticationRequired = false
-            
-            let actionsArray = NSArray(objects: confirmDose,snooze)
-            let actionsArrayMinimal = NSArray(objects: confirmDose,snooze)
-            
-            // Specify the category related to the above actions.
-            var RemedyRemindrCategory = UIMutableUserNotificationCategory()
-            RemedyRemindrCategory.identifier = "RemCat"
-            RemedyRemindrCategory.setActions(actionsArray, forContext: UIUserNotificationActionContext.Default)
-            RemedyRemindrCategory.setActions(actionsArrayMinimal, forContext: UIUserNotificationActionContext.Minimal)
+        // Only need to execute once per app run. Make this a singleton.
         
-            var TestCat = UIMutableUserNotificationCategory()
-            TestCat.identifier = "TestCat"
+        var notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound
         
-            let categoriesForSettings = NSSet(objects: RemedyRemindrCategory,TestCat)
+        
+        // Confirm action
+        var confirmDose = UIMutableUserNotificationAction()
+        confirmDose.identifier = "confirmDose"
+        confirmDose.title = "Confirm Dose"
+        confirmDose.activationMode = UIUserNotificationActivationMode.Background
+        confirmDose.destructive = false
+        confirmDose.authenticationRequired = false
+        
+        // Snooze action
+        var snooze = UIMutableUserNotificationAction()
+        snooze.identifier = "snooze"
+        snooze.title = "Snooze"
+        snooze.activationMode = UIUserNotificationActivationMode.Background
+        snooze.destructive = false
+        snooze.authenticationRequired = false
+        
+        // Skip action
+        var skip = UIMutableUserNotificationAction()
+        skip.identifier = "skipDose"
+        skip.title = "Skip Dose"
+        skip.activationMode = UIUserNotificationActivationMode.Background
+        skip.destructive = false
+        skip.authenticationRequired = false
+        
+        
+        let actionsArray = NSArray(objects: confirmDose, snooze)
+        let actionsArrayMinimal = NSArray(objects: confirmDose, snooze)
             
-            // Register the notification settings.
-            let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings)
-            UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
+        // Specify the category related to the above actions.
+        var RemedyRemindrCategory = UIMutableUserNotificationCategory()
+        RemedyRemindrCategory.identifier = "RemCat"
+        RemedyRemindrCategory.setActions(actionsArray, forContext: UIUserNotificationActionContext.Default)
+        RemedyRemindrCategory.setActions(actionsArrayMinimal, forContext: UIUserNotificationActionContext.Minimal)
         
-            println("NotificationManager initialized!")
-    //}
+        
+        /*var TestCat = UIMutableUserNotificationCategory()
+        TestCat.identifier = "TestCat"*/
+        
+        let categoriesForSettings = NSSet(objects: RemedyRemindrCategory)
+            
+        // Register the notification settings.
+        let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings)
+        UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
+        
+        //println("NotificationManager initialized!")
 
     }
 }
+
+

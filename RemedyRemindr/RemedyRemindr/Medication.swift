@@ -19,6 +19,10 @@ class Medication: NSObject {
     
     func getnextReminderDates()->[NSDate] {
         
+        /*
+         Tony delete
+        
+        */
         var remlist = reminders.filter({(x:Reminder) -> Bool in return x.getnextInstance() != nil}) //afternow's reminders all have next instances
         var datelist = [NSDate]()
         for rem in remlist {

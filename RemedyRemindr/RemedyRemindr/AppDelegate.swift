@@ -14,7 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    // Fired when app is in the background
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        
+        print("in application notification handler")
         
         if identifier == "confirmDose" {
             NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
@@ -29,11 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var notman = NotificationManager()
             notman.rescheduleNotification(notification, minsoffset: notman.snoozedefault)
         }
+        
+        
+        
         completionHandler()
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        application.registerUserNotificationSettings(UIUserNotificationSettings.init(forTypes: (UIUserNotificationType.Sound|UIUserNotificationType.Alert|UIUserNotificationType.Badge), categories: nil))
+        
+       /* application.registerUserNotificationSettings(UIUserNotificationSettings.init(forTypes: (UIUserNotificationType.Sound|UIUserNotificationType.Alert|UIUserNotificationType.Badge), categories: nil))*/
         
         return true
     }

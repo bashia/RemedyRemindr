@@ -24,6 +24,7 @@ class ReminderTypeViewController: UIViewController {
     @IBAction func repeatingPressed(sender: AnyObject) {
         reminder = Reminder()
         reminder!.setRepeat(Repeat.YES_CUSTOM)
+        reminder!.setDays(1)
         performSegueWithIdentifier("reminderTypeSet", sender: sender)
     }
     
