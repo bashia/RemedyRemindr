@@ -46,6 +46,8 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         titleText.text = inputMed!.name
+        addBarButton.setTitleTextAttributes([NSFontAttributeName: smallLightFont!], forState: UIControlState.Normal)
+        deleteBarButton.setTitleTextAttributes([NSFontAttributeName: smallLightFont!], forState: UIControlState.Normal)
     }
 
     override func didReceiveMemoryWarning() {

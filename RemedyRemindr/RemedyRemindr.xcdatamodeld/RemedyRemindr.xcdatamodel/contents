@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AdherePoint" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="taken" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="medication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="adherePoint" inverseEntity="Medication" syncable="YES"/>
+    </entity>
+    <entity name="LogEntry" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="feeling" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Medication" representedClassName="NSManagedObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="adherePoint" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AdherePoint" inverseName="medication" inverseEntity="AdherePoint" syncable="YES"/>
         <relationship name="reminder" toMany="YES" deletionRule="Cascade" destinationEntity="Reminder" inverseName="medication" inverseEntity="Reminder" syncable="YES"/>
     </entity>
     <entity name="Reminder" syncable="YES">
@@ -14,7 +25,9 @@
         <relationship name="medication" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="reminder" inverseEntity="Medication" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Medication" positionX="223" positionY="-1" width="128" height="75"/>
-        <element name="Reminder" positionX="-54" positionY="0" width="128" height="150"/>
+        <element name="LogEntry" positionX="-54" positionY="225" width="128" height="88"/>
+        <element name="Medication" positionX="223" positionY="-1" width="128" height="88"/>
+        <element name="Reminder" positionX="-54" positionY="0" width="128" height="148"/>
+        <element name="AdherePoint" positionX="171" positionY="227" width="128" height="88"/>
     </elements>
 </model>

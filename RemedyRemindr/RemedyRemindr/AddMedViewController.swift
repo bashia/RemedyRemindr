@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddMedViewController: UIViewController {
+class AddMedViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var medNameTextField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
@@ -24,25 +24,37 @@ class AddMedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
     @IBAction func doneButtonPressed(sender: AnyObject) {
         
-        if countElements(medNameTextField.text) < 1 {
+        let whiteSpace = NSCharacterSet.whitespaceCharacterSet()
+        let medicationText = medNameTextField.text.stringByTrimmingCharactersInSet(whiteSpace)
+        if medicationText == "" {
             newAlert("No Name Entered", "Please type a medication name.")
             return
         }
         
-        if countElements(medNameTextField.text) > 128 {
+        if countElements(medicationText) > 128 {
             newAlert("Name Too Long", "Please type a medication name that is shorter than 128 characters.")
             return
         }
         
         // Only allow numbers and letters for medication name
-        if !checkValidCharacters(medNameTextField.text) {
-            newAlert("Invalid Characters", "Please only use letters and numbers when entering a medication.")
+        if !checkValidCharacters(medicationText) {
+            newAlert("Invalid Characters", "Please only use letters, numbers, and spaces when entering a medication.")
             return
         }
             
-        let newMed = Medication(name: medNameTextField.text)
+        let newMed = Medication(name: medicationText)
         if let insertMed = MedicationDAO.insertMedication(newMed) {
             
             if insertMed {

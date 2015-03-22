@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReminderNotesViewController: UIViewController {
+class ReminderNotesViewController: UIViewController, UITextViewDelegate {
 
     var reminder: Reminder?
     var inputMed : Medication?
@@ -17,6 +17,11 @@ class ReminderNotesViewController: UIViewController {
     @IBOutlet weak var notesTextView: UITextView!
     
     @IBAction func doneButton(sender: AnyObject) {
+        
+        if notesTextView.textColor == UIColor.lightGrayColor() {
+            notesTextView.text = ""
+        }
+        
         reminder!.setNotes(notesTextView.text)
         
         if let insertRem = MedicationDAO.insertReminder(inputMed!, reminder: reminder!) {
@@ -39,11 +44,33 @@ class ReminderNotesViewController: UIViewController {
         super.viewDidLoad()
         
         cancelBarButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
+        
+        notesTextView.text = "Enter any notes here"
+        notesTextView.textColor = UIColor.lightGrayColor()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if notesTextView.textColor == UIColor.lightGrayColor() {
+            notesTextView.text = nil
+            notesTextView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if notesTextView.text.isEmpty {
+            notesTextView.text = "Enter any notes here"
+            notesTextView.textColor = UIColor.lightGrayColor()
+        }
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
     }
     
 }
