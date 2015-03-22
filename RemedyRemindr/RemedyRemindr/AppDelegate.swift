@@ -22,15 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if identifier == "confirmDose" {
             NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
             println("Confirmed")
-            var notman = NotificationManager()
-            notman.updateNotifications()
+            /*var notman = NotificationManager()
+            notman.updateNotifications()*/
             //Confirm dose in backend somewhere
         }
         else if identifier == "snooze" {
             println("Snooze pressed")
             NSNotificationCenter.defaultCenter().postNotificationName("SnoozeNotification", object: nil)
-            var notman = NotificationManager()
-            notman.rescheduleNotification(notification, minsoffset: notman.snoozedefault)
+          /* var notman = NotificationManager()
+            notman.rescheduleNotification(notification, minsoffset: notman.snoozedefault)*/
         }
         
         
@@ -56,8 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        var notman = NotificationManager()
-        notman.updateNotifications()
+        /*var notman = NotificationManager()
+        notman.updateNotifications()*/
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 

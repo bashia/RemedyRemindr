@@ -44,6 +44,14 @@
 		EAC191DF1A89C88A004A38DC /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC191DE1A89C88A004A38DC /* Reminder.swift */; };
 		EAC9FBC51A8D6D0700C28380 /* CustomDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC41A8D6D0700C28380 /* CustomDaysViewController.swift */; };
 		EAC9FBC71A8D7ABB00C28380 /* CustomWeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC61A8D7ABB00C28380 /* CustomWeeklyViewController.swift */; };
+		EAD03EF01ABF5D25009BC86E /* NotificationScheduleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD03EEF1ABF5D25009BC86E /* NotificationScheduleTest.swift */; };
+		EAD03EF11ABF5EE2009BC86E /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC191DE1A89C88A004A38DC /* Reminder.swift */; };
+		EAD03EF21ABF5EFD009BC86E /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2654270D1A89998A0034250D /* NotificationManagement.swift */; };
+		EAD03EF31ABF636B009BC86E /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1A1A88453900B15D03 /* Medication.swift */; };
+		EAD03EF41ABF6376009BC86E /* MedicationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */; };
+		EAD03EF51ABF6378009BC86E /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB14501AAF845D00040010 /* LogEntry.swift */; };
+		EAD03EF61ABF637A009BC86E /* AdherePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7FD7C51AB38ECB000BA990 /* AdherePoint.swift */; };
+		EAD03EF71ABF638A009BC86E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969231A88276D00CAC52A /* AppDelegate.swift */; };
 		EADB14511AAF845D00040010 /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB14501AAF845D00040010 /* LogEntry.swift */; };
 		EADB14531AAFA17C00040010 /* LogEntryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB14521AAFA17C00040010 /* LogEntryDetailsViewController.swift */; };
 		EAEDF55F1A8E8F4C00F4735A /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEDF55E1A8E8F4C00F4735A /* TimePickerViewController.swift */; };
@@ -102,6 +110,7 @@
 		EAC9FBC41A8D6D0700C28380 /* CustomDaysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDaysViewController.swift; sourceTree = "<group>"; };
 		EAC9FBC61A8D7ABB00C28380 /* CustomWeeklyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWeeklyViewController.swift; sourceTree = "<group>"; };
 		EAC9FBC81A8D837300C28380 /* ReminderDaysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderDaysViewController.swift; sourceTree = "<group>"; };
+		EAD03EEF1ABF5D25009BC86E /* NotificationScheduleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationScheduleTest.swift; sourceTree = "<group>"; };
 		EADB14501AAF845D00040010 /* LogEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogEntry.swift; sourceTree = "<group>"; };
 		EADB14521AAFA17C00040010 /* LogEntryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogEntryDetailsViewController.swift; sourceTree = "<group>"; };
 		EAEDF55E1A8E8F4C00F4735A /* TimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */,
+				EAD03EEF1ABF5D25009BC86E /* NotificationScheduleTest.swift */,
 				EA4969371A88276D00CAC52A /* Supporting Files */,
 			);
 			path = RemedyRemindrTests;
@@ -402,7 +412,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD03EF31ABF636B009BC86E /* Medication.swift in Sources */,
+				EAD03EF11ABF5EE2009BC86E /* Reminder.swift in Sources */,
+				EAD03EF51ABF6378009BC86E /* LogEntry.swift in Sources */,
+				EAD03EF71ABF638A009BC86E /* AppDelegate.swift in Sources */,
 				EA49693A1A88276D00CAC52A /* RemedyRemindrTests.swift in Sources */,
+				EAD03EF01ABF5D25009BC86E /* NotificationScheduleTest.swift in Sources */,
+				EAD03EF21ABF5EFD009BC86E /* NotificationManagement.swift in Sources */,
+				EAD03EF41ABF6376009BC86E /* MedicationDAO.swift in Sources */,
+				EAD03EF61ABF637A009BC86E /* AdherePoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
