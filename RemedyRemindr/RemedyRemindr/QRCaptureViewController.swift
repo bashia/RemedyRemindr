@@ -133,10 +133,7 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 for reminder in reminders
                 {
                     if let insertRem = MedicationDAO.insertReminder(newMed, reminder: reminder) {
-                        if insertRem {
-                            NotificationManager.getInstance.scheduleReminder(newMed, reminder: reminder)
-                        }
-                        else {
+                        if !insertRem {
                             var alert : UIAlertView = UIAlertView(title: "Duplicate Reminder", message: "A reminder already exists with the same date and time settings. Please go back and change some settings.", delegate: nil, cancelButtonTitle: "OK")
                             alert.show()
                         }

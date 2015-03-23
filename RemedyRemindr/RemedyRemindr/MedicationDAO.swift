@@ -244,6 +244,8 @@ class MedicationDAO {
                 println("Error saving data: \(error), \(error?.userInfo)")
                 return nil
             } else {
+                // Schedule the first notification for the reminder
+                NotificationManager.getInstance.scheduleReminder(medication, reminder: reminder)
                 return true
             }
         }

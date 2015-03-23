@@ -294,7 +294,7 @@ class NotificationManager{
         return nil
     }
     
-    func rescheduleReminders() {
+    func rescheduleAllReminders() {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
         if let medications = MedicationDAO.getMedications() {
