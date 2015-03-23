@@ -2,7 +2,7 @@
 //  ReminderStartViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-11.
+//  Created by RemedyRemindr Team on 2015-02-11.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -20,6 +20,7 @@ class ReminderStartViewController: UIViewController {
         reminder!.setStartDate(startDatePicker.date)
         
         if reminder?.getRepeat() == Repeat.NO {
+            reminder!.setEndDate(reminder!.getStartDate())
             performSegueWithIdentifier("reminderStartSetNoRepeat", sender: sender)
         }
         else {

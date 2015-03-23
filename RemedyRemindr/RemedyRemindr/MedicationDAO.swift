@@ -2,7 +2,7 @@
 //  MedicationList.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-09.
+//  Created by RemedyRemindr Team on 2015-02-09.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -115,6 +115,51 @@ class MedicationDAO {
     * Retrieves the NSManagedObject for a given medication name from the data store
     * Returns nil if the medication doesn't exist or there are duplicates (which is not allowed)
     */
+    class func getMedicationByName(name: String) -> Medication? {
+        if let NSMedication = getMedicationObjectByName(name) {
+            let med = Medication(name: NSMedication.valueForKey("name") as String)
+            for mangedRem in (NSMedication.valueForKey("reminder") as NSSet) {
+                med.reminders.append(NSManagedObjectToReminder(mangedRem as NSManagedObject))
+            }
+            return med
+        } else {
+            return nil
+        }
+    }
+    
+    /*
+    * Retrieves the NSManagedObject for a given reminder uuid from the data store
+    * Returns nil if the reminder doesn't exist or there are duplicates (which is not allowed)
+    */
+    class func getReminderObjectByUUID(uuid: String) -> NSManagedObject? {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let predicate = NSPredicate(format: "uuid = %@", uuid)
+        let fetchRequest = NSFetchRequest(entityName:"Reminder")
+        fetchRequest.predicate = predicate
+        
+        var error: NSError?
+        if let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]? {
+            if fetchedResults.count != 1 {
+                println("Error finding reminder with uuid " + uuid + ": Found " + String(fetchedResults.count))
+                return nil
+            }
+            else {
+                return fetchedResults[0]
+            }
+        }
+        else {
+            println("Error retrieving reminder with uuid " + uuid + ": \(error), \(error?.userInfo)")
+            return nil
+        }
+    }
+    
+    /*
+    * Retrieves the NSManagedObject for a given medication name from the data store
+    * Returns nil if the medication doesn't exist or there are duplicates (which is not allowed)
+    */
     class func getLogEntryByDate(date: NSDate) -> NSManagedObject? {
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -212,29 +257,25 @@ class MedicationDAO {
     * Deletes a Reminder object for a given Medication object from the data store
     * Returns nil if there is an error or if the reminder is not found
     */
-    class func deleteReminder(reminder: Reminder, medication :Medication) -> Bool? {
+    class func deleteReminderByUUID(uuid: String) -> Bool? {
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
-        if let medicationObject = getMedicationObjectByName(medication.name) {
-            for managedRem in (medicationObject.valueForKey("reminder") as NSSet)
-            {
-                if(NSManagedObjectToReminder(managedRem as NSManagedObject).isEqual(reminder)) {
-                    managedContext.deleteObject(managedRem as NSManagedObject)
-                    var error: NSError?
-                    if !managedContext.save(&error) {
-                        println("Error saving data: \(error), \(error?.userInfo)")
-                        return nil
-                    } else {
-                        return true
-                    }
-                }
+        if let reminderObject = getReminderObjectByUUID(uuid) {
+            managedContext.deleteObject(reminderObject)
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(uuid)
+            
+            var error: NSError?
+            if !managedContext.save(&error) {
+                println("Error saving data: \(error), \(error?.userInfo)")
+                return nil
+            } else {
+                return true
             }
-            return nil
         }
         else {
-            println("Error: could not delete reminder.")
+            println("Error: Could not delete reminder.")
             return nil
         }
     }
@@ -249,6 +290,11 @@ class MedicationDAO {
         let managedContext = appDelegate.managedObjectContext!
 
         if let medicationObject = getMedicationObjectByName(medication.name) {
+            
+            for reminder in medication.reminders {
+                NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(reminder.uuid)
+            }
+            
             managedContext.deleteObject(medicationObject)
             var error: NSError?
             if !managedContext.save(&error) {
@@ -333,7 +379,8 @@ class MedicationDAO {
         managedReminder.setValue(Int(reminder.getDays()), forKey: "days")
         managedReminder.setValue(reminder.getRepeat().rawValue, forKey: "repeat")
         managedReminder.setValue(reminder.getNotes(), forKey: "notes")
-        
+        managedReminder.setValue(reminder.uuid, forKey: "uuid")
+
         var times : NSString = ""
         for time in reminder.getTimes()
         {
@@ -372,6 +419,7 @@ class MedicationDAO {
         reminder.setDays(Int16(managedReminder.valueForKey("days") as Int))
         reminder.setRepeat(Repeat(rawValue: managedReminder.valueForKey("repeat") as String)!)
         reminder.setNotes(managedReminder.valueForKey("notes") as String)
+        reminder.uuid = managedReminder.valueForKey("uuid") as String
         
         var times: [Int16] = []
         let managedTimes = managedReminder.valueForKey("times") as String
@@ -380,6 +428,7 @@ class MedicationDAO {
             times.append(Int16(time.toInt()!))
         }
         reminder.setTimes(times)
+        
 
         return reminder
     }

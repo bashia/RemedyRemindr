@@ -2,7 +2,7 @@
 //  QRCaptureViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-03-18.
+//  Created by RemedyRemindr Team on 2015-03-18.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -134,8 +134,7 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 {
                     if let insertRem = MedicationDAO.insertReminder(newMed, reminder: reminder) {
                         if insertRem {
-                            let notman = NotificationManager()
-                            notman.makeNotification(newMed)
+                            NotificationManager.getInstance.scheduleReminder(newMed, reminder: reminder)
                         }
                         else {
                             var alert : UIAlertView = UIAlertView(title: "Duplicate Reminder", message: "A reminder already exists with the same date and time settings. Please go back and change some settings.", delegate: nil, cancelButtonTitle: "OK")

@@ -2,7 +2,7 @@
 //  ReminderDetailsViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-11.
+//  Created by RemedyRemindr Team on 2015-02-11.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -21,7 +21,7 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
         var deleteConfirmationAlert = UIAlertController(title: "Delete Reminder", message: "This reminder will be deleted.", preferredStyle: UIAlertControllerStyle.Alert)
         
         deleteConfirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-            if let deleteReminder = MedicationDAO.deleteReminder(self.inputReminder!, medication: self.inputMed!) {
+            if let deleteReminder = MedicationDAO.deleteReminderByUUID(self.inputReminder!.uuid) {
                 self.performSegueWithIdentifier("deleteButtonPressed", sender: sender)
             } else {
                 newAlert("Unexpected Error", "An unexpected error has occurred, please try again.")
@@ -118,15 +118,7 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "deleteButtonPressed"
-        {
-            var medDetailsView : MedDetailsViewController = segue.destinationViewController as MedDetailsViewController
-            for i in 0..<medDetailsView.inputMed!.reminders.count {
-                if inputReminder!.isEqual(medDetailsView.inputMed!.reminders[i]) {
-                    medDetailsView.inputMed!.reminders.removeAtIndex(i)
-                }
-            }
-        }
+
     }
     
 

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-08.
+//  Created by RemedyRemindr Team on 2015-02-08.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -13,25 +13,63 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    // Fired when app is in the background
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
         
-        if identifier == "editMed" {
-            NSNotificationCenter.defaultCenter().postNotificationName("editMedNotification", object: nil)
+        println("in application notification handler")
+        
+        let userInfo = notification.userInfo as [String: String]
+        
+        if identifier == "confirmDose" {
+            NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
+            println("Confirmed")
+
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+        
+        }
+        
+        if identifier == "skipDose" {
+            NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
+            println("Confirmed")
+            
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
         }
         
         completionHandler()
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        application.registerUserNotificationSettings(UIUserNotificationSettings.init(forTypes: (UIUserNotificationType.Sound|UIUserNotificationType.Alert|UIUserNotificationType.Badge), categories: nil))
         
+        println("Launching with options")
+        
+        // Maybe reschule in here.
         return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    }
+    
+    func  application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        println("recieved local notification")
+        
+        let userInfo = notification.userInfo as [String: String]
+
+        let root = self.window!.rootViewController as UINavigationController
+        
+        var deleteConfirmationAlert = UIAlertController(title: "Medication alert: " + userInfo["medication"]!, message: "Have you taken this medication?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+        }))
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Not planning on it", style: .Default, handler: { (action: UIAlertAction!) in
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+        }))
+        
+        root.presentViewController(deleteConfirmationAlert, animated: true, completion: nil)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {

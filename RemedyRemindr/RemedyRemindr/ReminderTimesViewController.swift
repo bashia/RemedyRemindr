@@ -2,7 +2,7 @@
 //  ReminderTimesViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-11.
+//  Created by RemedyRemindr Team on 2015-02-11.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -108,6 +108,7 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
             var insertReminderView : ReminderNotesViewController = segue.destinationViewController as ReminderNotesViewController
             
             reminder!.setTimes(times)
+            
             insertReminderView.inputMed = inputMed
             insertReminderView.reminder = reminder
         }

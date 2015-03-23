@@ -2,11 +2,19 @@
 //  Reminder.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-09.
+//  Created by RemedyRemindr Team on 2015-02-09.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
 import Foundation
+
+extension String {  //Let strings be indexed with the subscript operator
+    
+    subscript (i: Int) -> Character {
+        return self[advance(self.startIndex, i)]
+    }
+    
+}
 
 enum Repeat: String {
     case NO = "NO"
@@ -34,8 +42,10 @@ class Reminder: NSObject {
     private var days : Int16
     private var times: [Int16]
     private var notes: String
+    internal var uuid: String
     
     override init() {
+        uuid = NSUUID().UUIDString;
         startDate = NSDate()
         endDate = NSDate()
         repeat = Repeat.NO
@@ -117,59 +127,10 @@ class Reminder: NSObject {
                 return dayString;
         }
     }
+
     
     func getTimes() -> [Int16] {
         return times
-    }
-    
-    private func getclosestTimeinDay(nowday: NSDateComponents, remday: NSDateComponents)->NSDate{
-        
-        if ((nowday.day == remday.day) &
-            (nowday.month == remday.month) &
-            (nowday.year == remday.year)){        //If now is the same day as the first instance
-                for time in self.times.reverse(){
-                    if nowday.minute<=Int(time){
-                        var retdatecomps = remday
-                        retdatecomps.minute = Int(time)
-                        return retdatecomps.date!
-                    }
-                }
-        }
-        else {
-            
-            return getclosestTimeinDay(nowday, remday: remday)
-        }
-        println("ERROR!")
-        return NSDate() //Should never happen
-    }
-    
-    
-    
-    func getnextInstance()->NSDate {
-        let now = NSDate()
-        var compdate = self.getStartDate()
-        
-        if now.laterDate(self.getEndDate())==now
-        {
-            return now
-        }
-        if now.earlierDate(compdate)===now{         // If now is before the first instance
-            var time = self.times[0]*60
-            return compdate.dateByAddingTimeInterval(Double(time))
-        }
-        else if now.laterDate(compdate)===now{
-            
-            let calendar = NSCalendar()
-            var dateunits = NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay|NSCalendarUnit.CalendarUnitMinute
-            var nowday = calendar.components(dateunits, fromDate: now)
-            var remday = calendar.components(dateunits, fromDate: compdate)
-            
-            return getclosestTimeinDay(nowday, remday: remday)
-            
-        }
-        
-        
-        return now
     }
     
     // Converts a time of day in "minutes from midnight" form to a string
@@ -209,23 +170,50 @@ class Reminder: NSObject {
     }
     
     func setStartDate(date: NSDate){
-        self.startDate = date
+
+        let gregorian = NSCalendar.currentCalendar()
+        
+        let maskEverything = NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
+        
+        let startDateComponents = gregorian.components(maskEverything, fromDate: date)
+        
+        startDateComponents.hour = 0
+        startDateComponents.minute = 0
+        startDateComponents.second = 0
+        
+        let startDateMidnight = gregorian.dateFromComponents(startDateComponents)
+
+        self.startDate = startDateMidnight!
     }
     
     func setEndDate(date: NSDate)  {
-        self.endDate = date
+        
+        let gregorian = NSCalendar.currentCalendar()
+        
+        let maskEverything = NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit
+        
+        let endDateComponents = gregorian.components(maskEverything, fromDate: date)
+        
+        endDateComponents.hour = 0
+        endDateComponents.minute = 0
+        endDateComponents.second = 0
+        
+        let endDateMidnight = gregorian.dateFromComponents(endDateComponents)
+        
+        self.endDate = endDateMidnight!
     }
     
     func setRepeat(repeat: Repeat){
         return self.repeat = repeat
     }
     
-    func setDays(days: Int16){
-        self.days = days
-    }
-    
     func setTimes(times: [Int16]) {
         self.times = times.sorted({(t1: Int16, t2: Int16) -> Bool in return t1 < t2})
+    }
+    
+    
+    func setDays(days: Int16){
+        self.days = days
     }
     
     func setNotes(notes: String) {

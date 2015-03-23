@@ -2,7 +2,7 @@
 //  MedDetailsViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-10.
+//  Created by RemedyRemindr Team on 2015-02-10.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -40,6 +40,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func unwindToDetailsAfterDeleteReminder(sender: UIStoryboardSegue) {
         // This happens after a reminder is deleted
+        self.inputMed = MedicationDAO.getMedicationByName(self.inputMed!.name)
         self.remindersTableView.reloadData()
     }
     
@@ -100,8 +101,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
             
             var detailsView : ReminderDetailsViewController = segue.destinationViewController as ReminderDetailsViewController
             detailsView.inputReminder = rem
-            detailsView.inputMed = self.inputMed
-            
+            detailsView.inputMed = inputMed
         }
     }
     

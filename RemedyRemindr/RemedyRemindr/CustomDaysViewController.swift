@@ -2,7 +2,7 @@
 //  CustomDaysViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-12.
+//  Created by RemedyRemindr Team on 2015-02-12.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 

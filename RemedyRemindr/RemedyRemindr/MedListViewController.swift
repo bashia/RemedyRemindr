@@ -2,7 +2,7 @@
 //  MedListViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-11.
+//  Created by RemedyRemindr Team on 2015-02-11.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -26,8 +26,6 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         addButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
         logButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)        
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleeditMed", name: "editMedNotification", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -36,6 +34,7 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let meds = MedicationDAO.getMedications() {
             self.meds = meds
             self.medsTableView.reloadData()
+            
         } else {
             var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred while loading the medication list.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()

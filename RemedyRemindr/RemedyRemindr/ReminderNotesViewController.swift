@@ -2,7 +2,7 @@
 //  ReminderNotesViewController.swift
 //  RemedyRemindr
 //
-//  Created by Tony on 2015-02-11.
+//  Created by RemedyRemindr Team on 2015-02-11.
 //  Copyright (c) 2015 Group 4. All rights reserved.
 //
 
@@ -26,8 +26,7 @@ class ReminderNotesViewController: UIViewController, UITextViewDelegate {
         
         if let insertRem = MedicationDAO.insertReminder(inputMed!, reminder: reminder!) {
             if insertRem {
-                let notman = NotificationManager()
-                notman.makeNotification(inputMed!)
+                NotificationManager.getInstance.scheduleReminder(inputMed!, reminder: reminder! )
                 performSegueWithIdentifier("insertReminder", sender: sender)
             }
             else {
