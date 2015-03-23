@@ -40,6 +40,7 @@ class MedDetailsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func unwindToDetailsAfterDeleteReminder(sender: UIStoryboardSegue) {
         // This happens after a reminder is deleted
+        self.inputMed = MedicationDAO.getMedicationByName(self.inputMed!.name)
         self.remindersTableView.reloadData()
     }
     
