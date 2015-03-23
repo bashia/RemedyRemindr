@@ -42,9 +42,10 @@ class Reminder: NSObject {
     private var days : Int16
     private var times: [Int16]
     private var notes: String
+    internal var uuid: String
     
     override init() {
-        
+        uuid = NSUUID().UUIDString;
         startDate = NSDate()
         endDate = NSDate()
         repeat = Repeat.NO
