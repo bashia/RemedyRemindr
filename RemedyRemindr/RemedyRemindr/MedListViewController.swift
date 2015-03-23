@@ -26,11 +26,6 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         addButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)
         logButton.setTitleTextAttributes([NSFontAttributeName: mediumLightFont!], forState: UIControlState.Normal)        
-        
-        // Does nothing
-       // NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleeditMed", name: "editMedNotification", object: nil
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,10 +34,6 @@ class MedListViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let meds = MedicationDAO.getMedications() {
             self.meds = meds
             self.medsTableView.reloadData()
-            
-            /*let notman = NotificationManager()
-            notman.makeNotification(meds[0])*/
-            
             
         } else {
             var alert : UIAlertView = UIAlertView(title: "Unexpected Error", message: "An unexpected error has occurred while loading the medication list.", delegate: nil, cancelButtonTitle: "OK")

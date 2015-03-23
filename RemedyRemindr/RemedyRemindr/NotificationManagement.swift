@@ -70,16 +70,16 @@ class NotificationManager{
         }*/
     }
     
-    func rescheduleNotification(note:UILocalNotification, minsoffset: Int){
+    /*func rescheduleNotification(note:UILocalNotification, minsoffset: Int){
         var newnot = note
         var secsoffset = 60*minsoffset
         newnot.fireDate = NSDate(timeInterval: NSTimeInterval(secsoffset), sinceDate: note.fireDate!)
         
         UIApplication.sharedApplication().scheduleLocalNotification(newnot)
         println("Notification resheduled for" + newnot.fireDate!.description)
-    }
+    }*/
     
-    func updateNotifications(){
+    /*func updateNotifications(){
     
         if UIApplication.sharedApplication().scheduledLocalNotifications.count > 16{
             return
@@ -90,7 +90,7 @@ class NotificationManager{
         for med in medications{
             makeNotification(med)
         }
-    }
+    }*/
     
     /*
     * Converts the days bit mask to a boolean array
@@ -294,39 +294,69 @@ class NotificationManager{
         return nil
     }
     
+    func rescheduleReminders() {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
+        var reminderTimes: [NSDate] = []
+        
+        if let medications = MedicationDAO.getMedications() {
+            for medication in medications {
+                for reminder in medication.reminders {
+                    
+                    if let nextTime = getNextReminderDateAndTime(reminder) {
+                        reminderTimes.append(nextTime)
+                    }
+                    
+                    
+                    scheduleReminder(medication, reminder: reminder)
+                }
+            }
+        }
+    }
+    
+    func scheduleReminder(medication: Medication, reminder: Reminder) {
+        
+        var localNotification = UILocalNotification()
+        
+        if let dateTime = getNextReminderDateAndTime(reminder)
+        {
+            
+            localNotification.fireDate = fixNotificationDate(dateTime)
+            localNotification.alertBody = "Medication Alert: " + medication.name
+            localNotification.alertAction = "Open RemedyRemindr"
+            localNotification.category = "RemCat"
+            localNotification.soundName  = UILocalNotificationDefaultSoundName
+            
+            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        }
+
+    }
+    
     private init(){
         
         println("Creating singleton")
         
-        var notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound
+        var notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound | UIUserNotificationType.Badge
         
         // Confirm action
         var confirmDose = UIMutableUserNotificationAction()
         confirmDose.identifier = "confirmDose"
-        confirmDose.title = "Confirm Dose"
+        confirmDose.title = "I have taken this medication"
         confirmDose.activationMode = UIUserNotificationActivationMode.Background
         confirmDose.destructive = false
         confirmDose.authenticationRequired = false
         
-        // Snooze action
-        var snooze = UIMutableUserNotificationAction()
-        snooze.identifier = "snooze"
-        snooze.title = "Snooze"
-        snooze.activationMode = UIUserNotificationActivationMode.Background
-        snooze.destructive = false
-        snooze.authenticationRequired = false
-        
         // Skip action
         var skip = UIMutableUserNotificationAction()
         skip.identifier = "skipDose"
-        skip.title = "Skip Dose"
+        skip.title = "I will not take this medication"
         skip.activationMode = UIUserNotificationActivationMode.Background
         skip.destructive = false
         skip.authenticationRequired = false
         
         
-        let actionsArray = NSArray(objects: confirmDose, snooze)
-        let actionsArrayMinimal = NSArray(objects: confirmDose, snooze)
+        let actionsArray = NSArray(objects: confirmDose, skip)
+        let actionsArrayMinimal = NSArray(objects: confirmDose, skip)
             
         // Specify the category related to the above actions.
         var RemedyRemindrCategory = UIMutableUserNotificationCategory()
@@ -334,17 +364,11 @@ class NotificationManager{
         RemedyRemindrCategory.setActions(actionsArray, forContext: UIUserNotificationActionContext.Default)
         RemedyRemindrCategory.setActions(actionsArrayMinimal, forContext: UIUserNotificationActionContext.Minimal)
         
-        
-        /*var TestCat = UIMutableUserNotificationCategory()
-        TestCat.identifier = "TestCat"*/
-        
         let categoriesForSettings = NSSet(objects: RemedyRemindrCategory)
             
         // Register the notification settings.
         let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings)
         UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
-        
-        //println("NotificationManager initialized!")
 
     }
 }

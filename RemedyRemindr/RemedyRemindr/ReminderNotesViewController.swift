@@ -26,8 +26,7 @@ class ReminderNotesViewController: UIViewController, UITextViewDelegate {
         
         if let insertRem = MedicationDAO.insertReminder(inputMed!, reminder: reminder!) {
             if insertRem {
-               /* let notman = NotificationManager()
-                notman.makeNotification(inputMed!)*/
+                NotificationManager.getInstance.scheduleReminder(inputMed!, reminder: reminder! )
                 performSegueWithIdentifier("insertReminder", sender: sender)
             }
             else {

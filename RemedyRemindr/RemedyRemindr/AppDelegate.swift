@@ -17,37 +17,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Fired when app is in the background
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
         
-        print("in application notification handler")
+        println("in application notification handler")
         
         if identifier == "confirmDose" {
             NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
             println("Confirmed")
-            /*var notman = NotificationManager()
-            notman.updateNotifications()*/
-            //Confirm dose in backend somewhere
-        }
-        else if identifier == "snooze" {
-            println("Snooze pressed")
-            NSNotificationCenter.defaultCenter().postNotificationName("SnoozeNotification", object: nil)
-          /* var notman = NotificationManager()
-            notman.rescheduleNotification(notification, minsoffset: notman.snoozedefault)*/
+
+            NotificationManager.getInstance.rescheduleReminders()
+        
         }
         
-        
+        if identifier == "skipDose" {
+            NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
+            println("Confirmed")
+            
+            NotificationManager.getInstance.rescheduleReminders()
+        }
         
         completionHandler()
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-       /* application.registerUserNotificationSettings(UIUserNotificationSettings.init(forTypes: (UIUserNotificationType.Sound|UIUserNotificationType.Alert|UIUserNotificationType.Badge), categories: nil))*/
+        println("Launching with options")
         
+        // Maybe reschule in here.
         return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    }
+    
+    func  application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        println("recieved local notification")
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -56,8 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        /*var notman = NotificationManager()
-        notman.updateNotifications()*/
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
