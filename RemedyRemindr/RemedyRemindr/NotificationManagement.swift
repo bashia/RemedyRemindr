@@ -297,19 +297,24 @@ class NotificationManager{
     func rescheduleReminders() {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        var reminderTimes: [NSDate] = []
-        
         if let medications = MedicationDAO.getMedications() {
             for medication in medications {
                 for reminder in medication.reminders {
-                    
-                    if let nextTime = getNextReminderDateAndTime(reminder) {
-                        reminderTimes.append(nextTime)
-                    }
-                    
-                    
                     scheduleReminder(medication, reminder: reminder)
                 }
+            }
+        }
+    }
+    
+    func deleteLocalNotificationByReminderUUID(uuidToDelete: String) {
+        var app:UIApplication = UIApplication.sharedApplication()
+        for oneEvent in app.scheduledLocalNotifications {
+            var notification = oneEvent as UILocalNotification
+            let userInfoCurrent = notification.userInfo! as [String:AnyObject]
+            let uuid = userInfoCurrent["uuid"]! as String
+            if uuid == uuidToDelete {
+                app.cancelLocalNotification(notification)
+                break;
             }
         }
     }
@@ -320,12 +325,16 @@ class NotificationManager{
         
         if let dateTime = getNextReminderDateAndTime(reminder)
         {
-            
             localNotification.fireDate = fixNotificationDate(dateTime)
             localNotification.alertBody = "Medication Alert: " + medication.name
             localNotification.alertAction = "Open RemedyRemindr"
             localNotification.category = "RemCat"
             localNotification.soundName  = UILocalNotificationDefaultSoundName
+            
+            var userInfo = [String:String]()
+            userInfo["uuid"] = reminder.uuid
+            userInfo["medication"] = medication.name
+            localNotification.userInfo = userInfo
             
             UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
         }
