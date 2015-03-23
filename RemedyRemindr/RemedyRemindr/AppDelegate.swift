@@ -19,11 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         println("in application notification handler")
         
+        let userInfo = notification.userInfo as [String: String]
+        
         if identifier == "confirmDose" {
             NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
             println("Confirmed")
 
-            NotificationManager.getInstance.rescheduleReminders()
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
         
         }
         
@@ -31,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
             println("Confirmed")
             
-            NotificationManager.getInstance.rescheduleReminders()
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
         }
         
         completionHandler()
@@ -52,6 +54,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func  application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         println("recieved local notification")
+        
+        let userInfo = notification.userInfo as [String: String]
+
+        let root = self.window!.rootViewController as UINavigationController
+        
+        var deleteConfirmationAlert = UIAlertController(title: "Medication alert: " + userInfo["medication"]!, message: "Have you taken this medication?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+        }))
+        
+        deleteConfirmationAlert.addAction(UIAlertAction(title: "Not planning on it", style: .Default, handler: { (action: UIAlertAction!) in
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+        }))
+        
+        root.presentViewController(deleteConfirmationAlert, animated: true, completion: nil)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
