@@ -37,7 +37,6 @@ class TimePickerViewController: UIViewController {
         performSegueWithIdentifier("timePopoverCancel", sender: nil)
     }
     
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "timePopoverDone"
         {

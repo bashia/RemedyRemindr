@@ -20,6 +20,7 @@ class ReminderStartViewController: UIViewController {
         reminder!.setStartDate(startDatePicker.date)
         
         if reminder?.getRepeat() == Repeat.NO {
+            reminder!.setEndDate(reminder!.getStartDate())
             performSegueWithIdentifier("reminderStartSetNoRepeat", sender: sender)
         }
         else {
