@@ -10,10 +10,10 @@ import UIKit
 
 class LogEntryDetailsViewController: UIViewController {
 
-    @IBOutlet weak var entryTextView: UITextView!
-    
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var feelingSlider: UISlider!
-    
+    @IBOutlet weak var entryTextView: UITextView!
+
     var entry : LogEntry?
     
     @IBAction func deleteButtonPressed(sender: AnyObject) {
@@ -39,7 +39,7 @@ class LogEntryDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //datelabel.text = entry!.getDateAsString()
+        dateLabel.text = entry!.getDateAsString()
         entryTextView.text = entry!.getText()
         entryTextView.editable = false
         feelingSlider.value = entry!.getFeeling()

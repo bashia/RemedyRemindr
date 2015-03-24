@@ -45,53 +45,6 @@ class NotificationManager{
         return fixedDate
     }
     
-    
-    
-    
-    
-    func makeNotification(med:Medication) {
-        
-       /* var localNotification = UILocalNotification()
-        
-        for date in remdatelist{
-        
-            var localNotification = UILocalNotification()
-            
-            //localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: date)
-            
-            
-            localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: fixNotificationDate(date))
-            //localNotification.fireDate = fixNotificationDate(date)
-            localNotification.alertBody = "Medication Alert: " + med.name + "!"
-            localNotification.alertAction = "View"
-            localNotification.category = "RemCat"
-            
-            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-        }*/
-    }
-    
-    /*func rescheduleNotification(note:UILocalNotification, minsoffset: Int){
-        var newnot = note
-        var secsoffset = 60*minsoffset
-        newnot.fireDate = NSDate(timeInterval: NSTimeInterval(secsoffset), sinceDate: note.fireDate!)
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(newnot)
-        println("Notification resheduled for" + newnot.fireDate!.description)
-    }*/
-    
-    /*func updateNotifications(){
-    
-        if UIApplication.sharedApplication().scheduledLocalNotifications.count > 16{
-            return
-        }
-        
-        let medications:[Medication] = MedicationDAO.getMedications()!
-        
-        for med in medications{
-            makeNotification(med)
-        }
-    }*/
-    
     /*
     * Converts the days bit mask to a boolean array
     */
@@ -173,7 +126,15 @@ class NotificationManager{
        
         
         // Check if end date before today, if so no more reminders (return nil)
-        if todayMidnight!.compare(reminder.getEndDate())  == .OrderedDescending && !reminder.getStartDate().isEqualToDate(reminder.getEndDate()) {
+        let test1 = reminder.getEndDate()
+        let test2 = reminder.getStartDate()
+        
+        
+        
+        let compare = todayMidnight!.compare(reminder.getEndDate())  == .OrderedDescending
+        let compareStart = !reminder.getStartDate().isEqualToDate(reminder.getEndDate())
+        
+        if compare && compareStart {
             return nil
         }
         
@@ -326,6 +287,11 @@ class NotificationManager{
             
             UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
         }
+        else
+        {
+            MedicationDAO.deleteReminderByUUID(reminder.uuid)
+        }
+        
 
     }
     

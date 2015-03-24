@@ -49,7 +49,7 @@ class Reminder: NSObject {
         startDate = NSDate()
         endDate = NSDate()
         repeat = Repeat.NO
-        days = 0
+        days = 1
         times = []
         notes = ""
     }
@@ -100,7 +100,7 @@ class Reminder: NSObject {
                 return getStartDateAsString(NSDateFormatterStyle.LongStyle)
             
             case Repeat.YES_CUSTOM:
-                if days == 0
+                if days == 1
                 {
                     return  "Every Day"
                 
