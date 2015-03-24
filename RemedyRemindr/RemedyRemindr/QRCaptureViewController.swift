@@ -119,16 +119,11 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         }
     }
     
-    func addMedicationConfirmed(newMed: Medication, sender: AnyObject) {
+    func addMedicationConfirmed(newMed: Medication, reminders: [Reminder], sender: AnyObject) -> Bool {
      
         if let insertMed = MedicationDAO.insertMedication(newMed) {
             
             if insertMed {
-                captureSession?.stopRunning()
-                
-                // This is kinda dumb to have to do this. Might what to fix the way the DAO handles dupicate reminders
-                var reminders = [Reminder](newMed.reminders)
-                newMed.reminders = []
                 
                 for reminder in reminders
                 {
@@ -144,6 +139,7 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 }
                 
                 performSegueWithIdentifier("AddMedFromQR", sender: sender)
+                return true
             }
             else {
                 newAlert("Medication Already Exists", "A medication with name " + newMed.name + " has already been added, please choose another name.")
@@ -152,6 +148,8 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         } else {
             newAlert("Unexpected Error", "An unexpected error has occurred, please try again.")
         }
+        
+        return false
     }
     
     func resumeCapture() {
@@ -205,6 +203,7 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 }
                 
                 var medication : Medication = Medication(name: name)
+                var reminders : [Reminder] = []
                 
                 // Check the reminder count
                 if let remCount = json["medication"]["remCount"].stringValue.toInt()
@@ -219,7 +218,8 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                         
                         // Check start date
                         if let startDate = dateFormatter.dateFromString(json["medication"]["reminders"][i]["startDate"].stringValue) {
-                            reminder.setStartDate(startDate)
+                            //reminder.setStartDate(startDate)
+                            reminder.setStartDate(NSDate())
                         
                         }
                         else {
@@ -316,7 +316,7 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                         let notes: String = json["medication"]["reminders"][i]["notes"].stringValue
                         reminder.setNotes(notes)
                         
-                        medication.reminders.append(reminder)
+                        reminders.append(reminder)
                     }
                 }
                 else
@@ -329,8 +329,11 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 var addConfirmationAlert = UIAlertController(title: "QR Code Detected", message: "Would you like to add the medication " + json["medication"]["name"].stringValue + "?", preferredStyle: UIAlertControllerStyle.Alert)
                 
                 addConfirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-                    self.addMedicationConfirmed(medication, sender: self)
-                    self.resumeCapture()
+                    if !self.addMedicationConfirmed(medication, reminders: reminders, sender: self)
+                    {
+                        self.resumeCapture()
+                    }
+                    
                 }))
                 
                 addConfirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in

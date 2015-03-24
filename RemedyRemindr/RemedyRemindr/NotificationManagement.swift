@@ -45,53 +45,6 @@ class NotificationManager{
         return fixedDate
     }
     
-    
-    
-    
-    
-    func makeNotification(med:Medication) {
-        
-       /* var localNotification = UILocalNotification()
-        
-        for date in remdatelist{
-        
-            var localNotification = UILocalNotification()
-            
-            //localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: date)
-            
-            
-            localNotification.fireDate = NSDate(timeInterval: 3, sinceDate: fixNotificationDate(date))
-            //localNotification.fireDate = fixNotificationDate(date)
-            localNotification.alertBody = "Medication Alert: " + med.name + "!"
-            localNotification.alertAction = "View"
-            localNotification.category = "RemCat"
-            
-            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-        }*/
-    }
-    
-    /*func rescheduleNotification(note:UILocalNotification, minsoffset: Int){
-        var newnot = note
-        var secsoffset = 60*minsoffset
-        newnot.fireDate = NSDate(timeInterval: NSTimeInterval(secsoffset), sinceDate: note.fireDate!)
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(newnot)
-        println("Notification resheduled for" + newnot.fireDate!.description)
-    }*/
-    
-    /*func updateNotifications(){
-    
-        if UIApplication.sharedApplication().scheduledLocalNotifications.count > 16{
-            return
-        }
-        
-        let medications:[Medication] = MedicationDAO.getMedications()!
-        
-        for med in medications{
-            makeNotification(med)
-        }
-    }*/
-    
     /*
     * Converts the days bit mask to a boolean array
     */
@@ -173,7 +126,15 @@ class NotificationManager{
        
         
         // Check if end date before today, if so no more reminders (return nil)
-        if todayMidnight!.compare(reminder.getEndDate())  == .OrderedDescending && !reminder.getStartDate().isEqualToDate(reminder.getEndDate()) {
+        let test1 = reminder.getEndDate()
+        let test2 = reminder.getStartDate()
+        
+        
+        
+        let compare = todayMidnight!.compare(reminder.getEndDate())  == .OrderedDescending
+        let compareStart = !reminder.getStartDate().isEqualToDate(reminder.getEndDate())
+        
+        if compare && compareStart {
             return nil
         }
         
@@ -294,18 +255,6 @@ class NotificationManager{
         return nil
     }
     
-    func rescheduleAllReminders() {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        
-        if let medications = MedicationDAO.getMedications() {
-            for medication in medications {
-                for reminder in medication.reminders {
-                    scheduleReminder(medication, reminder: reminder)
-                }
-            }
-        }
-    }
-    
     func deleteLocalNotificationByReminderUUID(uuidToDelete: String) {
         var app:UIApplication = UIApplication.sharedApplication()
         for oneEvent in app.scheduledLocalNotifications {
@@ -319,25 +268,30 @@ class NotificationManager{
         }
     }
     
-    func scheduleReminder(medication: Medication, reminder: Reminder) {
+    func scheduleReminder(medicationName: String, reminder: Reminder) {
         
         var localNotification = UILocalNotification()
         
         if let dateTime = getNextReminderDateAndTime(reminder)
         {
             localNotification.fireDate = fixNotificationDate(dateTime)
-            localNotification.alertBody = "Medication Alert: " + medication.name
+            localNotification.alertBody = "Medication Alert: " + medicationName
             localNotification.alertAction = "Open RemedyRemindr"
             localNotification.category = "RemCat"
             localNotification.soundName  = UILocalNotificationDefaultSoundName
             
             var userInfo = [String:String]()
             userInfo["uuid"] = reminder.uuid
-            userInfo["medication"] = medication.name
+            userInfo["medication"] = medicationName
             localNotification.userInfo = userInfo
             
             UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
         }
+        else
+        {
+            MedicationDAO.deleteReminderByUUID(reminder.uuid)
+        }
+        
 
     }
     

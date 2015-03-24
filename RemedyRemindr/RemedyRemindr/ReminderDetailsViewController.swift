@@ -12,6 +12,7 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBOutlet weak var reminderTitle: UILabel!
     @IBOutlet weak var textArea: UILabel!
+    @IBOutlet weak var detailsTable: UITableView!
     
     var inputReminder: Reminder?
     var inputMed: Medication?
@@ -52,6 +53,10 @@ class ReminderDetailsViewController: UIViewController, UITableViewDelegate, UITa
         } else {
            return 5
         }
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        detailsTable.reloadData()
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

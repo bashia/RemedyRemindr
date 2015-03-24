@@ -113,7 +113,8 @@ class ReminderTimesViewController: UIViewController, UIPopoverPresentationContro
             insertReminderView.reminder = reminder
         }
         if segue.identifier == "timePopover" {
-            let popoverViewController = segue.destinationViewController as UIViewController
+            let popoverViewController = segue.destinationViewController as TimePickerViewController
+            popoverViewController.reminder = reminder
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverViewController.popoverPresentationController!.delegate = self
         }
