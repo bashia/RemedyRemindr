@@ -245,8 +245,8 @@ class MedicationDAO {
                 return nil
             } else {
                 // Schedule the first notification for the reminder
-                NotificationManager.getInstance.scheduleReminder(medication, reminder: reminder)
-                return true
+                NotificationManager.getInstance.scheduleReminder(medication.name, reminder: reminder)
+            return true
             }
         }
         else {
@@ -295,6 +295,7 @@ class MedicationDAO {
             
             for reminder in medication.reminders {
                 NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(reminder.uuid)
+                MedicationDAO.deleteReminderByUUID(reminder.uuid)
             }
             
             managedContext.deleteObject(medicationObject)
@@ -434,4 +435,10 @@ class MedicationDAO {
 
         return reminder
     }
+    
+    class func getReminderByUUID(uuid: String) -> Reminder {
+        let reminderObject = MedicationDAO.getReminderObjectByUUID(uuid)
+        return MedicationDAO.NSManagedObjectToReminder(reminderObject!)
+    }
+    
 }

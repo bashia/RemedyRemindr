@@ -25,7 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
             println("Confirmed")
 
-            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+            let uuid = userInfo["uuid"]!
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(uuid)
+            let reminder = MedicationDAO.getReminderByUUID(uuid)
+            NotificationManager.getInstance.scheduleReminder(userInfo["medication"]!, reminder: reminder)
         
         }
         
@@ -33,7 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName("ConfirmDoseNotification", object: nil)
             println("Confirmed")
             
-            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+            let uuid = userInfo["uuid"]!
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(uuid)
+            let reminder = MedicationDAO.getReminderByUUID(uuid)
+            NotificationManager.getInstance.scheduleReminder(userInfo["medication"]!, reminder: reminder)
         }
         
         completionHandler()
@@ -62,11 +68,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var deleteConfirmationAlert = UIAlertController(title: "Medication alert: " + userInfo["medication"]!, message: "Have you taken this medication?", preferredStyle: UIAlertControllerStyle.Alert)
         
         deleteConfirmationAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
-            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+            let uuid = userInfo["uuid"]!
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(uuid)
+            let reminder = MedicationDAO.getReminderByUUID(uuid)
+            NotificationManager.getInstance.scheduleReminder(userInfo["medication"]!, reminder: reminder)
         }))
         
         deleteConfirmationAlert.addAction(UIAlertAction(title: "Not planning on it", style: .Default, handler: { (action: UIAlertAction!) in
-            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(userInfo["uuid"]!)
+            let uuid = userInfo["uuid"]!
+            NotificationManager.getInstance.deleteLocalNotificationByReminderUUID(uuid)
+            let reminder = MedicationDAO.getReminderByUUID(uuid)
+            NotificationManager.getInstance.scheduleReminder(userInfo["medication"]!, reminder: reminder)
         }))
         
         root.presentViewController(deleteConfirmationAlert, animated: true, completion: nil)

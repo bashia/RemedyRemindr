@@ -294,18 +294,6 @@ class NotificationManager{
         return nil
     }
     
-    func rescheduleAllReminders() {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        
-        if let medications = MedicationDAO.getMedications() {
-            for medication in medications {
-                for reminder in medication.reminders {
-                    scheduleReminder(medication, reminder: reminder)
-                }
-            }
-        }
-    }
-    
     func deleteLocalNotificationByReminderUUID(uuidToDelete: String) {
         var app:UIApplication = UIApplication.sharedApplication()
         for oneEvent in app.scheduledLocalNotifications {
@@ -319,21 +307,21 @@ class NotificationManager{
         }
     }
     
-    func scheduleReminder(medication: Medication, reminder: Reminder) {
+    func scheduleReminder(medicationName: String, reminder: Reminder) {
         
         var localNotification = UILocalNotification()
         
         if let dateTime = getNextReminderDateAndTime(reminder)
         {
             localNotification.fireDate = fixNotificationDate(dateTime)
-            localNotification.alertBody = "Medication Alert: " + medication.name
+            localNotification.alertBody = "Medication Alert: " + medicationName
             localNotification.alertAction = "Open RemedyRemindr"
             localNotification.category = "RemCat"
             localNotification.soundName  = UILocalNotificationDefaultSoundName
             
             var userInfo = [String:String]()
             userInfo["uuid"] = reminder.uuid
-            userInfo["medication"] = medication.name
+            userInfo["medication"] = medicationName
             localNotification.userInfo = userInfo
             
             UIApplication.sharedApplication().scheduleLocalNotification(localNotification)

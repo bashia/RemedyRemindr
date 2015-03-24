@@ -10,7 +10,10 @@ import UIKit
 
 class TimePickerViewController: UIViewController {
 
+    var reminder : Reminder?
+    
     @IBOutlet weak var timePicker: UIDatePicker!
+    
     
     @IBAction func cancelButton(sender: AnyObject) {
         performSegueWithIdentifier("timePopoverCancel", sender: sender)
@@ -23,8 +26,25 @@ class TimePickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let currentDateAndTime = NSDate()
+        let gregorian = NSCalendar.currentCalendar()
+        
+        let maskEverything = NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit | NSCalendarUnit.WeekdayCalendarUnit
+        
+        let todayComponents = gregorian.components(maskEverything, fromDate: currentDateAndTime)
+        
+        todayComponents.hour = 0
+        todayComponents.minute = 0
+        todayComponents.second = 0
+        
+        let todayMidnight = gregorian.dateFromComponents(todayComponents)
+        
+        // Disable times before now for a one time reminder that occurs today
+        if reminder!.getStartDate().isEqualToDate(todayMidnight!) && reminder!.getRepeat() == .NO {
+            timePicker.minimumDate = NSDate()
+        }
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

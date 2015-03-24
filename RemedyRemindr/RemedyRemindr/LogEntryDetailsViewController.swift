@@ -10,7 +10,6 @@ import UIKit
 
 class LogEntryDetailsViewController: UIViewController {
 
-    @IBOutlet weak var dateTextView: UITextView!
     @IBOutlet weak var entryTextView: UITextView!
     
     @IBOutlet weak var feelingSlider: UISlider!
@@ -40,7 +39,7 @@ class LogEntryDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateTextView.text = entry!.getDateAsString()
+        //datelabel.text = entry!.getDateAsString()
         entryTextView.text = entry!.getText()
         entryTextView.editable = false
         feelingSlider.value = entry!.getFeeling()
