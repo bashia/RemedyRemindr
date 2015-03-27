@@ -19,6 +19,7 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         messageLabel.text = "Please focus on a QR code"
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
@@ -157,6 +158,146 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         qrCodeFrameView?.frame = CGRectZero
     }
     
+    func qrJSONParse(rawJSON: String) -> Medication? {
+        
+        let json = JSON(data: (rawJSON as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        // Check name
+        let name = json["n"].stringValue
+        if countElements(name) < 1 {
+            return nil
+        }
+        
+        if countElements(name) > 128 {
+            print("error")
+            return nil
+        }
+        
+        if !checkValidCharacters(name) {
+            return nil
+        }
+        
+        var medication : Medication = Medication(name: name)
+        var reminders : [Reminder] = []
+        
+        // Check the reminders. A medication can be added with no reminders
+        for(var i = 0;; i++)
+        {
+            var reminder = Reminder()
+            
+            var dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            // Check start date
+            if let startDate = dateFormatter.dateFromString(json["r"][i]["s"].stringValue) {
+                
+                if startDate.compare(NSDate())  == .OrderedAscending {
+                    reminder.setStartDate(NSDate())
+                }
+                else {
+                    reminder.setStartDate(startDate)
+                }
+            }
+            else {
+                // If there are no more reminders then stop looking for more
+                break
+            }
+            
+            // Check repeat
+            let repeat: String = json["r"][i]["r"].stringValue
+            switch repeat {
+            case "n":
+                reminder.setRepeat(Repeat.NO)
+            case "w":
+                reminder.setRepeat(Repeat.YES_WEEKLY)
+            case "c":
+                reminder.setRepeat(Repeat.YES_CUSTOM)
+            default:
+                return nil
+            }
+            
+            // Check end date
+            if let endDate = dateFormatter.dateFromString(json["r"][i]["e"].stringValue) {
+                
+                // One time reminders do no have end dates
+                if reminder.getRepeat() == .NO || endDate.compare(reminder.getStartDate())  == .OrderedAscending || reminder.getStartDate().compare(endDate)  == .OrderedSame {
+                    return nil
+                }
+                else {
+                    reminder.setEndDate(endDate)
+                }
+            }
+                // If no enddate was specfied then the enddate should equal the startdate
+            else {
+                reminder.setEndDate(reminder.getStartDate())
+            }
+            
+            // Check days
+            if let days = json["r"][i]["d"].stringValue.toInt() {
+                
+                // One time reminders do not have a days field
+                if reminder.getRepeat() == .YES_CUSTOM && Int16(days) < 1 || reminder.getRepeat() == .NO {
+                    return nil
+                }
+                
+                reminder.setDays(Int16(days))
+            }
+            else
+            {
+                // Any repeating reminder must have a days field
+                if reminder.getRepeat() != .NO {
+                    return nil
+                }
+                else
+                {
+                    reminder.setDays(0)
+                }
+            }
+            
+            // Check for times
+            let timesAsStrings = split(json["r"][i]["t"].stringValue) {$0 == ","}
+            var timesAsInts:[Int16] = []
+            
+            
+            // There must be at least one valid time specified
+            if timesAsStrings.count > 0 {
+                for(var j = 0; j < timesAsStrings.count; j++) {
+                    
+                    // Check time
+                    if let time = timesAsStrings[j].toInt() {
+                        if time < 0 || time >= 1440 { // Maximum minutes from midnight
+                            return nil
+                        }
+                        else
+                        {
+                            timesAsInts.append(Int16(time))
+                        }
+                    }
+                    else
+                    {
+                        return nil
+                    }
+                }
+            }
+            else {
+                return nil
+            }
+            
+            reminder.setTimes(timesAsInts)
+            
+            // Do notes
+            let notes: String = json["r"][i]["n"].stringValue
+            reminder.setNotes(notes)
+            
+            reminders.append(reminder)
+        }
+        
+        medication.reminders = reminders
+        return medication
+        
+    }
+    
+ 
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
@@ -176,171 +317,37 @@ class QRCaptureViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             if metadataObj.stringValue != nil {
                 captureSession?.stopRunning()
                 
-                let json = JSON(data: (metadataObj.stringValue as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
-                
                 var invalidQRAlert = UIAlertController(title: "Invalid QR Code", message: "The scanned QR was not a valid medication.", preferredStyle: UIAlertControllerStyle.Alert)
                 
                 invalidQRAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
                     self.resumeCapture()
                 }))
-
                 
-                // Check name
-                let name = json["medication"]["name"].stringValue
-                if countElements(name) < 1 {
-                    presentViewController(invalidQRAlert, animated: true, completion: nil)
-                    return
-                }
-                
-                if countElements(name) > 128 {
-                    presentViewController(invalidQRAlert, animated: true, completion: nil)
-                    return
-                }
-                
-                if !checkValidCharacters(name) {
-                    presentViewController(invalidQRAlert, animated: true, completion: nil)
-                    return
-                }
-                
-                var medication : Medication = Medication(name: name)
-                var reminders : [Reminder] = []
-                
-                // Check the reminder count
-                if let remCount = json["medication"]["remCount"].stringValue.toInt()
-                {
-                    for(var i = 0; i < remCount; i++)
-                    {
-                        var reminder = Reminder()
-                        
-                        
-                        var dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "yyyy-MM-dd"
-                        
-                        // Check start date
-                        if let startDate = dateFormatter.dateFromString(json["medication"]["reminders"][i]["startDate"].stringValue) {
-                            //reminder.setStartDate(startDate)
-                            reminder.setStartDate(NSDate())
-                        
-                        }
-                        else {
-                            presentViewController(invalidQRAlert, animated: true, completion: nil)
-                            return
-                        }
-                        
-                        // Check end date
-                        if let endDate = dateFormatter.dateFromString(json["medication"]["reminders"][i]["endDate"].stringValue) {
-                            if endDate.compare(reminder.getStartDate())  == .OrderedAscending || reminder.getStartDate().compare(endDate)  == .OrderedSame {
-                                presentViewController(invalidQRAlert, animated: true, completion: nil)
-                                return
-                            }
-                            else
-                            {
-                                reminder.setEndDate(endDate)
-                            }
-                        }
-                        else {
-                            presentViewController(invalidQRAlert, animated: true, completion: nil)
-                            return
-                        }
-                        
-                        // Check repeat
-                        if let repeat = Repeat(rawValue: json["medication"]["reminders"][i]["repeat"].stringValue) {
-                            reminder.setRepeat(repeat)
-                        }
-                        else
-                        {
-                            presentViewController(invalidQRAlert, animated: true, completion: nil)
-                            return
-                        }
-                        
-                        // Check days
-                        if let days = json["medication"]["reminders"][i]["days"].stringValue.toInt() {
-                            reminder.setDays(Int16(days))
-                        }
-                        else
-                        {
-                            if reminder.getRepeat() != .NO {
-                                presentViewController(invalidQRAlert, animated: true, completion: nil)
-                                return
-                            }
-                            else
-                            {
-                                reminder.setDays(0)
-                            }
-                        }
-                        
-                        // Check time count
-                        var times:[Int16] = []
-                        
-                        if let timesCount = json["medication"]["reminders"][i]["timesCount"].stringValue.toInt()
-                        {
-                            
-                            if timesCount > 0 {
-                                
-                                for(var j = 0; j < timesCount; j++) {
-                                    
-                                    // Check time
-                                    if let time = json["medication"]["reminders"][i]["times"][j]["time"].stringValue.toInt() {
-                                        if time < 0 || time >= 1440 { // Maximum minutes from midnight
-                                            presentViewController(invalidQRAlert, animated: true, completion: nil)
-                                            return
-                                        }
-                                        else
-                                        {
-                                            times.append(Int16(time))
-                                        }
-                                    }
-                                    else
-                                    {
-                                        presentViewController(invalidQRAlert, animated: true, completion: nil)
-                                        return
-                                    }
-                                }
-                                
-                                reminder.setTimes(times)
-                            }
-                            else
-                            {
-                                presentViewController(invalidQRAlert, animated: true, completion: nil)
-                                return
-                            
-                            }
-                        }
-                        else
-                        {
-                            presentViewController(invalidQRAlert, animated: true, completion: nil)
-                            return
-                        }
-                        
-                        // Do notes
-                        let notes: String = json["medication"]["reminders"][i]["notes"].stringValue
-                        reminder.setNotes(notes)
-                        
-                        reminders.append(reminder)
-                    }
-                }
-                else
-                {
-                    presentViewController(invalidQRAlert, animated: true, completion: nil)
-                    return
-                }
-                
-
-                var addConfirmationAlert = UIAlertController(title: "QR Code Detected", message: "Would you like to add the medication " + json["medication"]["name"].stringValue + "?", preferredStyle: UIAlertControllerStyle.Alert)
-                
-                addConfirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-                    if !self.addMedicationConfirmed(medication, reminders: reminders, sender: self)
-                    {
-                        self.resumeCapture()
-                    }
+                if let medication = qrJSONParse(metadataObj.stringValue) {
                     
-                }))
-                
-                addConfirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-                    self.resumeCapture()
-                }))
-                
-                presentViewController(addConfirmationAlert, animated: true, completion: nil)
+                    let reminders = medication.reminders
+                    medication.reminders = []
+                    
+                    var addConfirmationAlert = UIAlertController(title: "QR Code Detected", message: "Would you like to add the medication " + medication.name + "?", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    addConfirmationAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                        if !self.addMedicationConfirmed(medication, reminders: reminders, sender: self)
+                        {
+                            self.resumeCapture()
+                        }
+                        
+                    }))
+                    
+                    addConfirmationAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+                        self.resumeCapture()
+                    }))
+                    
+                    presentViewController(addConfirmationAlert, animated: true, completion: nil)
+                }
+                else {
+                    presentViewController(invalidQRAlert, animated: true, completion: nil)
+                    return
+                }
             }
         }
     }
