@@ -21,10 +21,8 @@
 		EA3F7D5D1A898BFF009B2172 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F7D5C1A898BFF009B2172 /* MainNavigationController.swift */; };
 		EA4506741AC20FEB001DB711 /* LogEntryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4506731AC20FEB001DB711 /* LogEntryDetailsViewController.swift */; };
 		EA4969241A88276D00CAC52A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969231A88276D00CAC52A /* AppDelegate.swift */; };
-		EA4969261A88276D00CAC52A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969251A88276D00CAC52A /* ViewController.swift */; };
 		EA49692E1A88276D00CAC52A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49692C1A88276D00CAC52A /* LaunchScreen.xib */; };
 		EA49693A1A88276D00CAC52A /* RemedyRemindrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */; };
-		EA7FD7C61AB38ECB000BA990 /* AdherePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7FD7C51AB38ECB000BA990 /* AdherePoint.swift */; };
 		EA7FD7CC1AB39018000BA990 /* sad-red.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7FD7C71AB39018000BA990 /* sad-red.png */; };
 		EA7FD7CD1AB39018000BA990 /* sad-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7FD7C81AB39018000BA990 /* sad-yellow.png */; };
 		EA7FD7CE1AB39018000BA990 /* ok-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7FD7C91AB39018000BA990 /* ok-yellow.png */; };
@@ -38,6 +36,10 @@
 		EA856F051A8C585A00BDA1C6 /* ReminderNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA856F041A8C585A00BDA1C6 /* ReminderNotesViewController.swift */; };
 		EA856F071A8C78D300BDA1C6 /* ReminderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA856F061A8C78D300BDA1C6 /* ReminderDetailsViewController.swift */; };
 		EA9039D51ABA2EEF004DB08D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9039D41ABA2EEF004DB08D /* SwiftyJSON.swift */; };
+		EA9A65981AC490F300551367 /* QRParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A65971AC490F300551367 /* QRParserTests.swift */; };
+		EA9A659C1AC493F100551367 /* QRCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1882DE1ABA12BC00AAA7D3 /* QRCaptureViewController.swift */; };
+		EA9A659D1AC4940100551367 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0DC891A914917004D56F7 /* functions.swift */; };
+		EA9A659E1AC4940500551367 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9039D41ABA2EEF004DB08D /* SwiftyJSON.swift */; };
 		EA9BC6F31A8C0F6400658180 /* MedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9BC6F21A8C0F6400658180 /* MedListViewController.swift */; };
 		EAA536CA1A8D861100CCE572 /* ReminderDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9FBC81A8D837300C28380 /* ReminderDaysViewController.swift */; };
 		EAA536CB1A8D865800CCE572 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA4969271A88276D00CAC52A /* Main.storyboard */; };
@@ -50,7 +52,6 @@
 		EAD03EF31ABF636B009BC86E /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA248A1A1A88453900B15D03 /* Medication.swift */; };
 		EAD03EF41ABF6376009BC86E /* MedicationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */; };
 		EAD03EF51ABF6378009BC86E /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB14501AAF845D00040010 /* LogEntry.swift */; };
-		EAD03EF61ABF637A009BC86E /* AdherePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7FD7C51AB38ECB000BA990 /* AdherePoint.swift */; };
 		EAD03EF71ABF638A009BC86E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4969231A88276D00CAC52A /* AppDelegate.swift */; };
 		EADB14511AAF845D00040010 /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB14501AAF845D00040010 /* LogEntry.swift */; };
 		EAE1E1021AC216150094288B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAE1E1011AC216150094288B /* Images.xcassets */; };
@@ -85,13 +86,11 @@
 		EA49691E1A88276D00CAC52A /* RemedyRemindr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemedyRemindr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4969221A88276D00CAC52A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA4969231A88276D00CAC52A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EA4969251A88276D00CAC52A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EA4969281A88276D00CAC52A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA49692D1A88276D00CAC52A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EA4969331A88276D00CAC52A /* RemedyRemindrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemedyRemindrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4969381A88276D00CAC52A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RemedyRemindrTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EA7FD7C51AB38ECB000BA990 /* AdherePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AdherePoint.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EA7FD7C71AB39018000BA990 /* sad-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sad-red.png"; path = "../../../../Downloads/sad-red.png"; sourceTree = "<group>"; };
 		EA7FD7C81AB39018000BA990 /* sad-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sad-yellow.png"; path = "../../../../Downloads/sad-yellow.png"; sourceTree = "<group>"; };
 		EA7FD7C91AB39018000BA990 /* ok-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ok-yellow.png"; path = "../../../../Downloads/ok-yellow.png"; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		EA856F041A8C585A00BDA1C6 /* ReminderNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReminderNotesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EA856F061A8C78D300BDA1C6 /* ReminderDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReminderDetailsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EA9039D41ABA2EEF004DB08D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		EA9A65971AC490F300551367 /* QRParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRParserTests.swift; sourceTree = "<group>"; };
 		EA9BC6F21A8C0F6400658180 /* MedListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MedListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EAC191DE1A89C88A004A38DC /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Reminder.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EAC9FBC41A8D6D0700C28380 /* CustomDaysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CustomDaysViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -182,8 +182,7 @@
 				EA9BC6ED1A8BF78E00658180 /* UI */,
 				EA9BC6EF1A8BF88B00658180 /* Notifications */,
 				EA4969231A88276D00CAC52A /* AppDelegate.swift */,
-				EA9039D41ABA2EEF004DB08D /* SwiftyJSON.swift */,
-				EA4969251A88276D00CAC52A /* ViewController.swift */,
+				EA9A659F1AC494AE00551367 /* Libraries */,
 				EA3F7D231A8969CA009B2172 /* constants.swift */,
 				EAF0DC891A914917004D56F7 /* functions.swift */,
 				EA49692C1A88276D00CAC52A /* LaunchScreen.xib */,
@@ -206,6 +205,7 @@
 			children = (
 				EA4969391A88276D00CAC52A /* RemedyRemindrTests.swift */,
 				EAD03EEF1ABF5D25009BC86E /* NotificationScheduleTest.swift */,
+				EA9A65971AC490F300551367 /* QRParserTests.swift */,
 				EA4969371A88276D00CAC52A /* Supporting Files */,
 			);
 			path = RemedyRemindrTests;
@@ -229,6 +229,14 @@
 				EA7FD7CB1AB39018000BA990 /* happy-green.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		EA9A659F1AC494AE00551367 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				EA9039D41ABA2EEF004DB08D /* SwiftyJSON.swift */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 		EA9BC6ED1A8BF78E00658180 /* UI */ = {
@@ -255,7 +263,6 @@
 				EA248A1A1A88453900B15D03 /* Medication.swift */,
 				EA2933CA1A899BC100589DE5 /* MedicationDAO.swift */,
 				EADB14501AAF845D00040010 /* LogEntry.swift */,
-				EA7FD7C51AB38ECB000BA990 /* AdherePoint.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -381,7 +388,6 @@
 				EA3F7D241A8969CA009B2172 /* constants.swift in Sources */,
 				EA9BC6F31A8C0F6400658180 /* MedListViewController.swift in Sources */,
 				EA856F071A8C78D300BDA1C6 /* ReminderDetailsViewController.swift in Sources */,
-				EA4969261A88276D00CAC52A /* ViewController.swift in Sources */,
 				EA856EF91A8C57AE00BDA1C6 /* ReminderTypeViewController.swift in Sources */,
 				EAEDF55F1A8E8F4C00F4735A /* TimePickerViewController.swift in Sources */,
 				EA1882DF1ABA12BC00AAA7D3 /* QRCaptureViewController.swift in Sources */,
@@ -400,7 +406,6 @@
 				EADB14511AAF845D00040010 /* LogEntry.swift in Sources */,
 				EA2933CB1A899BC100589DE5 /* MedicationDAO.swift in Sources */,
 				EA3F7D5B1A89700A009B2172 /* RemedyRemindr.xcdatamodeld in Sources */,
-				EA7FD7C61AB38ECB000BA990 /* AdherePoint.swift in Sources */,
 				EA856F031A8C584B00BDA1C6 /* ReminderTimesViewController.swift in Sources */,
 				EAC9FBC71A8D7ABB00C28380 /* CustomWeeklyViewController.swift in Sources */,
 				EA856EFB1A8C57CD00BDA1C6 /* ReminderStartViewController.swift in Sources */,
@@ -413,14 +418,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD03EF31ABF636B009BC86E /* Medication.swift in Sources */,
+				EA9A65981AC490F300551367 /* QRParserTests.swift in Sources */,
 				EAD03EF11ABF5EE2009BC86E /* Reminder.swift in Sources */,
 				EAD03EF51ABF6378009BC86E /* LogEntry.swift in Sources */,
 				EAD03EF71ABF638A009BC86E /* AppDelegate.swift in Sources */,
+				EA9A659C1AC493F100551367 /* QRCaptureViewController.swift in Sources */,
 				EA49693A1A88276D00CAC52A /* RemedyRemindrTests.swift in Sources */,
 				EAD03EF01ABF5D25009BC86E /* NotificationScheduleTest.swift in Sources */,
 				EAD03EF21ABF5EFD009BC86E /* NotificationManagement.swift in Sources */,
 				EAD03EF41ABF6376009BC86E /* MedicationDAO.swift in Sources */,
-				EAD03EF61ABF637A009BC86E /* AdherePoint.swift in Sources */,
+				EA9A659E1AC4940500551367 /* SwiftyJSON.swift in Sources */,
+				EA9A659D1AC4940100551367 /* functions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
